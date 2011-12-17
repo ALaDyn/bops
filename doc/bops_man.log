@@ -1,0 +1,272 @@
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.6.15)  16 JUN 2011 11:24
+entering extended mode
+**C:/Users/gibbon/Development/pic/bops/doc/bops_man.tex
+(C:/Users/gibbon/Development/pic/bops/doc/bops_man.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size11.clo"
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/01/28 v0.05d Graphics/color for pdfTeX
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\epsfig.sty"
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+\epsfxsize=\dimen105
+\epsfysize=\dimen106
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\longtable.sty"
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip43
+\LTright=\skip44
+\LTpre=\skip45
+\LTpost=\skip46
+\LTchunksize=\count88
+\LTcapwidth=\dimen107
+\LT@head=\box26
+\LT@firsthead=\box27
+\LT@foot=\box28
+\LT@lastfoot=\box29
+\LT@cols=\count89
+\LT@rows=\count90
+\c@LT@tables=\count91
+\c@LT@chunks=\count92
+\LT@p@ftn=\toks15
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\dcolumn.sty"
+Package: dcolumn 2001/05/28 v1.06 decimal alignment package (DPC)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen108
+\extrarowheight=\dimen109
+\NC@list=\toks16
+\extratabsurround=\skip47
+\backup@length=\skip48
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(C:\Users\gibbon\Development\pic\bops\doc\bops_man.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+
+(C:\Users\gibbon\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count93
+\scratchdimen=\dimen110
+\scratchbox=\box30
+\nofMPsegments=\count94
+\nofMParguments=\count95
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count96
+\MPscratchDim=\dimen111
+\MPnumerator=\count97
+\everyMPtoPDFconversion=\toks18
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 128.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 128.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 128.
+ [1
+
+{C:/Users/gibbon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(C:\Users\gibbon\Development\pic\bops\doc\bops_man.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 5.
+)
+\tf@toc=\write3
+ [2] [3]
+Overfull \hbox (3.29842pt too wide) in paragraph at lines 173--174
+\OT1/cmr/m/n/10.95 If you for-get any-thing first time, just click on the Cyg-w
+in in-staller icon to lo-cate/update
+ []
+
+
+Overfull \hbox (0.98842pt too wide) in paragraph at lines 220--223
+\OT1/cmr/m/n/10.95 Once com-piled, go to the base (or top) di-rec-tory and edit
+ one of the ex-am-ples in \OT1/cmtt/m/n/10.95 run[]scripts
+ []
+
+[4] <figures/profile_lin.pdf, id=21, 489.83pt x 249.93375pt>
+File: figures/profile_lin.pdf Graphic file (type pdf)
+
+<use figures/profile_lin.pdf> [5]
+<figures/profile_exp.pdf, id=25, 507.8975pt x 227.85126pt>
+File: figures/profile_exp.pdf Graphic file (type pdf)
+
+<use figures/profile_exp.pdf> [6 <C:/Users/gibbon/Development/pic/bops/doc/figu
+res/profile_lin.pdf>] [7 <C:/Users/gibbon/Development/pic/bops/doc/figures/prof
+ile_exp.pdf>] [8] [9] [10]
+<figures/boost_geom.jpg, id=53, 533.1117pt x 229.0959pt>
+File: figures/boost_geom.jpg Graphic file (type jpg)
+
+<use figures/boost_geom.jpg> [11 <C:/Users/gibbon/Development/pic/bops/doc/figu
+res/boost_geom.jpg>]
+
+LaTeX Warning: Citation `birdsall:book' on page 12 undefined on input line 536.
+
+
+[12]
+
+LaTeX Warning: Citation `birdsall:book' on page 13 undefined on input line 577.
+
+
+
+LaTeX Warning: Citation `ruhl:pop96' on page 13 undefined on input line 610.
+
+[13] [14] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 746--747
+
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 774--775
+
+ []
+
+<figures/vacheat-prof.pdf, id=74, 513.92pt x 627.34375pt>
+File: figures/vacheat-prof.pdf Graphic file (type pdf)
+
+<use figures/vacheat-prof.pdf>
+Overfull \hbox (43.68446pt too wide) in paragraph at lines 803--821
+[] 
+ []
+
+<figures/vacheat-fhot.pdf, id=75, 513.92pt x 228.855pt>
+File: figures/vacheat-fhot.pdf Graphic file (type pdf)
+
+<use figures/vacheat-fhot.pdf>
+Overfull \hbox (54.40633pt too wide) in paragraph at lines 824--825
+ [] 
+ []
+
+[17] <figures/vacheat-spec.pdf, id=81, 513.92pt x 228.855pt>
+File: figures/vacheat-spec.pdf Graphic file (type pdf)
+
+<use figures/vacheat-spec.pdf>
+Overfull \hbox (54.40633pt too wide) in paragraph at lines 845--846
+ [] 
+ []
+
+<figures/vacheat-phase.pdf, id=82, 513.92pt x 228.855pt>
+File: figures/vacheat-phase.pdf Graphic file (type pdf)
+
+<use figures/vacheat-phase.pdf>
+Overfull \hbox (54.40633pt too wide) in paragraph at lines 862--863
+ [] 
+ []
+
+<figures/vacheat-energy.pdf, id=83, 513.92pt x 627.34375pt>
+File: figures/vacheat-energy.pdf Graphic file (type pdf)
+
+<use figures/vacheat-energy.pdf> [18]
+<figures/eden2d.jpg, id=87, 301.125pt x 453.695pt>
+File: figures/eden2d.jpg Graphic file (type jpg)
+ <use figures/eden2d.jpg>
+<figures/emreflect.jpg, id=88, 300.12125pt x 452.69125pt>
+File: figures/emreflect.jpg Graphic file (type jpg)
+
+<use figures/emreflect.jpg> [19] [20 <C:/Users/gibbon/Development/pic/bops/doc/
+figures/vacheat-prof.pdf>] [21 <C:/Users/gibbon/Development/pic/bops/doc/figure
+s/vacheat-fhot.pdf> <C:/Users/gibbon/Development/pic/bops/doc/figures/vacheat-s
+pec.pdf>] [22 <C:/Users/gibbon/Development/pic/bops/doc/figures/vacheat-phase.p
+df> <C:/Users/gibbon/Development/pic/bops/doc/figures/vacheat-energy.pdf>]
+[23 <C:/Users/gibbon/Development/pic/bops/doc/figures/eden2d.jpg> <C:/Users/gib
+bon/Development/pic/bops/doc/figures/emreflect.jpg>]
+(C:\Users\gibbon\Development\pic\bops\doc\bops_man.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 1374 strings out of 494053
+ 17644 string characters out of 3146182
+ 76542 words of memory out of 3000000
+ 4669 multiletter control sequences out of 15000+200000
+ 12094 words of font info for 42 fonts, out of 3000000 for 9000
+ 715 hyphenation exceptions out of 8191
+ 25i,9n,19p,669b,269s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbsy10.pfb
+><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:
+/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Pro
+gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program
+ Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on bops_man.pdf (23 pages, 943620 bytes).
+PDF statistics:
+ 172 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+

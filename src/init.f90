@@ -64,7 +64,6 @@ subroutine init
   nvx=400
   nvy=400
   ifreeze=0
-  isubi=1
 
   xlambda=1.06
   sigma = 5.0

@@ -1,0 +1,28 @@
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {section}{\numberline {2}Prerequisites}{3}
+\contentsline {section}{\numberline {3}Installation}{4}
+\contentsline {section}{\numberline {4}Running BOPS}{4}
+\contentsline {subsection}{\numberline {4.1}Example scripts}{5}
+\contentsline {section}{\numberline {5}Input parameters}{5}
+\contentsline {subsection}{\numberline {5.1}Target setup}{5}
+\contentsline {subsubsection}{\numberline {5.1.1}Multi-species target}{6}
+\contentsline {subsubsection}{\numberline {5.1.2}Further plasma parameters}{7}
+\contentsline {subsection}{\numberline {5.2}Laser}{8}
+\contentsline {subsection}{\numberline {5.3}Boundary conditions}{8}
+\contentsline {subsection}{\numberline {5.4}Control, diagnostics}{9}
+\contentsline {subsection}{\numberline {5.5}Particle tracking diagnostics}{9}
+\contentsline {subsection}{\numberline {5.6}Units}{10}
+\contentsline {subsection}{\numberline {5.7}Choosing simulation parameters}{10}
+\contentsline {section}{\numberline {6}Scaling of simulation variables}{11}
+\contentsline {section}{\numberline {7}Diagnostics}{14}
+\contentsline {subsection}{\numberline {7.1}Absorption rate}{14}
+\contentsline {subsection}{\numberline {7.2}Electric and magnetic field conversion}{14}
+\contentsline {subsection}{\numberline {7.3}Conversion factor for hot electrons}{15}
+\contentsline {section}{\numberline {8}Output files}{16}
+\contentsline {section}{\numberline {9}Graphical output}{16}
+\contentsline {subsection}{\numberline {9.1}Spatial profiles}{16}
+\contentsline {subsection}{\numberline {9.2}Particle distribution functions}{18}
+\contentsline {subsection}{\numberline {9.3}Fourier spectra}{18}
+\contentsline {subsection}{\numberline {9.4}Phase space (scatter plots)}{18}
+\contentsline {subsection}{\numberline {9.5}Time histories -- mostly cycle-averaged}{19}
+\contentsline {subsection}{\numberline {9.6}2D surface plots}{19}

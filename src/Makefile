@@ -1,7 +1,7 @@
 #
-#    Makefile for BOPS2 and derivatives
+#    Makefile for BOPS3 and derivatives
 #
-#  Last update: December 2009
+#  Last update: October 2011
 #
 #------------
 #  Compiler optimisation flags 
@@ -29,16 +29,15 @@
 # GNU fortran
 #--------
 #FC= ifort
-FC=gfortran
-TUNE = -O5  
+#FC=gfortran
+#TUNE = -O5  
 DEBUG = -g  #-check bounds -traceback
 #TUNE = -O3  
 
-# Quadcore MPQ-QUB Cluster: lamp.opt.rzg.mpg.de
+# cygwin or MINGW
 #-------------------------------
-#INT_HOST = lamp
-#FC = mpif90
-#TUNE = -O3
+FC = g95 
+TUNE = -O3
 
 # JUROPA@ FZJ
 #--------------------------------
