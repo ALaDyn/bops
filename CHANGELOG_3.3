@@ -1,0 +1,147 @@
+April 2011
+    V 3.4-beta
+    gsnap.f90:
+	Fixed scalar potential - computed in S frame with correct
+	sign and transformed back to lab with ay.
+    
+Dec 2010
+    BOPS 3.3
+    --------
+    ******************************************************************
+    *	List of changes in BOPS Version 3.3			 *
+    *	Multispecies, multi-layered target configurations added! *
+    *								 *
+    ******************************************************************
+
+    avlas.f90:
+    diagnose all flux for either TE or TM mode
+    ###### 
+    bops.f90:
+    change in particle pusher for electrons, protons and heavy ions
+    ######
+    bopsvars.f90:
+    added new variables: vtp, n_pp, n_pp1, n_pp2, value of miome, mpome, np to be taken from input
+    ######
+    denprof.f90:
+    slab: change i1:n+1 to i1:n
+    added three layered target profile
+    added multispecies profile (multislab.f90)
+    ######
+    derdat.f90:
+    added double/three layer targets
+    added nultispecies target
+    total simulation particle recalculation after adding protons
+    ######
+    emfield.f90:
+    (note included) counterpropagating pulse
+    ######
+    emstore.f90:
+    calculation for either TE or TM mode
+    ######
+    esfield.f90:
+    for heavy ions the net charge density has been multiplied by Z
+    ######
+    esft.f90:
+    version change 730 to 7300 (???)
+    ######
+    field_ave.f90:
+    Added diagnose for all three directions       
+    added dcey dcez in field averaging
+    ######
+    gcon.f90: 
+    NO CHANGE: tried index *10 in grcon
+    ######
+    ghist.f90:
+    NO CHANGE :for all index *10, conforms to my change(????)
+    ######
+    grav.f90:
+    output all time-ave quanties for either TE or TM mode
+    ######
+    grps.f90:
+    NO CHANGE:
+    ######
+    grxy.f90:
+    NO CHANGE: need checking the open data file statements!
+    ######
+    gsnap.f90:
+    NOT USED: for output reflected Ez
+    change uyma, uzma, uxma *
+    TODO:added output of "vxxe"
+    changed to output for either TM or TE mode
+    added uzma and uzmi
+    added output vx,vy,vz
+    compute uzma, uzmi
+    seperate outputing information of ions and protons
+    added others output for ions
+    changed to outputing for either TM or TE mode
+    #######
+    header.f90:
+    NO CHANGE!
+    calling for "rho_layer/nc" needs checking
+    #######
+    heavy ions' density recalculated (divide by its charge z)
+    #######
+    init.f90:
+    added multispecies initializations.
+    TODO: counterpropagating pulse(!!)
+    #######
+    parload.f90:
+    for density profile 'denprof' call ni is changed with ni_tot including protons
+    separate charge & mass assigning for protons and ions in the multispecies_target
+    added relativistic thermal distribution for proton layers & heavy ions 
+    previous additional layer creation method replaced with new.
+    Changed relativisitc gamma factor calculation, protons calculated separately
+    #######
+    scramb.f90:
+    odd exclusion rule modified (passed xo to xn)
+    #######
+    setup_arrays.f90:
+    npm array reorganized changing ni with ni_tot including protons
+    added dcey
+------------------------------------------------------------------------
+
+May 2008
+     BOPS 3.1
+     Added 3rd particle species - protons
+     Removed freeze mode
+
+February 2007
+     BOPS 3:  Fortran90 version
+	- runtime array allocation
+     Source code under subversion control
+     f77 version no longer maintained
+
+December 2004:
+     BOPS 2: CVS version
+     Public release on FZJ-Server
+
+-----------
+Prehistory:
+-----------
+August 1995:   
+     Relativistic velocity load (2v,3v) and bcs
+     Pushers and em field solvers for s- and c-polarisation
+February 1994: 
+     FT routines for reflected harmonics
+     Particle tracking
+     Steady-state field diagnostics
+August 1992:   
+     Mobile ions, double-precision pusher
+     Instantaneous absorption diagnostics
+     Scaling for boost frame --> lab frame
+June 1990:     
+     Fixed ions, oblique incidence boost
+     
+
+!      File streams:
+!      ------------
+!      fort.70         ey_back.t      time signal of reflected light (p)
+!      fort.71            ez_back.t          "            "      (s)
+!      fort.75            ion_density.xt      x-t plot of ion density
+!      fort.80            elec_lhb.ray      Electrons @LHB in rayshade format
+!      fort.81            elec_rhb.ray          "      RHB    "
+!      fort.82            ions_lhb.ray      Ions       "
+
+
+
+

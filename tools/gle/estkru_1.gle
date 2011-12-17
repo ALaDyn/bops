@@ -1,0 +1,223 @@
+! new page
+size 26 18
+set font rm
+begin translate   4.0000E+00   1.5000E+01
+begin graph
+size   4.2000E+00   3.0000E+00
+data estkru/nit00.xy
+nobox
+xaxis min    0.0000E+00 max    1.5000E+01
+yaxis min    0.0000E+00 max    4.0000E+00
+xaxis hei    1.6000E-01
+yaxis hei    1.6000E-01
+xlabels hei    2.5000E-01
+ylabels hei    2.5000E-01
+xaxis nticks 4
+xticks length .07
+yticks length .07
+title " t = 0      " hei 0.3 font rmi
+xtitle "      x        "
+ytitle "       ni      "
+d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+begin translate   4.0000E+00   1.1500E+01
+begin graph
+size   4.2000E+00   3.0000E+00
+data estkru/uesp0.xy
+nobox
+xaxis hei    1.6000E-01
+yaxis hei    1.6000E-01
+xlabels hei    2.5000E-01
+ylabels hei    2.5000E-01
+xaxis nticks 4
+xticks length .07
+yticks length .07
+title "            " hei 0.3 font rmi
+xtitle "      t        "
+ytitle "     <Ues>     "
+d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+begin translate   8.5000E+00   1.1500E+01
+begin graph
+size   4.2000E+00   3.0000E+00
+data estkru/ueme0.xy
+nobox
+xaxis hei    1.6000E-01
+yaxis hei    1.6000E-01
+xlabels hei    2.5000E-01
+ylabels hei    2.5000E-01
+xaxis nticks 4
+xticks length .07
+yticks length .07
+title "            " hei 0.3 font rmi
+xtitle "      t        "
+ytitle "     <U(TE)>   "
+d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+begin translate   1.3000E+01   1.1500E+01
+begin graph
+size   4.2000E+00   3.0000E+00
+data estkru/uthp0.xy
+nobox
+xaxis hei    1.6000E-01
+yaxis hei    1.6000E-01
+xlabels hei    2.5000E-01
+ylabels hei    2.5000E-01
+xaxis nticks 4
+xticks length .07
+yticks length .07
+title "            " hei 0.3 font rmi
+xtitle "      t        "
+ytitle "     <Uthp>    "
+d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+begin translate   1.7500E+01   1.1500E+01
+begin graph
+size   4.2000E+00   3.0000E+00
+data estkru/urhb0.xy
+nobox
+xaxis hei    1.6000E-01
+yaxis hei    1.6000E-01
+xlabels hei    2.5000E-01
+ylabels hei    2.5000E-01
+xaxis nticks 4
+xticks length .07
+yticks length .07
+title "            " hei 0.3 font rmi
+xtitle "      t        "
+ytitle "     <Urhb>    "
+d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+begin translate   2.2000E+01   1.1500E+01
+begin graph
+size   4.2000E+00   3.0000E+00
+data estkru/utot0.xy
+nobox
+xaxis hei    1.6000E-01
+yaxis hei    1.6000E-01
+xlabels hei    2.5000E-01
+ylabels hei    2.5000E-01
+xaxis nticks 4
+xticks length .07
+yticks length .07
+title "            " hei 0.3 font rmi
+xtitle "      t        "
+ytitle "     <Utot>    "
+d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+begin translate   4.0000E+00   8.0000E+00
+begin graph
+size   4.2000E+00   3.0000E+00
+data estkru/absr0.xy
+nobox
+xaxis min    0.0000E+00 max    1.0000E+02
+yaxis min    0.0000E+00 max    1.0000E+00
+xaxis hei    1.6000E-01
+yaxis hei    1.6000E-01
+xlabels hei    2.5000E-01
+ylabels hei    2.5000E-01
+xaxis nticks 4
+xticks length .07
+yticks length .07
+title "            " hei 0.3 font rmi
+xtitle "      t        "
+ytitle "  Abs (1-R)    "
+d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+begin translate   8.5000E+00   8.0000E+00
+begin graph
+size   4.2000E+00   3.0000E+00
+data estkru/abut0.xy
+nobox
+xaxis min    0.0000E+00 max    1.0000E+02
+yaxis min    0.0000E+00 max    1.0000E+00
+xaxis hei    1.6000E-01
+yaxis hei    1.6000E-01
+xlabels hei    2.5000E-01
+ylabels hei    2.5000E-01
+xaxis nticks 4
+xticks length .07
+yticks length .07
+title "            " hei 0.3 font rmi
+xtitle "      t        "
+ytitle "   dUtot/dt    "
+d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+begin translate   1.3000E+01   8.0000E+00
+begin graph
+size   4.2000E+00   3.0000E+00
+data estkru/abuh0.xy
+nobox
+xaxis min    0.0000E+00 max    1.0000E+02
+yaxis min    0.0000E+00 max    1.0000E+00
+xaxis hei    1.6000E-01
+yaxis hei    1.6000E-01
+xlabels hei    2.5000E-01
+ylabels hei    2.5000E-01
+xaxis nticks 4
+xticks length .07
+yticks length .07
+title "            " hei 0.3 font rmi
+xtitle "      t        "
+ytitle "   dUhot/dt    "
+d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+begin translate   1.7500E+01   8.0000E+00
+begin graph
+size   4.2000E+00   3.0000E+00
+data estkru/abui0.xy
+nobox
+xaxis min    0.0000E+00 max    1.0000E+02
+yaxis min    0.0000E+00 max    1.0000E+00
+xaxis hei    1.6000E-01
+yaxis hei    1.6000E-01
+xlabels hei    2.5000E-01
+ylabels hei    2.5000E-01
+xaxis nticks 4
+xticks length .07
+yticks length .07
+title "            " hei 0.3 font rmi
+xtitle "      t        "
+ytitle "   dUion/dt    "
+d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+

@@ -1,0 +1,88 @@
+
+! new page
+size 18 26
+set font rm
+
+begin translate 2.5 25.
+set hei .8
+begin text
+{\bf Boundary-layer absorption (Brunel effect)} 
+\,
+\;L/\lambda = 0.05, \: \theta=40^o, \:I\lambda^2=10^{16}
+end text
+end translate
+begin translate   3.0000E+00   16.5
+begin graph
+size   12 7
+data brunel/nit00.xy
+data brunel/exrm1.xy
+let d3 = d2*30
+nobox
+xaxis min    0.0000E+00 max    1.6000E+01
+yaxis min    0.0000E+00 max    4.0000E+00
+xaxis hei    .6
+yaxis hei    .6 nticks 4
+xlabels hei    .6
+ylabels hei    .6
+xaxis nticks 4
+xticks length .07
+yticks length .07
+y2axis min 0 max 15 
+y2labels 
+!title " t = 0      " hei 0.6 font rmi
+xtitle "      k_0x        "
+ytitle "     E_x (x30)      "
+y2title "   n_e/n_c     "
+d1 line lwidth    1.5000E-02 lstyle      1
+d3 line
+end graph
+end translate
+
+
+
+
+
+begin translate   3  9.5
+begin graph
+size   12 7
+data brunel/eyrm1.xy
+nobox
+xaxis hei    .6
+yaxis hei    .6 min 0 max .3 nticks 5
+xlabels hei    .6
+ylabels hei    .6
+xaxis nticks 4 min 0 max 16
+xticks length .07
+yticks length .07
+!title "  t=250.0   " hei 0.3 font rmi
+xtitle "       k_0x       "
+ytitle "     E_y   "
+d1 line lwidth    1.5000E-02 lstyle      1
+end graph
+end translate
+
+
+
+
+begin translate   3  2.5
+begin graph
+size   12 7
+data brunel/pxxe1.xy
+nobox
+xaxis hei    .6
+yaxis hei    .6 nticks 6
+xlabels hei    .6
+ylabels hei    .6
+xaxis min    0.0000E+00 max    1.6000E+01
+yaxis min   -.5 max 1.
+xaxis nticks 4
+xticks length .07
+yticks length .07
+!title "  t=250.0   " hei 0.3 font rmi
+xtitle "      k_0x        "
+ytitle "     momentum       "
+d1 marker dot                                     
+end graph
+end translate
+
+

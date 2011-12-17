@@ -1,0 +1,53 @@
+! new page
+size 18 26
+
+begin translate   4.   22.5
+ set hei .7
+ set font rmb
+ begin text
+Hot electron distribution
+(plasma electrons removed) 
+ end text
+end translate
+
+
+
+
+
+
+begin translate   1.   8
+begin graph
+size   18 12
+nobox
+xlabels hei   .4
+ylabels hei    .4
+yaxis log min .1  
+xaxis min 0 max 50
+xticks length .07
+yticks length .07
+!title "  Absorbed electrons " hei 0.5 font rmi
+xtitle "   U(keV)   "
+ytitle "     f_{hot}(U)  "
+!  Hot spot spectrum from # Rousse sims
+data ruhl/fhot1.xy d1
+data ruhl/gein1.xy 
+!let d22 = d2*511
+data ruhl/fues1.xy 
+!data 1e16_fix10/fuin1.xy
+d1 line color blue
+d2 line color red
+d3 line color black
+!d4 line lstyle 2
+end graph
+begin key
+nobox
+hei .4
+position tr
+!text "t=+100fs" fill magenta
+end key
+
+end translate
+
+
+
+

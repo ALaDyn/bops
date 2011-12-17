@@ -1,0 +1,29 @@
+04/11
+=========
+1. Update the doc for mutlispecies target configuration.
+2. Work on the matlab script to have multiple windows.
+=========
+11/07   FFT routines don't work for all time sequences
+=========
+2/07 	configure script to generate Makefiles
+=========
+7/1/05	Trapezoidal profile (inprof=4): trailing edge should match
+	L/lambda on front side
+=========
+3/6/05  Simpler means for setting up exponential profile (inprof=5),
+	with error trapping for invalid/nonsensical inputs
+=========
+General:
+
+- Postprocessor for '2D' plots - perhaps with GMT?
+
+- Fully fluid transverse momenta: exploit p=eA in boost frame 
+
+- Use 1D charge-conserving wave propag. scheme of Villasenor & Buneman
+  to replace Poisson's equation for relativistic HHG 
+  and avoid inconsistency with time-retardation effects (see paper by
+  Playa)
+
+
+- Graphical interface to view selected fields/densities 'online' -
+  offers gratefully accepted!

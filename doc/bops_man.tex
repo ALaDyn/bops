@@ -1,0 +1,918 @@
+\documentclass[11pt]{article}
+\setlength{\textheight}{21.80cm}
+\setlength{\textwidth}{15.20cm}
+\setlength{\oddsidemargin}{0cm}
+\usepackage{graphicx}
+\usepackage{epsfig}
+%\usepackage{graphics}
+\usepackage{longtable}
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{color}
+%\usepackage{underscore}
+%\usepackage{html}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+ %  MACROS:
+
+\def\mco{\multicolumn}
+\def\epp{\epsilon^{\prime}}
+\def\vep{\varepsilon}
+\def\ra{\rightarrow}
+\def\ppg{\pi^+\pi^-\gamma}
+\def\vp{{\bf p}}
+
+\def\be{\begin{equation}}
+\def\ee{\end{equation}}
+\def\bi{\begin{enumerate}}
+\def\ei{\end{enumerate}}
+\def\bes{\[}
+\def\ees{\]}
+\def\bea{\begin{eqnarray}}
+\def\eea{\end{eqnarray}}
+\def\bar{\begin{eqnarray*}}
+\def\ear{\end{eqnarray*}}
+\def\CPbar{\hbox{{\rm CP}\hskip-1.80em{/}}}%temp replacement due to no font
+
+\newcommand{\pepc}{{\sc pepc}}
+\newcommand{\meno}{{\medskip\noindent}}
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\dbyd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dd}[2]{\frac{d #1}{d #2}}
+\newcommand{\ddt}[1]{\frac{d #1}{d t}}
+\newcommand{\curl}{\nabla\bm{\times}}
+\newcommand{\half}{{1/2}}
+\newcommand{\third}{{1/3}}
+\newcommand{\quarter}{{1/4}}
+\newcommand{\fhalf}{\frac{1}{2}}
+\newcommand{\fthreehalf}{\frac{3}{2}}
+\newcommand{\fthird}{\frac{1}{3}}
+\newcommand{\threehalf}{{3/2}}
+\newcommand{\fourthirdpi}{\frac{4\pi}{3}}
+\newcommand{\rootpi}{\pi^{\half}}
+\newcommand{\Dx}{\Delta x}
+\newcommand{\Dt}{\Delta t}
+\newcommand{\rij}{\bm{r}_{ij}}
+
+\newcommand{\onemd}{(1-\delta^2)^{\frac{1}{2}}}
+\newcommand{\omp}{$\omega_{p}$}
+\newcommand{\ompom}{$\omega_{p}/\omega_{0}$}
+\newcommand{\cop}{$c/\omega_{p}$}
+\newcommand{\Lola}{$L/\lambda$}
+\newcommand{\lola}{$L/\lambda$}
+\newcommand{\Ilam}{$I\lambda^{2}$}
+\newcommand{\Wcmu}{~Wcm$^{-2}\mu$m$^{2}$}
+\newcommand{\Wcm}{~Wcm$^{-2}$}
+\newcommand{\wcm}{~Wcm$^{-2}$}
+\newcommand{\Weight}{$10^{18}$~Wcm$^{-2}$}
+\newcommand{\Wnine}{$10^{19}$~Wcm$^{-2}$}
+\newcommand{\Jcm}{~Jcm$^{-2}$}
+\newcommand{\nonc}{$n_{e}/n_{c}$}
+\newcommand{\voc}{$v_{os}/c$}
+\newcommand{\vteoc}{$v_{te}/c$}
+\newcommand{\vte}{$v_{te}$}
+\newcommand{\cmcub}{~cm$^{-3}$}
+\newcommand{\gcm}{~gcm$^{-3}$}
+\newcommand{\mum}{~$\mu$m}
+\newcommand{\cross}{\bm{\times}}
+\newcommand{\crossb}{\bm{\times}}
+\newcommand{\vcrossb}{$\bm{v\times B}$}
+
+
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\eq}[1]{Eq.~(\ref{#1})}
+\newcommand{\vxB}{\bm{v\times B}}
+\newcommand{\jxB}{\bm{j\times B}}
+%\newcommand{\deg}{$^\circ$}
+\newcommand{\kalpha}{K$_\alpha$}
+\newcommand{\eminus}{e$^{-}$}
+
+\newcommand{\upbox}[1]{^{\mbox{\scriptsize\rm #1}}}
+\newcommand{\downbox}[1]{_{\mbox{\scriptsize\rm #1}}}
+\newcommand{\nph}{^{n+\frac{1}{2}}}
+\newcommand{\nmh}{^{n-\frac{1}{2}}}
+\newcommand{\np}{^{n+1}}
+\newcommand{\nm}{^{n-1}}
+\newcommand{\mpo}{^{m+1}}
+\newcommand{\mmo}{^{m-1}}
+\newcommand{\mph}{^{m+\frac{1}{2}}}
+\newcommand{\mmh}{^{m-\frac{1}{2}}}
+\newcommand{\ip}{_{i+1}}
+\newcommand{\im}{_{i-1}}
+\newcommand{\jp}{_{j+1}}
+\newcommand{\jm}{_{j-1}}
+\newcommand{\iph}{_{i+\frac{1}{2}}}
+\newcommand{\imh}{_{i-\frac{1}{2}}}
+\newcommand{\jph}{_{j+\frac{1}{2}}}
+\newcommand{\jmh}{_{j-\frac{1}{2}}}
+\newcommand{\hs}[1]{\hspace{#1 cm}}
+\newenvironment{cols}[9]{
+\begin{tabbing}
+\hspace{.5cm} \= \hspace{3.5cm} \= \hspace{3.5cm} \= \\ \> \texttt{#1} \> \texttt{#2} \> \texttt{#3} \\ \> \texttt{#4} \> \texttt{#5} \> \texttt{#6} \\ \> \texttt{#7} \> \texttt{#8} \> \texttt{#9}}
+{\end{tabbing}}
+
+\title{\bf BOPS User Guide\\}
+\author{ Version: 3.3 \\ \date{21 April, 2011}
+\\ \\ \\
+Contributors: \\ \\
+Paul Gibbon \\
+Anupam Karmakar \\
+Bin Qiao \\ \\ \\
+J\"ulich Supercomputing Centre,\\
+Forschungszentrum J\"ulich GmbH \\
+D--52425 J\"ulich, Germany
+}
+
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+\begin{tableofcontents}
+
+\end{tableofcontents}
+
+\pagebreak
+
+\section{Introduction}
+
+BOPS is a one-and-three-halves (1 spatial, 3 velocity coordinates: 1D3V) particle-in-cell code originally created by this author together with Tony Bell in the Plasma Physics Group of Imperial College, London. Based on standard algorithm for a 1D electromagnetic PIC code (Birdsall \& Langdon), BOPS employs a Lorentz transformation, or `boost' along the target surface to mimic the standard 2D, periodic-in-y geometry common to much of the early PIC work on resonance absorption in high-power laser-plasma interactions. 
+
+The technique was first presented at the ECLIM conference in 1990, and later applied to absorption of femtosecond laser pulses on solid targets in PRL 68, 1535 (1992). A longer description of the method including the transformation subtleties can be found later in Section \ref{scaling}.
+
+ While restricting the simulations to a special class of problems -- in which the light, its harmonics and any other scattered modes are reflected in the specular direction only -- the reduction from 2D $\rightarrow$ 1D brings huge savings in computational effort and/or increased spatial and temporal resolution. Not surprisingly, this type of code has become a `workhorse' for high-intensity laser-matter interaction studies, giving relatively easy access to some extremely nonlinear, kinetic plasma phenomena, such as hot electron generation, ion acceleration and high-harmonic generation from solid surfaces.
+
+
+\section{Prerequisites}
+
+BOPS Version 3.X is a sequential code written in Fortran 90 and requires a full-blooded f90 compiler such as the Intel ifort or GNU's gfortran.  The run scripts provided are designed for generic Unix systems and will work on a Linux PC. 
+
+\subsection*{Linux users}
+Unpack the tar file with:
+\begin{verbatim}
+tar xvfz bopsXX.tar.gz
+\end{verbatim}
+and cd to the installation directory \texttt{bops}.
+
+\subsection*{Windows users}
+
+The code can be run `under' Windows using an appropriate commercial Fortran developer environment (IDE), but these
+platforms are not supported.  (Instructions for successful builds most welcome, however).
+Here is a tried-and-tested method which may require a bit of disc space.
+
+\begin{enumerate}
+\item First install CYGWIN (www.cygwin.com).  This creates a fully-fledged Unix environment emulator under Windows, 
+for which you will need some elementary unix know-how.  
+In addition to the default tools/packages offered during the installation you will also need:
+\begin{enumerate}
+	\item Gnu compilers gcc, g77, g95 etc. (Look in the optional {\it devel} package in Cygwin)
+	\item make ({\it devel} package)
+	\item vi, emacs ({\it editors} package-- optional, but very handy for quick editing!)
+	\item X11 libraries if you want to generate graphics directly under cygwin (eg using gnuplot)
+\end{enumerate}
+If you forget anything first time, just click on the Cygwin installer icon to locate/update extra packages.
+\item Download and unpack the bopsXX.tar.gz file with an archiving tool (eg PowerArchiver: www.powerarchiver.com).
+You can put this anywhere, but a convenient location is your 'home' directory under CYGWIN, e.g.:
+
+\begin{verbatim}
+C:\cygwin\home\gibbon\bops
+\end{verbatim}
+
+\item Open a Cygwin terminal/shell and `cd' to the bops directory.
+\end{enumerate}
+
+\section{Installation}
+The directory structure resulting from unpacking the tar files should look
+like this:
+
+\begin{tabular}{lcl}
+\texttt{src/} &	... &	containing the fortran90 source code\\
+\texttt{doc/} &	... &	some documentation in html and ps \\
+\texttt{run\_scripts/} &	... &	sample scripts for running the code\\
+\texttt{tools/} & ... &     postprocessing tools \\
+\texttt{example\_plots/} & ... &	sample output graphics
+\end{tabular}
+	
+\medskip
+%To compile, first try using the configure script to create a Makefile corresponding closest to your machine/OS (not yet implemented -- coming soon!). 
+
+%\begin{verbatim}
+%./configure
+%make
+%\end{verbatim}
+	
+Go to the source directory \texttt{src}, adjust and tune the flags in the Makefile to match your machine type (FC=ifort or gfortran etc) and do:
+
+\begin{verbatim}
+make
+\end{verbatim}
+
+On machines other than a Linux-PC, you may get complaints about the timing routine
+\texttt{etime} in the file cputime.f90.  If this happens, edit cputime.f90 and either 
+replace etime with something which the compiler knows, or comment it out
+altogether - this is not essential to run the code, but handy to know how
+long it's going to run for.
+
+
+
+\section{Running BOPS}
+
+Once compiled, go to the base (or top) directory and edit one of the examples in
+\texttt{run\_scripts} (e.g. resabs).  Change the \$BOPS variable to the directory where the bops.tar file was unpacked (e.g. \$HOME/bops) and the \$RUN variable to where you want the data to be 
+placed (e.g.: \texttt{resabs1}).  To run from the base directory, just type
+
+\begin{verbatim}
+run_scripts/resabs
+\end{verbatim}	
+	
+This will create a new run directory `resabs1' and start executing the code.
+All graphical output etc., will be generated as a series of ASCII files
+in the run directory.  Actual graphics are NOT supplied at present,
+but there is a postprocessor in the \texttt{tools/gle} directory (od2gle). 
+Running the script \texttt{odpp} with the run directory as its argument will create GLE-readable output and .eps or .jpg plots in a separate plots/ subdirectory.
+This method of producing graphical output is highly recommended because it gives you an automatically generated, microfiche-like overview
+ of the simulation results which you can browse with a simple image viewer.  You can get this program -- Graphics Layout Engine -- for Windows, MAC OS/X and various Linux flavours from:
+
+\begin{verbatim}
+http://glx.sourceforge.net
+\end{verbatim}
+
+It is an absolute doddle to install and these days even comes with a nice GUI called QGLE.  Further graphics is up to the user - gnuplot or xmgrace will usually 
+suffice to get started.  
+Some sample plots roughly corresponding to the sample input 
+files can be found in the examples directory.
+
+To do a series or parameter study, you might prefer to modify the
+script to sit inside a `project' directory and create subdirectories for 
+each run.
+
+\subsection{Example scripts}\label{scripts}
+
+\begin{tabular}{ll}
+resabs	&	Long scale-length, classical resonance absorption demo\\
+snells\_law &	Refractive index transition (underdense plasma)\\
+gb\_prl92 &	Vacuum heating demo: steep density gradient, fixed ions\\
+foil	&	Thin foil\\
+foil+ramp &	Foil + exponential leading ramp\\
+foil\_fsmu & 	Foil simulation set up with `experimental units' (fs, microns)\\
+hhg	&	High-harmonic generation from plasma surface
+\end{tabular}	
+
+
+\section{Input parameters} 
+
+The variable names below correspond to those appearing in the Fortran namelist file bops.indata read by the code at the start of the run. 
+ 
+\subsection{Target setup}
+
+The first task for the code is to set up the initial plasma conditions -- density profile, 
+particle velocity distribution, and so on.   This is done by the routine `parload', and controlled through
+various options in the parameter file.  The target type is chosen via two parameters: \texttt{target\_config} and \texttt{inprof}.   The first of these picks the general target class (fixed ions, single species, multi-species), whereas the second parameter determines the shape of the plasma (uniform slab, ramp plus slab, etc.).
+
+\begin{tabular}{lrl}
+variable name & value & meaning/selection \\ 
+\hline \\
+\texttt{target\_config} & 0 & fixed ions \\
+& 1 & single ion species \\
+& $\geq 2$ & additional ion layers (protons) \\
+\texttt{nonc} && $n/n_c$   \\ 
+\texttt{xlolam} && $L/\lambda$   \\
+\texttt{xm1} &&plasma edge, depending on profile choice \texttt{inprof}\\ 
+\texttt{xsol} &&start of 'solid', or max plasma density\\ 
+\texttt{xsol2} && RH edge of plasma\\ 
+\texttt{xl}&& total grid length \\
+
+\texttt{inprof}: & 1 & uniform profile\\
+		&    2 & linear ramp from \texttt{xm1} to \texttt{xl} \\ 
+& 3 & linear ramp \texttt{(xm1 - xsol)} + flat top \texttt{(xsol - xl)}\\ 
+&   & scalelength \texttt{xlolam} \\ 
+& 4 & linear + flat top + trailing ramp \texttt{(xsol - xm2)}\\ 
+& 5 & exponential ramp \texttt{xm1} to \texttt{xsol}, scalelength \texttt{xlolam}\\
+& 6 & tanh ramp \texttt{(xm1 - xsol)}, scalelength \texttt{xlolam}\\ 
+& 7 & foil, thickness \texttt{dfoil}, starting at \texttt{xm1} \\ 
+& 8 & 2 uniform layers with densities \\
+&& \texttt{nlayer (xm1-xm2)} and  \texttt{n0 (xsol-xsol2)}\\ 
+& 57 & foil thickness \texttt{dfoil}, with exponential ramp \\
+&& starting at \texttt{xm1}, scalelength \texttt{xlolam}
+%\hline
+\end{tabular} 
+
+%\epsfig{file=profile_exp,height=2in}
+\begin{figure}[tb]
+\begin{center}
+\includegraphics[totalheight=2in]{figures/profile_lin}
+\caption{Setup for linear density profile.}
+\end{center}
+\label{linear_profile}
+\end{figure}
+\begin{figure}[tb]
+\begin{center}
+\includegraphics[totalheight=2in]{figures/profile_exp}
+\caption{Setup for exponential density profile.}
+\end{center}
+\end{figure}
+
+\subsubsection{Multi-species target} 
+Two additional multi-ion configurations are currently built in.  The relative proton fraction can be
+varied from 0 to 100 \% by choosing an appropriate value for \texttt{rho\_layer}.  For example, setting 
+\texttt{nonc=10, rho\_layer=5} will set up an additional layer with 50\% heavy ions and 50\% protons.
+
+\begin{tabular}{lrl}
+\hline\\
+\texttt{target\_config}& 2 & additional proton/mixed layer on rear of slab (\texttt{inprof=7}) \\ 
+\texttt{target\_config}& 3 & additional proton/mixed layer on front of slab \\ 
+\texttt{rho\_layer} & & density of layer ($n_p/n_c$) \\
+\texttt{x\_layer} & & width of layer \\
+\texttt{mpome} & & proton/electron mass ratio \\ 
+
+%\hline
+\end{tabular}
+
+\subsubsection{Further plasma parameters} 
+\begin{tabular}{lrl}
+\hline\\
+\texttt{ne}& & number of electrons\\ 
+\texttt{ni} & $>0$ & number of ions \\
+	    & 0 & ions fixed, with $n_i=n_0$ \\ 
+\texttt{miome} & & mass ratio \\ 
+\texttt{Z} & & ion charge (1) \\ 
+\texttt{amass} & & ion atomic weight (multiplies miome) \\ 
+\texttt{Te} & & electron temperature (keV)\\ 
+\texttt{Ti} & & ion temperature (keV)\\
+%\hline
+\end{tabular}
+
+\subsection{Laser} 
+\begin{tabular}{lrl}
+\hline \\
+\texttt{a0}& $>0$ &intensity in \Wcm\ \\ 
+\texttt{a0}& $<0$ &pump strength \voc \\ 
+\texttt{xlambda} & & wavelength in microns \\
+&& (used to calculate \voc\ from \Ilam\ ) \\
+\texttt{theta0} && angle of incidence $\theta$ relative to target normal\\ 
+\texttt{tpulse} & & pulse duration $t_{fwhm}$ \\
+\texttt{tdel} & & pulse delay $t_d$ for Gaussian \\
+\texttt{trise} & & rise-time (linear) \\
+\texttt{tfall} & & fall-time (linear) \\
+\texttt{ilas}:& 1 & uniform sinusoid \\ 
+ & 2 & gaussian $I(t) = I_0\exp \{-(t-t_d)^2/t_p^2)\}$;  ($t_p=t_{fwhm}/2\sqrt(\log2)$) \\ 
+ & 3 & beat-wave (2-frequency pump) \\
+ & 4 & triangular (trise, tfall) \\ 
+ & 5 & $I(t) = I_0\sin^2 (\pi t/t_p)$; $t_p=2 t_{fwhm}$\\
+\texttt{cpolzn}:&'P' & P-polarized light \\ 
+	 &'S' & S-polarized \\ 
+  	 & 'C'& C-polarized (circular)\\
+% \hline
+\end{tabular} 
+
+
+
+
+\subsection{Boundary conditions}
+\begin{tabular}{lrl} 
+\hline \\
+\texttt{ipbc}: & 1 & periodic particles \\ 
+	       & 2 & reflective particles\\ 
+		& 3 & absorb/reemit at both sides\\ 
+		& 4 & absorb ions at LHB, electrons only if charged\\ 
+		& 5 & absorb electrons, reflect ions at RHB\\
+\texttt{ifbc}: & 1 & periodic fields \\ 
+		& 2 & bounded fields -- reflective at solid, RHB
+\end{tabular}
+ 
+
+\subsection{Control, diagnostics}
+\begin{tabular}{lrl} 
+\hline\\
+\texttt{trun} & & total run time \\ 
+\texttt{nx}& & number of mesh points\\ 
+\texttt{igr} & & frequency of graphical snapshots\\ 
+\texttt{itc} & & store for history plots\\ 
+\texttt{iout} & & printed output\\ 
+\texttt{igmovie} & & time-sequence snapshot frequency\\ 
+\texttt{ncyc} & & number of cycles for time-average plots \\
+\texttt{igxs} & & only plot every \texttt{igxs} point in 1D plots \\
+\texttt{ipskip} & & only plot every \texttt{ipskip} particle in phase-space plots \\ 
+\texttt{itsk} & & skip factor in k-space plots \\
+\texttt{nsp} & & number of special plots (in splot.f) at specified times \\
+\texttt{isp[1:nsp]} & & array giving times for special plots \\
+\texttt{iunits} & 0 & time, length normalized to $1/\omega_0$, $c/\omega_0$ (default)\\
+ & 1 & time, length normalized to $1/\omega_p$, $c/\omega_p$ \\
+ & 2 & time in fs, length in microns \\
+\texttt{isubi} & & subcycle ion motion  \\
+\texttt{ifreeze} & & freeze-time for ions \\
+\texttt{ioboost} & 0 & line plots in lab frame  \\
+ & 1 & line plots in boost frame  \\
+\texttt{umevmax} & & maximum energy for hot electron spectra  \\
+\texttt{uimax} & & maximum energy for ion spectra  \\
+\texttt{upmax} & & maximum energy for proton spectra  \\
+\texttt{nuav} & & no. timesteps for distribution function average\\
+\texttt{vxm, vym} & & maxima for distribution function plots  \\
+\texttt{nftem} & & frequency of fourier transform plots\\
+\texttt{ift} & & skip factor for FT\\
+\texttt{omegm} & & max frequency for FT plots\\
+\texttt{ifbin} & & binning for FT plots\\
+\texttt{rhotrak} & & tracking density (\texttt{nonc}) \\
+\texttt{lrstrt} & (\texttt{.false.}) & restart switch \\
+\end{tabular}
+
+
+\subsection{Particle tracking diagnostics}
+\begin{tabular}{lrl} 
+\texttt{ntrack} & & number of particle to track \\
+\texttt{itropt} & & \\
+\texttt{uhot} & & threshold tracking energy \\
+\texttt{xpint} & & \\
+\texttt{xpstart} & & \\
+\texttt{itstart} & & \\
+\texttt{itend} & & 
+\end{tabular}
+
+
+
+
+
+\subsection{Units} 
+ The default unit system (and the working system of the code) is to normalise time and space variables 
+to the laser frequency $\omega_0$ and $c/\omega_0$ respectively. This is achieved by setting \texttt{iunits=0}, the default.  In this case, the other input parameters \texttt{trun}, \texttt{tpulse}, \texttt{trise}, \texttt{tfall}, etc. are all assumed to be in terms of $1/\omega_0$. Given the actual runtime in femtoseconds, the conversion factor is: 
+ $$\omega_0 T\downbox{run} = \frac{1.88}{\lambda} T\downbox{run} \mbox{(fs)} $$
+where $\lambda$ is the laser wavelength in microns. If you specify the wavelength \texttt{xlambda} in the input file, you will see the 
+equivalent elapsed run-time in fs in the printed output during the run. Note that the diagnostic switches \texttt{igr}, \texttt{itc}, \texttt{iout}, \texttt{nftem} 
+and \texttt{igmovie} are also normalised to $1/\omega_0$ to make the output control easier. 
+All grid length parameters: \texttt{xl}, \texttt{xm1}, \texttt{xsol}, \texttt{xsol2}, \texttt{dfoil}, etc. are normalised to $c/\omega_0$. A grid length of \texttt{xl=12.57} ($4\pi$) is therefore equivalent to 2 vacuum laser wavelengths. 
+
+The other unit choices are \texttt{iunits=1}, which expects the above temporal and spatial input parameters
+ in  $1/\omega_p$ and $c/\omega_p$ respectively (sometimes useful if the laser is turned off completely or for
+ comparison with other models); and the `experimental' mode \texttt{iunits=2}, where time is in femtoseconds,
+ length in microns.  With the latter choice, special care needs to be taken to ensure that the simulation is
+set up with numerically stable parameters (particularly that $\lambda_D/\Delta x>0.5$).
+
+The laser intensity is specified (for historical reasons) through the parameter a0, which actually represents the 
+normalised pump strength. This gets converted in the code via the relation: 
+
+ $$ a_0 = \sqrt{\frac{ I_0\lambda^2}{1.38\times 10^{18}} } $$
+
+Alternatively, you can specify the pump strength (\voc ) directly by using a negative value for \texttt{a0}, eg. \texttt{a0=-0.5}. 
+
+\subsection{Choosing simulation parameters}
+Like most numerical models, PIC codes have to be used with appropriate caution, otherwise they will cough up garbage 
+at the earliest opportunity. In particular, it is important to observe certain constraints on spatial
+resolution and statistics in order to minimise numerical errors. Each of the sample scripts are set up to produce
+ reasonably reliable results, even though the statistics (particle numbers) have been deliberately reduced to a
+minimum in the interests of efficiency.  Starting from one of these scripts and scaling up the parameters appropriately should
+serve as a good first iteration.  Here is a (far from complete) trouble-shooting checklist in case you suspect something has gone wrong: 
+\medskip\\
+\begin{tabular}{ll}
+Symptom & Remedy \\ \hline
+Plasma heats up/expands too quickly & Is the Debye length resolved?  \\
+& Should have $\Delta x < 2\lambda_D$  \\ \hline
+Excessive noise in electron/ion & Increase particle nos. \texttt{ne, ni} \\
+densities or ES field & \\ \hline 
+Anomalously high electron energies & Check vacuum regions large enough \\ \hline
+Strange energy accounting & Has pulse completely reflected?  \\
+ (eg: -ve absorption) & Increase run time \\ \hline
+\end{tabular}
+
+\bigskip
+
+\section{Scaling of simulation variables}
+\label{scaling}
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[totalheight=2.in]{figures/boost_geom}
+\caption{Boost geometry used for simulating oblique incidence interactions in BOPS.}
+\end{center}
+\label{boost}
+\end{figure}
+BOPS uses a special technique for modelling oblique-incidence interactions -- a case which normally requires two spatial dimensions, ($x,y$) say, for a target with a gradient in one direction ($x$).  The trick is to perform a Lorentz transformation to a frame in which the wave vector is normally incident, so that the propagation is purely along the target normal --   Fig.\ref{boost}.  Denoting the boost ($S$) frame quantities by primes, the inverse Lorentz transformations for the wave 
+frequency and k-vector are:
+
+\bea
+\omega' & = & \gamma_0(\omega - v_0k_y) \nonumber \\
+\vspace{0.5cm}
+k_y' & = & \gamma_0(k_y - \frac{v_0}{c^2}\omega) \nonumber \\
+k_{x,z}' & = & k_{x,z} \nonumber 
+\eea
+%
+Since $k_y = k\sin\theta = \omega/c\sin\theta$ and $v_o = c\sin\theta$, we
+have:
+
+\bea
+k_y' & = & 0 \nonumber \\
+\omega' & = & \omega/\gamma_0 \label{freq} \\
+k' = \mid {\bf k}'\mid & = & k/\gamma_0 \nonumber
+\eea
+where $\gamma_0 = 1/\cos\theta$.  For the space and time coordinates, we have (from $S\rightarrow L$)
+
+\bea
+t & = & \gamma_0(t' + \frac{v_0}{c^2}y') \nonumber \\
+x & = & x' \nonumber  \\
+y & = & \gamma_0(y' + v_0 t') \nonumber\\
+z & = & z' \label{time} \\
+\eea
+%
+Likewise, noting that $B_x'=0$, the electric and magnetic fields transform as:
+
+$$\left. \begin{array}{rcl}
+E_x & = & \gamma_0(E_x' - v_0B_z')  \\
+E_y & = & E_y'  \\
+B_z & = & \gamma_0(B_z' - \frac{v_0}{c^2}E_x')
+\end{array} \right\}  \mbox{p-polarized light,} $$ 
+$$\left. \begin{array}{rcl}
+E_z & = & \gamma_0 E_z'  \\
+B_x & = & \gamma_0v_0E_z'\\
+B_y & = & B_y'\label{fields} \\
+\end{array} \right\} \mbox{s-polarized light}$$
+\begin{equation} \end{equation}
+and the density and current for each particle species $\alpha$ (inversely) as:
+
+\bea
+\rho_\alpha' & = & \gamma_0(\rho_\alpha - \frac{v_0}{c^2}j_{\alpha y}) \nonumber \\
+j_{\alpha y}' & = & \gamma_0(j_{\alpha y} - v_0\rho_\alpha) \nonumber\\
+j_{\alpha x,z}' & = & j_{\alpha x,z} \nonumber
+\eea
+Initially, $j_{ey} = j_{iy} = 0$, so in the boost frame, $(\rho_0)_{e,i}' = \gamma_0(\rho_0)_{e,i}$ and $(j_{y0})_{e,i}' = -(\rho_0)_{e,i}'c\sin\theta$.
+
+In an electromagnetic PIC or Vlasov code, it is convenient to use the standard normalisations \cite{birdsall:book}:
+
+\bea
+\tilde{t} & = & \omega t \nonumber \\
+(\tilde{x},\tilde{y}) & = & (kx, ky) \nonumber \\
+\tilde{{\bf E}} & = & \frac{e{\bf E}}{m\omega c} \nonumber \\
+\tilde{{\bf B}} & = & \frac{e{\bf B}}{m\omega} \nonumber \\
+\tilde{n}_{e,i} & = & n_{e,i}/n_c \nonumber \\
+\tilde{v}_{e,i} & = & v_{e,i}/c \nonumber
+\eea
+
+Thus, from Eqs.(\ref{time}) and (\ref{freq}), the normalised time interval
+$\omega 't' = \omega t$ is an invariant, as is the wave phase 
+$\omega t - {\bf k}\cdot {\bf r}$.  On the other hand, the simulation
+grid length $k'x'_l = \gamma_0^{-1}kx_l$ {\em shrinks} with increasing $\theta$.
+The scaling of $\omega'$ and $k'$ with $\gamma_0$ and the fact that $\tilde{B}_x'=0$ means that the {\em
+normalised} field transformations become:
+
+\bea
+\tilde{E}_x & = & \tilde{E}_x' - \tilde{v}_0\tilde{B}_z' \nonumber \\
+\tilde{E}_y & = & \frac{\tilde{E}_y'}{\gamma_0} \nonumber \\
+\tilde{B}_z & = & \tilde{B}_z' - \tilde{v}_0\tilde{E}_x', \nonumber\\
+\tilde{E}_z & = & \tilde{E}_z'  \nonumber\\
+\tilde{B}_x & = & \tilde{v}_0\tilde{E}_z' \nonumber \\
+\tilde{B}_y & = & \frac{\tilde{B}_y'}{\gamma_0} \label{fields2} 
+\eea
+%
+Note that the critical density in the simulation frame transforms as:
+
+\bea 
+\frac{n_c'}{n_c} & = & \frac{\omega '^2}{\omega^2} = \frac{1}{\gamma_0^2} \nonumber 
+\eea
+%
+Hence the initial normalised unperturbed electron density is:
+
+\bea
+\tilde{n}_{e0}' & \equiv & \frac{n_e(t=0)'}{n_c'} = \gamma_0^3\tilde{n}_e \nonumber
+\eea
+
+Thus, to initialise the particles in the simulation frame, we give them a
+charge $q_e' = \gamma_0^2 q_e$, and mass $m_e' = \gamma_0^2 m_e$, which
+when combined with the grid length contraction $k'x_l'= kx_l/\gamma_0$, satisfies: $N_e q_e' = -n_e'x_l'$ for the upper density shelf, where $N_e$ is the number of simulation particles. (See Ref.\cite{birdsall:book} for
+a discussion on particle loading.)  To initialise the particle momenta,
+we first specify the thermal distribution in the lab frame, and then 
+perform boosts:
+
+\bea
+\tilde{p}_{x,z}' & = & \tilde{p}_{x,z} \nonumber \\
+\tilde{p}_y' & = & \gamma_0(\tilde{p}_y - \tilde{v}_0\gamma) \nonumber \\
+\gamma' & = & \gamma_0(\gamma - \tilde{v}_0\tilde{p}_y) \label{m_boost} 
+\eea
+
+Finally, to launch the EM wave, we must specify its amplitude 
+$a_0 =v_{osc}/c$ at the left-hand simulation boundary.  
+Since $v_{osc}/c = eE_0/m\omega c$, we have for a $p$-polarized wave:
+
+\bea
+a_0' & = & \frac{eE_y'}{m\omega' c} = \gamma_0\frac{eE_y}{m\omega c}
+= \frac{eE_0}{m\omega c}\gamma_0\cos\theta = a_0 \label{vosc} 
+\eea
+
+One can easily verify this invariance by using Eq.(\ref{fields2}) to 
+recover the lab-frame vacuum fields.  According to Eq.(\ref{vosc}), we let $\tilde{E}_y'(x'=0) = \tilde{B}_z'(x'=0) = a_0$, so since $E_x'= 0$, we obtain
+$\tilde{E}_x = -v_0a_0 = -a_0\sin\theta$, $\tilde{E}_y = a_0/\gamma_0 = a_0\cos\theta$, and $\tilde{B}_z = a_0$, which is just what we 
+expect for a plane wave launched at an angle $\theta$ to the density 
+gradient according to Fig.\ref{boost}
+
+\section{Diagnostics}
+
+To interpret the simulation results unambiguously, it is simplest to 
+transform the field and particle variables back to the lab frame.
+We note in passing, however, that some physical insight and analytical
+economy can be 
+gained by examining boost frame quantities, so long as care is taken 
+in the labeling of sources and fields \cite{ruhl:pop96}.
+For the fields, Eq.\ref{fields2} is applied before performing cycle-averages
+and Fourier transforms.  For the particles, it is convenient to use the 
+inverse transformations of (\ref{m_boost}), from which we can recover the
+lab frame velocities, kinetic energies and currents.
+
+\subsection{Absorption rate}
+The absorption rate is a little more subtle: since it is useful to be able
+to evaluate it in either frame, and we need to take some care over the 
+definition.  The boost frame is specially chosen so that the EM waves travel
+only along the $x'$-axis.  Therefore, the absorbed wave energy is just the 
+ Poynting flux at the left-hand boundary, normalized to the energy
+density of the incoming wave:
+%
+\be
+\eta_{wave} = \frac{({F'^+})^2 - ({F'^-})^2}{({F'^+})^2}.
+\ee
+%
+where $F'^+=E'_y+B'_z, F'^-=E_y'-B_z'$.  In the boost frame, the Poynting 
+flux normal to the target equals the {\em total} EM flux; in the lab frame,
+this is reduced by $\gamma_0$, ie:$P_x = P'\cos\theta = E_yB_z$. 
+The cycle-averaged incoming energy is thus 
+%
+\be 
+U_{in} = <P_x> = \frac{1}{2}a_0^2\cos\theta.
+\ee
+%
+This factor is used to obtain the fractional absorption components in thermal energy,
+field energy, hot electrons and ions etc.  For example,
+%
+\be
+\eta_{hot} = \frac{U_{hot}}{\int U_{in}dt} \nonumber.
+\ee
+%
+As a consistency check at the end of the simulation, we should have
+%
+\be
+\eta_{wave} = \sum\left(\eta_{hot e} + \eta_{ions} + \eta_{therm} + 
+\eta_{field} \right) \nonumber
+\ee
+
+\subsection{Electric and magnetic field conversion}
+As explained in Section \ref{scaling}, the electric and magnetic fields produced in the output files
+are, unless specified otherwise, normalised to
+$m\omega_0c/e$ and $m\omega_0/e$ respectively.  To convert back to SI units, the following relations
+should be used:
+\bea
+E &=& \left(\frac{m\omega_0c}{e}\right)\tilde{E} \nonumber \\
+  &\simeq & 3.22 \times 10^{12}\lambda_\mu^{-1} [\mbox{V m}^{-1}] \\
+& &\\
+B &=&  \left(\frac{m\omega_0}{e}\right)\tilde{B} \nonumber \\
+ &\simeq & 1.1\times 10^4 \lambda_\mu^{-1} [\mbox{T}] \\
+\eea
+Similarly, a normalised field intensity $a_0^2=1$ corresponds to 
+\bea
+I &=& 1.37\times 10^{18} \lambda_\mu^{-2} \mbox{\Wcm} 
+\eea
+ 
+\subsection{Conversion factor for hot electrons}
+Because BOPS is a 1D code, simulation particles actually represent charge sheets, so one cannot directly
+translate their numbers into physical equivalents.  Neverthless, a conversion factor can be estimated
+by specifying the laser spot size and wavelength.  The argument goes as follows:
+
+Consider a slab of plasma with very short scale-length (as Fig. \ref{linear_profile} with $L/\lambda=0$).  Since the total charge $Q=N_eq_e$ is conserved, each particle carries a fixed line density:
+
+$$
+\Gamma \equiv -\tilde{\rho}_0 = \frac{N_eq_e}{\tilde{L}_p}
+$$
+where $N_e, \tilde{L}_p, \tilde{\rho}_0, q_e$ are the number of simulation electrons, the plasma length (\texttt{xl-xm1}), normalised density ($\tilde{\rho}_0=n_0/n_c$) and (macro-)charge respectively.  
+
+The number of \emph{physical} electrons contained within a cylinder of length $L_p$ and radius $\sigma_L$ (laser spot size) is just:
+
+$$
+N_a = n_0L_p\pi\sigma_L^2
+$$
+Thus using the default conversion factors
+$$L_p = c/\omega_0\tilde{L}_p,$$
+ or 
+$$\frac{L_p}{\mbox{\mum}} = \frac{\lambda_{\mu}}{2\pi}\tilde{L}_p  
+$$
+and 
+$$
+n_0 = \left(\frac{n_0}{n_c}\right)10^{21}\lambda_{\mu}^{-2}\mbox{cm}^{-3} = 10^9\tilde{n}_0\lambda_{\mu}^{-2}\mu m^{-3}$$
+we get
+\bea
+C_s = \frac{N_a}{N_e} &=& 5\times 10^8\lambda_{\mu}^{-1}\sigma_{\mu}^{2}\left(\frac{\tilde{n}_0\tilde{L}_p}{N_e} \right)\nonumber \\
+&=& 5\times 10^8\lambda_{\mu}^{-1}\sigma_{\mu}^{2}|q_e|
+\eea
+This is valid for a plasma slab, but can be refined for more complex profiles by computing the total charge contained in the plasma (a procedure which is performed anyway to get $q_e$ in the first place).
+To apply the conversion, just multiply by the number of simulation particles, for example: $$N_{hot}(real) \simeq C_s N_{hot}(sim).$$  
+
+\noindent In the code output (bops.out) $C_s$ is displayed as:
+\begin{quote}
+\texttt{
+Charge conversion factor N/Nsi   3.5244E+07
+}
+\end{quote}
+
+\section{Output files} 
+
+\begin{tabbing}
+ bops.header\hspace{1cm}\=Summary of run parameters and some numerical checks \\
+ bops.out\>Continuous run protocol (helpful for debugging)\\ 
+ bops.oddata\> List of graphical output files produced during run 
+\end{tabbing}
+
+\section{Graphical output} 
+
+The graphical output from the code falls broadly into 6 types of plot: 
+\begin{enumerate}
+\item Spatial profiles (fields, sources; instantaneous and cycle-averaged) 
+\item Particle distribution functions (velocity/energy) 
+\item Fourier spectra (time- and space-domains) 
+\item Phase space (x-px, x-py, px-py etc) 
+\item Time histories (energy diagnostics; absorption; position tracking) 
+\item 2D surface plots in x-y plane 
+\end{enumerate}
+
+The filenames of the xy plots generated during the run are listed below. Unless otherwise stated, the names consist of 4 letters plus a digit from 00-99 indicating the snapshot number, followed by the suffix .xy. A run lasting 500 time units with graphs produced every 100 units will generate 5 snapshots for each quantity. (At present, the maximum number of snapshots is 9 -- this limitation will be removed in future). The time-histories all have a suffix '0' after the name. 
+
+Assuming you have GLE installed, these plots can be postprocessed with the help of a program in the \texttt{tools} subdirectory.
+
+\begin{verbatim}
+cd tools/gle
+make od2gle
+\end{verbatim}
+
+Make sure the binary generated is in your PATH.  Now go back up to the top directory and run the shell script
+\begin{verbatim}
+./odpp resabs1
+\end{verbatim}
+\noindent where \texttt{resabs1} is the name of the run directory you wish to postprocess. The program will scan the file \texttt{foil.id} for plots -- the numbers correspond to the IDs in the tables below -- and attempt to produce series of line graphs for these in \texttt{resabs1/plots}.
+
+
+\subsection{Spatial profiles} 
+ 
+\noindent Instantaneous\\
+
+\begin{tabular}{rrl}
+\hline\\
+ID & file & quantity \\
+\hline\\
+2000 & rhot& net charge density (rhoe+rhoi+rhop) \\ 
+2100 & ninc&heavy ion density \\
+2200 & ninc&proton density \\
+2500 & phsi& electrostatic potential \\
+3000 & exsi& field Ex \\
+4000 & eysi& field Ey \\
+3500 & eysi& field Ez \\
+4500 & bzsi& field Bx \\
+5500 & bzsi& field By \\
+5000 & bzsi& field Bz \\
+40000 & tefo& forward going EM wave (boost frame P) \\
+40500 & teba& backward going EM wave (boost frame P) \\
+44000 & tmfo& forward going EM wave (boost frame S) \\
+44500 & tmba& backward going EM wave (boost frame S) \\
+41000 & jyel& electron current \\
+43000 & jyio& ion current \\
+41500 & jtot& net current \\
+42500 & ayem& EM vector potential (boost frame only) \\
+42000 & azem& EM vector potential (boost frame only) \\
+\end{tabular}
+
+\bigskip
+\noindent Cycle-averaged\\
+
+\begin{tabular}{rrl}
+\hline\\
+20000 & exrm& RMS electric field in x-direction \\
+21500 & eyrm& RMS electric field in y-direction \\
+22000 & bzrm& RMS magnetic field in z-direction \\
+21000 & ezrm& RMS electric field in z-direction \\
+30000 & byrm& RMS magnetic field in y-direction \\
+20500 & exdc& DC electric field in x-direction \\
+22500 & bzdc& DC magnetic field in z-direction \\
+23500 & phdc& DC electrostatic potential \\
+29000 & jyrm& RMS net current in y-direction \\
+28500 & jydc& DC net current in y-direction \\
+29500 & redc& DC charge density \\
+26000 & vxbp& cycle-averaged \vcrossb\ force in x-direction (P)\\
+27000 & vxbs& cycle-averaged \vcrossb\ force in x-direction (S)\\
+25000 & edoj& RMS \bm{E\cdot J} absorption fraction \\
+\end{tabular}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[totalheight=6in]{figures/vacheat-prof}
+\caption{Spatial profiles}
+\end{center}
+\end{figure}
+
+\subsection{Particle distribution functions} 
+
+\begin{tabular}{rrl}
+\hline\\
+6000 & fvxe& fe(vx) - electron velocity distribution in vx \\
+6200 & fvye& fe(vy) \\
+6300 & fvze& fe(vz) \\
+6500 & fuep& fe(U) - plasma electron energy spectrum \\
+6400 & fuip& fi(U) - heavy ion energy spectrum \\
+6600 & fupp& fp(U) - proton energy spectrum \\
+6700 & fues& fh(U) - energy distribution of escape hot electrons \\ 
+16800 & fuin& energy distribution of re-injected electrons \\
+6800 & fhot& hot electron distribution with reinjected thermal electrons subtracted\\ 
+7100 & ufue& 1st moment of energy distribution = U*fh(U) \\
+7200 & qoqt& cummulative integral form of U*fh(U) \\
+& e\_mom\_lhb.dat& electron exit momenta (LHB) \\
+& e\_mom\_rhb.dat& electron exit momenta (RHB) \\
+& ion\_mom\_lhb.dat& ion exit momenta (LHB) \\
+& exit\_energies.dat& electron exit times and energies (RHB)
+\end{tabular}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[totalheight=3in]{figures/vacheat-fhot}
+\caption{Fast particle spectra}
+\end{center}
+\end{figure}
+
+\subsection{Fourier spectra} 
+\begin{tabular}{rrl}
+\hline\\ 
+71000 & tebs& spectrum of reflected EM wave (P-polarized light) \\
+70000 & tefs& spectrum of transmitted EM wave (P) \\
+76000 & tmbs& spectrum of reflected EM wave (S-polarized light)\\ 
+74000 & tmfs& spectrum of transmitted EM wave (S) \\
+72000 & escr& frequency-spectrum of electrostatic field at critical density \\
+73000 & jycr& frequency-spectrum of current at critical density \\
+7300 & uesk& k-spectrum of electrostatic energy density in plasma \\
+& ey\_back.t& time-signal of reflected EM E-field \\
+& ez\_back.t& time-signal of relfected EM B-field
+\end{tabular}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[totalheight=3in]{figures/vacheat-spec}
+\caption{Light (Fourier) spectra}
+\end{center}
+\end{figure}
+
+\subsection{Phase space (scatter plots)} 
+\begin{tabular}{rrl}
+\hline\\ 
+1000 &pxxe& electron x-momenta vs x\\ 
+1500 & pyxe& electron y-momenta vs x \\
+1700 & pyxe& electron z-momenta vs x \\
+1600 & pxpy& electron y-momenta vs x-momenta \\
+1200 & pxxi& ion x-momenta vs x
+\end{tabular}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[totalheight=3in]{figures/vacheat-phase}
+\caption{Phase space}
+\end{center}
+\end{figure}
+
+\subsection{Time histories -- mostly cycle-averaged} 
+\begin{tabular}{rl}
+\hline\\ 
+uinc& incoming electromagnetic wave energy (= normalised laser intensity) \\
+ubac& outgoing EM wave energy \\
+absr& laser absorption calculated 1-Reflectivity\\ 
+uesp& spatially integrated electrostatic wave energy\\ 
+ueme& integrated EM energy (TE modes) \\
+uthp& thermal energy \\
+uthe& electron thermal energy \\
+uthi& ion thermal energy \\
+urhb& cumulative energy of outgoing electrons (solid boundary)\\ 
+ulhb& cumulative energy of outgoing electrons (vacuum boundary) \\
+usys& total energy in simulation box \\
+utot& total energy including particles lost to boundaries \\
+abut& rate of change of total energy dUtot/dt \\
+abuh& rate of change of energy of electrons leaving box dUhot/dt \\
+abui& rate of change of ion energy \\
+nihi& max ion density \\
+xcni& position of critical surface 
+\end{tabular}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[totalheight=4in]{figures/vacheat-energy}
+\caption{Time histories}
+\end{center}
+\end{figure}
+
+\subsection{2D surface plots} 
+\begin{tabular}{rl}
+\hline\\ 
+
+ Bz1.2D& Laser magnetic field \\
+ edens1.2D& Electron density \\
+ idens1.2D& Ion density \\
+ Jy1.2D& Electron current \\
+ Jyzoom1.2D& Zoom of electron current\\
+\end{tabular}
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[totalheight=1.5in]{figures/eden2d.jpg} \hspace{1cm}
+\includegraphics[totalheight=1.5in]{figures/emreflect.jpg}
+\caption{2D plots: electron density (left); magnetic field (right)}
+\end{center}
+\end{figure}
+
+
+
+
+
+\end{document}
