@@ -12,9 +12,12 @@ subroutine pouti
 
   integer nspec, io, i
   real*8 vboost, dterr, tsp0, tsp1, dtsp,cq, qelab
+  real :: ls ! skin depth
 
   vboost=vy0
   qelab=qe/gam0**2
+
+! Report run parameters in lab frame
 
   do io=6,15,9
      write (io,'(/a/a)') 'Laser parameters' &
@@ -27,9 +30,9 @@ subroutine pouti
      write (io,'(a30,f13.3,a15)') 'Wavelength',xlambda,'microns'
      write (io,'(a30,1pe13.3,a15)') 'Frequency',1.88/xlambda*1.e15 &
           ,'/s'
-     write (io,'(a30,f13.3,a15)') 'Pulse duration',tpulse/tcfs &
+     write (io,'(a30,f13.3,a15)') 'Pulse duration',tpulse/tcfs*ttrans &
           ,'femtoseconds'
-     write (io,'(a30,f13.3,a15)') 'Pulse delay',tdel/tcfs &
+     write (io,'(a30,f13.3,a15)') 'Pulse delay',tdel/tcfs*ttrans &
           ,'femtoseconds'
      write (io,'(a30,f13.2,a15)') 'Incidence angle',theta0 &
           ,'degrees'
@@ -39,6 +42,8 @@ subroutine pouti
           ,bchirp*w0r**2,'/ps^2'
      write (io,'(/a/a)') 'Target parameters' &
           ,                      '-----------------'
+     write (io,'(a30,i8)') 'Config:',target_config
+     write(io,'(a30,i8)') 'Profile:',inprof
      write (io,'(a30,f13.4)') 'Density scale-length L/lambda ' &
           ,xlolam
      write (io,'(a30,f13.4)') 'k0 L',xlolam*2*pi
@@ -55,16 +60,17 @@ subroutine pouti
           ,dfoil*gamma0,dfoil*gamma0/xmu
      write (io,'(a30,2f13.4)') 'Destruction threshold  n/nc d/lambda, a0 ' &
           ,rho0lab*dfoil*gamma0/xlambda,a0
+    ls=1./sqrt(rho0lab)
+    write (io,'(a30,2f13.4)') 'Skin depth ls=c/wp ',ls, ls/xmu
+    write (io,'(a30,f13.4)') 'Min density (qe/dx) ',qe/dx
      if (inprof.eq.5) then
         denmin = rho0*exp(-(xsol-xm1)/xlolam)
         write (io,'(a30,f13.4)') 'Exp. profile nmin ',denmin
-     else
-        write(io,'(a30,i8)') 'Density profile:',inprof
      endif
+
      if (target_config.gt.1) then
 	write (io,'(/a/a)') 'Additional layer(s)' &
           ,                      '-----------------'
-     	write (io,'(a30,i8)') 'Config:',target_config
      	write (io,'(a30,2f13.4)') 'Layer width (norm/microns) ' &
           ,x_layer*gamma0,x_layer*gamma0/xmu
      	write (io,'(a30,f13.4)') 'Layer density n_p/n_c ',rho_layer/gam0**3
@@ -98,10 +104,10 @@ subroutine pouti
      write (io,'(a30,i13)') 'Pusher scheme: ',push_scheme
      write (io,'(a30,i13)') 'history frequency itc ',itc
 !     write (io,'(a30,i13)') '# steps in time-ave plots',ntc
-    write (io,'(a30,2f13.4)') 'Run time (norm/fs)',nt*dt,nt*dt/tcfs
+    write (io,'(a30,2f13.4)') 'Run time (norm/fs)',nt*dt*ttrans,nt*dt/tcfs*ttrans
      write (io,'(a30,2f13.4)') 'Mesh size (norm/microns)', &
           dx,dx/xconv
-     write (io,'(a30,2f13.4)') 'Time step (norm,fs)',dt,dt/tcfs
+     write (io,'(a30,2f13.4)') 'Lab time step (norm,fs)',dt*ttrans,dt/tcfs*ttrans
      write (io,'(/a/)') '-----------------------------------'
   end do
 

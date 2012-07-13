@@ -66,7 +66,7 @@
             if (ioboost.eq.1) then
 !     boost frame
                uuy(i) = uy(i)
-               xnlab(i) = xn(i)
+               xnlab(i) = xn(i)/xconv
                vy(i) = uuy(i)/gamma(i)   ! velocities
                vz(i) = uuz(i)/gamma(i)
                vx(i) = uux(i)/gamma(i)   ! anupam 2010:added vx

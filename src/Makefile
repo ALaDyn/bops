@@ -29,15 +29,15 @@
 # GNU fortran
 #--------
 #FC= ifort
-#FC=gfortran
-#TUNE = -O5  
-DEBUG = -g  #-check bounds -traceback
+FC=gfortran
+TUNE = -O5  
+#DEBUG = -g  #-check bounds -traceback
 #TUNE = -O3  
 
 # cygwin or MINGW
 #-------------------------------
-FC = g95 
-TUNE = -O3
+#FC = g95 
+#TUNE = -O3
 
 # JUROPA@ FZJ
 #--------------------------------
@@ -64,7 +64,7 @@ avlas.f90    esf1.f90     ghist.f90    ixq2.f90     bops.f90   savear.f90   uesc
 boost.f90    esfield.f90  grav.f90     ixq4.f90     plotrk.f90   scatrk.f90   uidist.f90\
 bunif.f90    esft.f90     grps.f90     ixq8.f90     pout.f90     scramb.f90   urelmax.f90\
 denprof.f90  f2v.f90      grxy.f90     jeden.f90    pouti.f90    sim2lab.f90  vdist.f90\
-derdat.f90   field_ave.f90      gsnap.f90    jiden.f90    pshif.f90    splot.f90    wguide.f90\
+derdat.f90   field_ave.f90      gsnap.f90    jiden.f90    pshif.f90    splot.f90    wguide.f90  assign_charge.f90 \
 diagnostics.f90   fftrc.f90    gtrak.f90    lab2sim.f90  pushc.f90    stamp.f90    xion.f90\
 fill3v.f90   header.f90   laser.f90    pushp.f90    stotrk.f90   xq.f90\
 eden.f90     filter1.f90  hmove.f90    load2u.f90   pushs.f90    surfie.f90  files.f90\

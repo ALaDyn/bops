@@ -18,7 +18,7 @@
 
 !  limits (if needed)
       tmin=0.
-      tmax=nint(nt*dt)/tconv
+      tmax=nint(nt*dt)/tconv*ttrans
       tstep=tmax/5.
       abmin=0.
       abmax=1.
@@ -38,7 +38,7 @@
 
          do i=1,ntc
             xt(i)=dt*(i-1)*itc+(itim0-1)*dt
-            xt(i)=xt(i)/tconv
+            xt(i)=xt(i)/tconv*ttrans
          end do
 
 
@@ -88,7 +88,7 @@
          call i0prnt('  itav',itav)
          call i0prnt('  ntav',ntav)
          call r0form('   tav',tav,'f12.2')
-         dtav=dt*itav
+         dtav=dt*itav*ttrans
 
          do i=1,ntav
             work1(i)=uinc(i)

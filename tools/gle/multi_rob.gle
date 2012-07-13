@@ -1,0 +1,144 @@
+! new page
+size 26 18
+
+set font psh
+
+ 
+xmi=0
+xma=50
+nmax=200
+
+
+begin translate   0.   10
+ 
+begin graph 
+size  10 8 
+nobox
+xlabels hei   .4
+ylabels hei    .4
+xaxis min xmi max xma nticks 5
+yaxis min 0 max nmax
+xticks length .07
+yticks length .07
+title "  CH_2 foil, t=0" hei 0.5 
+xtitle "  x/\mu m  "
+ytitle "   field  "
+ 
+
+data robinson1/ninc00.xy d1 
+data robinson1/nenc00.xy d2 
+data robinson1/npnc00.xy d3 
+
+d1 line color black key "n_{C^{6+}}"
+d2 line color red  key "n_e"
+d3 line color blue  key "n_p"
+
+
+end graph
+ 
+end translate
+
+begin translate   10.   10
+
+begin graph
+size   10 8
+nobox
+xlabels hei   .4
+!ylabels hei    .4
+xaxis min xmi max xma nticks 5
+yaxis min 0 max nmax
+xticks length .07
+yticks length .07
+title "  t=90fs" hei 0.5 
+xtitle "  x/\mu m  "
+!ytitle "   field  "
+ 
+data robinson1/exdc03.xy d1 
+data robinson1/eysi03.xy d2 
+data robinson1/ninc03.xy d3 
+data robinson1/nenc03.xy d4 
+data robinson1/npnc03.xy d5 
+let d13=d3
+let d14=d4
+let d15=d5
+d1 line color green lstyle 9
+!d2 line lstyle 1 color green 
+d13 line color black 
+d14 line color red 
+d15 line color blue
+
+
+end graph
+
+end translate
+
+begin translate   0.   2
+ 
+begin graph 
+size  10 8 
+nobox
+xlabels hei   .4
+ylabels hei    .4
+xaxis min 0 max 50. nticks 5
+yaxis min 0 max 500
+xticks length .07
+yticks length .07
+title "  Ion spectra, 90fs, 500 gcm^{-3}" hei 0.5 
+xtitle "  u/MeV  "
+ytitle "   f(u)  "
+ 
+
+data robinson1/fuip03.xy d1 
+data robinson1/fupp03.xy d2 
+!data robinson1/npnc00.xy d3 
+
+d1 line color black key "f_{C^{6+}}"
+!d2 line color red  key "n_e"
+d2 line color blue  key "f_p"
+
+
+end graph
+A=12
+set lstyle 2
+amove xg(25) yg(0)
+aline xg(25) yg(500) 
+amove xg(25/A) yg(0)
+aline xg(25/A) yg(500)
+end translate
+
+begin translate   10.   2
+ 
+begin graph 
+size  10 8 
+nobox
+xlabels hei   .4
+ylabels hei    .4
+xaxis min 0 max 80. nticks 5
+yaxis min 0 max 500
+xticks length .07
+yticks length .07
+title "  Ion spectra, 90fs, 250 gcm^{-3}" hei 0.5 
+xtitle "  u/MeV  "
+ytitle "   f(u)  "
+ 
+
+data robinson2/fuip03.xy d1 
+data robinson2/fupp03.xy d2 
+!data robinson1/npnc00.xy d3 
+
+d1 line color black key "f_{C^{6+}}"
+!d2 line color red  key "n_e"
+d2 line color blue  key "f_p"
+
+
+end graph
+A=12
+xss=50./12.
+set lstyle 2
+amove xg(50) yg(0)
+aline xg(50) yg(500) 
+amove xg(50/A) yg(0)
+aline xg(50/A) yg(500)
+amove xg(8) yg(400)
+text U_C/A
+end translate

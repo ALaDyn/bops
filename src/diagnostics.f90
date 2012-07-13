@@ -16,24 +16,25 @@
       data imovc/1/
       save imovc
 
+
 !  convert cpu time to char variable
       cbl='                '
       if (iunits.eq.2) then
-         tcurrent = itime*dt/tcfs
+         tcurrent = itime*dt/tcfs*ttrans
          call chr(tcurrent,1,ct,lct)
          lctime=12-lct
          ctime='t_{fs}='//ct(1:lct)
 
       else if (iunits.eq.1) then
 !  timestamp in wp^-1
-         tcurrent = itime*dt/tconv
+         tcurrent = itime*dt/tconv*ttrans
          call chr(tcurrent,1,ct,lct)
          lctime=12-lct
          ctime='w_pt='//ct(1:lct)
 
       else
 !  timestamp in w0^-1
-         tcurrent = itime*dt
+         tcurrent = itime*dt*ttrans
          call chr(tcurrent,0,ct,lct)
          lctime=12-lct
          ctime='w_0t='//ct(1:lct)

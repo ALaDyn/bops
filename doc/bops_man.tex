@@ -1,7 +1,8 @@
 \documentclass[11pt]{article}
-\setlength{\textheight}{21.80cm}
-\setlength{\textwidth}{15.20cm}
+\setlength{\textheight}{22cm}
+\setlength{\textwidth}{16.cm}
 \setlength{\oddsidemargin}{0cm}
+\setlength{\topmargin}{0cm}
 \usepackage{graphicx}
 \usepackage{epsfig}
 %\usepackage{graphics}
@@ -111,7 +112,7 @@
 {\end{tabbing}}
 
 \title{\bf BOPS User Guide\\}
-\author{ Version: 3.3 \\ \date{21 April, 2011}
+\author{ Version: 3.4 \\ \date{09 July, 2012}
 \\ \\ \\
 Contributors: \\ \\
 Paul Gibbon \\
@@ -158,11 +159,13 @@ and cd to the installation directory \texttt{bops}.
 
 The code can be run `under' Windows using an appropriate commercial Fortran developer environment (IDE), but these
 platforms are not supported.  (Instructions for successful builds most welcome, however).
-Here is a tried-and-tested method which may require a bit of disc space.
+Here are two tried-and-tested methods using Unix environment emulators which may require a bit of disc space.
 
 \begin{enumerate}
-\item First install CYGWIN (www.cygwin.com).  This creates a fully-fledged Unix environment emulator under Windows, 
-for which you will need some elementary unix know-how.  
+\item MinGW or 'Minimalist GNU for Windows', which is very lightweight and has everything you
+need to compile and execute a fortran program.  It can be downloaded from here: http://ftp.g95.org/   Look for g95-MinGW.exe, which should optionally install the g95 compiler too.  From the MinGW terminal you can just cd to the directory where you unpacked bops in your Windows file system. 
+
+\item CYGWIN (www.cygwin.com).   
 In addition to the default tools/packages offered during the installation you will also need:
 \begin{enumerate}
 	\item Gnu compilers gcc, g77, g95 etc. (Look in the optional {\it devel} package in Cygwin)
@@ -170,15 +173,15 @@ In addition to the default tools/packages offered during the installation you wi
 	\item vi, emacs ({\it editors} package-- optional, but very handy for quick editing!)
 	\item X11 libraries if you want to generate graphics directly under cygwin (eg using gnuplot)
 \end{enumerate}
-If you forget anything first time, just click on the Cygwin installer icon to locate/update extra packages.
-\item Download and unpack the bopsXX.tar.gz file with an archiving tool (eg PowerArchiver: www.powerarchiver.com).
+If you forget anything first time, just click on the Cygwin installer icon to locate/update extra packages. Now Download and unpack the bopsXX.tar.gz file with an archiving tool (eg PowerArchiver: www.powerarchiver.com).
 You can put this anywhere, but a convenient location is your 'home' directory under CYGWIN, e.g.:
 
 \begin{verbatim}
 C:\cygwin\home\gibbon\bops
 \end{verbatim}
 
-\item Open a Cygwin terminal/shell and `cd' to the bops directory.
+Open a Cygwin terminal/shell and `cd' to the bops directory.
+
 \end{enumerate}
 
 \section{Installation}
@@ -236,7 +239,7 @@ This method of producing graphical output is highly recommended because it gives
 \begin{verbatim}
 http://glx.sourceforge.net
 \end{verbatim}
-
+%
 It is an absolute doddle to install and these days even comes with a nice GUI called QGLE.  Further graphics is up to the user - gnuplot or xmgrace will usually 
 suffice to get started.  
 Some sample plots roughly corresponding to the sample input 
@@ -293,19 +296,34 @@ variable name & value & meaning/selection \\
 & 8 & 2 uniform layers with densities \\
 && \texttt{nlayer (xm1-xm2)} and  \texttt{n0 (xsol-xsol2)}\\ 
 & 57 & foil thickness \texttt{dfoil}, with exponential ramp \\
-&& starting at \texttt{xm1}, scalelength \texttt{xlolam}
-%\hline
+&& starting at \texttt{xm1}, scalelength \texttt{xlolam} \\\hline \\
 \end{tabular} 
 
 %\epsfig{file=profile_exp,height=2in}
-\begin{figure}[tb]
+\begin{figure}[htb]
 \begin{center}
 \includegraphics[totalheight=2in]{figures/profile_lin}
 \caption{Setup for linear density profile.}
 \end{center}
 \label{linear_profile}
 \end{figure}
-\begin{figure}[tb]
+
+
+The scale-length $L$ is defined as the inverse-gradient of the density profile at the critical density:
+$$
+L = n_e/|\nabla n_e|_{(x=x_c)}
+$$
+In the code, this is assumed to be normalised to the laser wavelength:  $\mbox{xlolam}=L/\lambda$, and will define the ramp region accordingly.  To work out how much room you need for a given profile, you will need to convert this to code units:
+$$
+\tilde{L} = k_0 L = 2\pi L/\lambda.
+$$
+For example, for a simple linear profile \texttt{inprof=2} with \texttt{nonc=4}, and \texttt{xlolam =0.2}, you need to have a total ramp length
+$$
+\mbox{xl - xm1} = 4*2\pi*0.2 = 5.03
+$$
+This can be achieved by setting, eg: \texttt{xm1=15, xl=20}. 
+
+\begin{figure}[htb]
 \begin{center}
 \includegraphics[totalheight=2in]{figures/profile_exp}
 \caption{Setup for exponential density profile.}
@@ -313,9 +331,6 @@ variable name & value & meaning/selection \\
 \end{figure}
 
 \subsubsection{Multi-species target} 
-Two additional multi-ion configurations are currently built in.  The relative proton fraction can be
-varied from 0 to 100 \% by choosing an appropriate value for \texttt{rho\_layer}.  For example, setting 
-\texttt{nonc=10, rho\_layer=5} will set up an additional layer with 50\% heavy ions and 50\% protons.
 
 \begin{tabular}{lrl}
 \hline\\
@@ -323,10 +338,13 @@ varied from 0 to 100 \% by choosing an appropriate value for \texttt{rho\_layer}
 \texttt{target\_config}& 3 & additional proton/mixed layer on front of slab \\ 
 \texttt{rho\_layer} & & density of layer ($n_p/n_c$) \\
 \texttt{x\_layer} & & width of layer \\
-\texttt{mpome} & & proton/electron mass ratio \\ 
-
-%\hline
+\texttt{mpome} & & proton/electron mass ratio \\ \hline \\ 
 \end{tabular}
+
+Two additional multi-ion configurations are currently built in.  The relative proton fraction can be
+varied from 0 to 100 \% by choosing an appropriate value for \texttt{rho\_layer}.  For example, setting 
+\texttt{nonc=10, rho\_layer=5} will set up an additional layer with 50\% heavy ions and 50\% protons.
+
 
 \subsubsection{Further plasma parameters} 
 \begin{tabular}{lrl}
@@ -443,7 +461,7 @@ All grid length parameters: \texttt{xl}, \texttt{xm1}, \texttt{xsol}, \texttt{xs
 
 The other unit choices are \texttt{iunits=1}, which expects the above temporal and spatial input parameters
  in  $1/\omega_p$ and $c/\omega_p$ respectively (sometimes useful if the laser is turned off completely or for
- comparison with other models); and the `experimental' mode \texttt{iunits=2}, where time is in femtoseconds,
+ comparison with other models); and the `experimentalist' mode \texttt{iunits=2}, where time is in femtoseconds,
  length in microns.  With the latter choice, special care needs to be taken to ensure that the simulation is
 set up with numerically stable parameters (particularly that $\lambda_D/\Delta x>0.5$).
 
@@ -490,7 +508,7 @@ frequency and k-vector are:
 \bea
 \omega' & = & \gamma_0(\omega - v_0k_y) \nonumber \\
 \vspace{0.5cm}
-k_y' & = & \gamma_0(k_y - \frac{v_0}{c^2}\omega) \nonumber \\
+k_y' & = & \gamma_0(k_y - \frac{v_0}{c^2}\omega)  \\
 k_{x,z}' & = & k_{x,z} \nonumber 
 \eea
 %
@@ -505,30 +523,40 @@ k' = \mid {\bf k}'\mid & = & k/\gamma_0 \nonumber
 where $\gamma_0 = 1/\cos\theta$.  For the space and time coordinates, we have (from $S\rightarrow L$)
 
 \bea
-t & = & \gamma_0(t' + \frac{v_0}{c^2}y') \nonumber \\
-x & = & x' \nonumber  \\
-y & = & \gamma_0(y' + v_0 t') \nonumber\\
-z & = & z' \label{time} \\
+t & = & \gamma_0(t' + \frac{v_0}{c^2}y') = \gamma_0t' \nonumber \\
+x & = & x'   \\
+y & = & \gamma_0(y' + v_0 t') = v_0\gamma_0 t'\nonumber\\
+z & = & z' \nonumber \label{time}
 \eea
 %
-Likewise, noting that $B_x'=0$, the electric and magnetic fields transform as:
+For the inverse transformations (from $L\rightarrow S$) we have:
+\bea
+t' & = & \gamma_0(t - \frac{v_0}{c^2}y) \nonumber \\
+x' & = & x   \label{time_inv} \\
+y' & = & \gamma_0(y + v_0 t) =0 \;\; \Rightarrow y\equiv v_0 t \nonumber\\
+z' & = & z \nonumber 
+\eea
+Likewise, noting that in the simulation frame, $B_x'=0$, the relevant electric and magnetic fields transform as:
 
-$$\left. \begin{array}{rcl}
+\begin{equation}
+\left. \begin{array}{rcl} 
 E_x & = & \gamma_0(E_x' - v_0B_z')  \\
 E_y & = & E_y'  \\
-B_z & = & \gamma_0(B_z' - \frac{v_0}{c^2}E_x')
-\end{array} \right\}  \mbox{p-polarized light,} $$ 
-$$\left. \begin{array}{rcl}
+\displaystyle B_z & = & \gamma_0(B_z' - \frac{v_0}{c^2}E_x')
+\end{array} \right\}  \mbox{p-polarized light}
+\end{equation}
+\begin{equation}
+\left. \begin{array}{rcl}
 E_z & = & \gamma_0 E_z'  \\
 B_x & = & \gamma_0v_0E_z'\\
 B_y & = & B_y'\label{fields} \\
-\end{array} \right\} \mbox{s-polarized light}$$
-\begin{equation} \end{equation}
+\end{array} \right\} \mbox{s-polarized light}
+ \end{equation}
 and the density and current for each particle species $\alpha$ (inversely) as:
 
 \bea
 \rho_\alpha' & = & \gamma_0(\rho_\alpha - \frac{v_0}{c^2}j_{\alpha y}) \nonumber \\
-j_{\alpha y}' & = & \gamma_0(j_{\alpha y} - v_0\rho_\alpha) \nonumber\\
+j_{\alpha y}' & = & \gamma_0(j_{\alpha y} - v_0\rho_\alpha)\\
 j_{\alpha x,z}' & = & j_{\alpha x,z} \nonumber
 \eea
 Initially, $j_{ey} = j_{iy} = 0$, so in the boost frame, $(\rho_0)_{e,i}' = \gamma_0(\rho_0)_{e,i}$ and $(j_{y0})_{e,i}' = -(\rho_0)_{e,i}'c\sin\theta$.
@@ -539,15 +567,24 @@ In an electromagnetic PIC or Vlasov code, it is convenient to use the standard n
 \tilde{t} & = & \omega t \nonumber \\
 (\tilde{x},\tilde{y}) & = & (kx, ky) \nonumber \\
 \tilde{{\bf E}} & = & \frac{e{\bf E}}{m\omega c} \nonumber \\
-\tilde{{\bf B}} & = & \frac{e{\bf B}}{m\omega} \nonumber \\
+\tilde{{\bf B}} & = & \frac{e{\bf B}}{m\omega} \\
 \tilde{n}_{e,i} & = & n_{e,i}/n_c \nonumber \\
 \tilde{v}_{e,i} & = & v_{e,i}/c \nonumber
 \eea
 
-Thus, from Eqs.(\ref{time}) and (\ref{freq}), the normalised time interval
-$\omega 't' = \omega t$ is an invariant, as is the wave phase 
-$\omega t - {\bf k}\cdot {\bf r}$.  On the other hand, the simulation
-grid length $k'x'_l = \gamma_0^{-1}kx_l$ {\em shrinks} with increasing $\theta$.
+Thus, combining Eqs.(\ref{time_inv}) and (\ref{freq}), we find that the normalised time interval and the grid length in the simulation frame both {\em shrink} with increasing $\theta$:
+\bea 
+\omega 't' &=& \gamma_0^{-2}\omega t  \nonumber \\ 
+k'x'_l &=& \gamma_0^{-1}kx_l
+\eea
+Despite these different scalings, it is straightforward to verify that the wave phase
+\bea 
+\omega t - {\bf k}\cdot {\bf r} &=& \omega t - k_xx - k_yy \nonumber \\
+&=& \omega't' - {\bf k}'\cdot {\bf r}' 
+\eea
+is, as it should be, an invariant.
+
+
 The scaling of $\omega'$ and $k'$ with $\gamma_0$ and the fact that $\tilde{B}_x'=0$ means that the {\em
 normalised} field transformations become:
 
@@ -603,11 +640,11 @@ gradient according to Fig.\ref{boost}
 \section{Diagnostics}
 
 To interpret the simulation results unambiguously, it is simplest to 
-transform the field and particle variables back to the lab frame.
+transform the field and particle variables back to the lab frame, and indeed this is exactly what the code will output by default.
 We note in passing, however, that some physical insight and analytical
 economy can be 
 gained by examining boost frame quantities, so long as care is taken 
-in the labeling of sources and fields \cite{ruhl:pop96}.
+in the labeling of sources and fields.
 For the fields, Eq.\ref{fields2} is applied before performing cycle-averages
 and Fourier transforms.  For the particles, it is convenient to use the 
 inverse transformations of (\ref{m_boost}), from which we can recover the
@@ -770,7 +807,7 @@ ID & file & quantity \\
 42000 & azem& EM vector potential (boost frame only) \\
 \end{tabular}
 
-\bigskip
+
 \noindent Cycle-averaged\\
 
 \begin{tabular}{rrl}
@@ -798,6 +835,7 @@ ID & file & quantity \\
 \end{center}
 \end{figure}
 
+
 \subsection{Particle distribution functions} 
 
 \begin{tabular}{rrl}
@@ -821,10 +859,11 @@ ID & file & quantity \\
 
 \begin{figure}[ht]
 \begin{center}
-\includegraphics[totalheight=3in]{figures/vacheat-fhot}
+\includegraphics[totalheight=2.5in]{figures/vacheat-fhot}
 \caption{Fast particle spectra}
 \end{center}
 \end{figure}
+
 
 \subsection{Fourier spectra} 
 \begin{tabular}{rrl}
@@ -842,10 +881,11 @@ ID & file & quantity \\
 
 \begin{figure}[ht]
 \begin{center}
-\includegraphics[totalheight=3in]{figures/vacheat-spec}
+\includegraphics[totalheight=2.5in]{figures/vacheat-spec}
 \caption{Light (Fourier) spectra}
 \end{center}
 \end{figure}
+
 
 \subsection{Phase space (scatter plots)} 
 \begin{tabular}{rrl}
@@ -859,10 +899,11 @@ ID & file & quantity \\
 
 \begin{figure}[ht]
 \begin{center}
-\includegraphics[totalheight=3in]{figures/vacheat-phase}
+\includegraphics[totalheight=2.5in]{figures/vacheat-phase}
 \caption{Phase space}
 \end{center}
 \end{figure}
+
 
 \subsection{Time histories -- mostly cycle-averaged} 
 \begin{tabular}{rl}
@@ -892,6 +933,7 @@ xcni& position of critical surface
 \caption{Time histories}
 \end{center}
 \end{figure}
+
 
 \subsection{2D surface plots} 
 \begin{tabular}{rl}

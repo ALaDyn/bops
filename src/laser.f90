@@ -13,8 +13,8 @@
       real*8 tp, u, tpend, tptot, tptot2, tp1tail, tp1end
       real*8 tp2tail, tp2end, t2, tdum, tp2beg
       t=dt*itime
-      pha=w0*t
-      pha2 = w02*t
+      pha=w0*t*ttrans  ! keep same # launch cycles as for normal incidence
+      pha2 = w02*t*ttrans
 
 !  Correct for chirp (if any)
 !  TODO: Need to correct pulse length tp if bandwidth to be held constant

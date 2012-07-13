@@ -135,7 +135,7 @@ module bopsvars
   character :: cw*40, ctime*16, cpolzn*1
 
 
-  real*8 ::  xcur1,  xcur2, tcstart, fcrit, duin, xpint, xpstart, uhot
+  real*8 ::  xcur1,  xcur2, tcstart, fcrit, duin, xpint, xpstart, uhot, ttrans
 
 ! #### Anupam & Bin 2009/2010
 ! n_pp1: the proton particles for the first layer ; n_pp2 : the proton particles for the second layer

@@ -1,10 +1,12 @@
 #! /bin/sh
 #
-#  Wakefield excitation demo 
-#
+#  Vacuum test of boost fields 
+#  Set cpolzn='S', 'P' or 'C' for s-/p-/c-polarized light respectively
+#  Change theta0=0 .. 89 to alter incidence angle
+#  Set iboost=0 for lab-frame, 1 for boost frame fields 
 
 # Run directory
-RUN=wake1
+RUN=vacuum
 
 # Location of executable from tutorial/ directory
 BOPS=`pwd`/../src/bops
@@ -26,29 +28,34 @@ cat <<'EOF'>bops.indata
 
  &picohd
 ! Run time
-  trun = 500.
+  trun = 100.
 ! Grid points  
-  nx = 4000
+  nx = 1000
 ! # electrons  
-  ne = 50000
+  ne = 50
 ! # ions  
   ni = 0
 !  iunits = 1 ! wp, kp
   iunits = 0 ! Default
 
 ! Laser amplitude (-ve) or intensity in W/cm**2 (+ve)
-  a0=-2.0
+  a0=-1.0
 ! Laser wavelength in microns  
   xlambda = 0.8
 ! Pulse length in 1/w0  
-  tpulse = 10.
+  tpulse = 40.
 ! Pulse shape (see below) 
   ilas = 5
 ! Pulse delay  
-  trise = 20.
-! Polarization
-  cpolzn = 'S'
+  trise = 0.
 
+! Polarization
+  cpolzn = 'P'
+! Angle of incidence
+  theta0=45.
+! Output fields in lab frame (1 for boost frame)
+  ioboost=0
+    
 ! Mass ratio ion/electron
   miome = 3000.
 ! Initial electron temperature  
@@ -56,24 +63,24 @@ cat <<'EOF'>bops.indata
 ! Initial ion temperature  
   Ti = 0.0
 ! Plasma density ne/nc  
-  nonc = 0.01
+  nonc = 1.e-5
 ! Density profile  
-  inprof = 4
+  inprof = 2
 ! Grid length in c/w0  
-  xl = 500.
+  xl = 200.
 ! Start of LH plasma
-  xm1 = 50.
+  xm1 = 199
 ! Ramp end  
-  xsol = 60
+  xsol = 200
 ! RH plasma ramp start  
   xsol2=440.
 ! RH plasma edge  
   xm2=450.
 
 ! Frequency of printed output
-  iout = 50
+  iout = 10
 ! Frequency of 1D plots  
-  igr = 50
+  igr = 100
   igmovie = 100
 ! Frequency of time sequence stores  
   itc=5
@@ -138,6 +145,7 @@ EOF
 #
 echo 'Running bops ..'
 $BOPS
-
+cd ..
+./odpp_vacuum vacuum
 echo 'Finished run'
 echo

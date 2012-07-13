@@ -85,8 +85,8 @@ subroutine denprof(i1,n,charge)
 
   else if (inprof.eq.5) then
      xload1=xsol-xm1
-     n1 = xlol*rho0/abs(charge)*(1.-exp(-xload1/xlol))
-     nmin = nonc*exp(-xload1/xlol)
+     n1 = xlol*rho_layer/abs(charge)*(1.-exp(-xload1/xlol))
+     nmin = rho_layer*exp(-xload1/xlol)
      if (n1.lt.0) then
 	write(*,*) 'Something wrong with density profile setup: check xm1, xsol, xlolam'
      else
@@ -94,7 +94,7 @@ subroutine denprof(i1,n,charge)
      endif
      xload2=xm2-xsol2
      if (xload2 .gt. 0) then
-        n3 = xlol*rho0/abs(charge)*(1.-exp(-xload2/xlol))
+        n3 = xlol*rho_layer/abs(charge)*(1.-exp(-xload2/xlol))
      else
         n3=0.
      endif
@@ -180,7 +180,7 @@ subroutine denprof(i1,n,charge)
 
   endif
 
-  !   add flat slab
+  !   add flat slab if not all particles loaded yet
 
   if (inprof.ge.3.and.inprof.le.6.and.n2.gt.0) then
      dxs=(xsol2-xsol)/n2

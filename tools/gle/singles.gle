@@ -1,0 +1,266 @@
+! new page
+size 26 18
+
+set font psh
+
+ 
+xmi=1.99
+xma=2.02
+
+begin translate   0.   9
+
+begin graph
+size   7 7
+nobox
+xlabels hei   .4
+ylabels hei    .4
+xaxis min 1.99 max xma nticks 3
+yaxis min 0 max 5
+xticks length .07
+yticks length .07
+title "  Proton foil, t=7fs" hei 0.5 
+xtitle "  x/\mu m  "
+ytitle "   field  "
+ 
+data single1/exdc07.xy d1 
+data single1/eysi07.xy d2 
+data single1/ninc07.xy d3 
+data single1/nenc07.xy d4 
+let d13=d3/30
+let d14=d4/180
+d1 line color green lstyle 9 key "Ex"
+!d2 line lstyle 1 color green key "Ey"
+d13 line color black key "n_i/30"
+d14 line color red  key "n_e/180"
+
+
+end graph
+
+end translate
+
+begin translate   6.   9
+
+begin graph
+size   7 7
+nobox
+xlabels hei   .4
+!ylabels hei    .4
+xaxis min 1.99 max xma nticks 3
+yaxis min 0 max 5
+xticks length .07
+yticks length .07
+title "  t=10fs" hei 0.5 
+xtitle "  x/\mu m  "
+!ytitle "   field  "
+ 
+data single1/exdc10.xy d1 
+data single1/eysi10.xy d2 
+data single1/ninc10.xy d3 
+data single1/nenc10.xy d4 
+let d13=d3/30
+let d14=d4/180
+d1 line color green lstyle 9
+!d2 line lstyle 1 color green 
+d13 line color black 
+d14 line color red 
+
+
+end graph
+
+end translate
+
+begin translate   12.   9
+
+begin graph
+size   7 7
+nobox
+xlabels hei   .4
+!ylabels hei    .4
+xaxis min 1.99 max xma nticks 3
+yaxis min 0 max 5
+xticks length .07
+yticks length .07
+title "  t=12fs" hei 0.5 
+xtitle "  x/\mu m "
+!ytitle "   field  "
+ 
+data single1/exdc12.xy d1 
+data single1/eysi12.xy d2 
+data single1/ninc12.xy d3 
+data single1/nenc12.xy d4 
+let d13=d3/30
+let d14=d4/180
+d1 line color green lstyle 9
+!d2 line lstyle 1 color green
+d13 line color black 
+d14 line color red  
+
+end graph
+end translate
+
+begin translate   18.   9
+
+begin graph
+size   7 7
+nobox
+xlabels hei   .4
+!ylabels hei    .4
+xaxis min 1.99 max xma nticks 3
+yaxis min 0 max 5
+xticks length .07
+yticks length .07
+title "  t=15fs" hei 0.5 
+xtitle "  x/\mu m "
+!ytitle "   field  "
+ 
+data single1/exdc15.xy d1 
+data single1/eysi15.xy d2 
+data single1/ninc15.xy d3 
+data single1/nenc15.xy d4 
+let d13=d3/30
+let d14=d4/180
+d1 line color green lstyle 9
+!d2 line lstyle 1 color green
+d13 line color black 
+d14 line color red  
+
+
+end graph
+
+end translate
+
+begin translate   0.   1
+
+begin graph
+size  7 7 
+nobox
+xlabels hei   .4
+ylabels hei    .4
+xaxis min 1.99 max xma nticks 3
+yaxis min 0 max 5
+xticks length .07
+yticks length .07
+title "  CH foil, t=7fs" hei 0.5 
+xtitle "  x/\mu m  "
+ytitle "   field  "
+ 
+data multi1/exdc07.xy d1 
+data multi1/eysi07.xy d2 
+data multi1/ninc07.xy d3 
+data multi1/nenc07.xy d4 
+data multi1/npnc07.xy d5 
+let d13=d3/33
+let d14=d4/400
+let d15=d5/200
+d1 line color green lstyle 9 key "Ex"
+!d2 line lstyle 1 color green key "Ey"
+d13 line color black key "n_i/33"
+d14 line color red  key "n_e/400"
+d15 line color blue  key "n_p/200"
+
+
+end graph
+
+end translate
+
+begin translate   6.   1
+
+begin graph
+size   7 7
+nobox
+xlabels hei   .4
+!ylabels hei    .4
+xaxis min 1.99 max xma nticks 3
+yaxis min 0 max 5
+xticks length .07
+yticks length .07
+title "  t=10fs" hei 0.5 
+xtitle "  x/\mu m  "
+!ytitle "   field  "
+ 
+data multi1/exdc10.xy d1 
+data multi1/eysi10.xy d2 
+data multi1/ninc10.xy d3 
+data multi1/nenc10.xy d4 
+data multi1/npnc10.xy d5 
+let d13=d3/33
+let d14=d4/400
+let d15=d5/200
+d1 line color green lstyle 9
+!d2 line lstyle 1 color green 
+d13 line color black 
+d14 line color red 
+d15 line color blue
+
+
+end graph
+
+end translate
+
+begin translate   12.   1
+
+begin graph
+size   7 7
+nobox
+xlabels hei   .4
+!ylabels hei    .4
+xaxis min 1.99 max xma nticks 3
+yaxis min 0 max 5
+xticks length .07
+yticks length .07
+title "  t=12fs" hei 0.5 
+xtitle "  x/\mu m  "
+!ytitle "   field  "
+ 
+data multi1/exdc12.xy d1 
+data multi1/eysi12.xy d2 
+data multi1/ninc12.xy d3 
+data multi1/nenc12.xy d4 
+data multi1/npnc12.xy d5 
+let d13=d3/33
+let d14=d4/400
+let d15=d5/200
+d1 line color green lstyle 9
+!d2 line lstyle 1 color green 
+d13 line color black 
+d14 line color red 
+d15 line color blue
+
+
+end graph
+
+end translate
+
+begin translate   18.   1
+
+begin graph
+size  7 7
+nobox
+xlabels hei   .4
+!ylabels hei    .4
+xaxis min 1.99 max xma nticks 3
+yaxis min 0 max 5
+xticks length .07
+yticks length .07
+title "  t=15fs" hei 0.5 
+xtitle "  x/\mu m "
+!ytitle "   field  " 
+ 
+data multi1/exdc15.xy d1 
+data multi1/eysi15.xy d2 
+data multi1/ninc15.xy d3 
+data multi1/nenc15.xy d4 
+data multi1/npnc15.xy d5 
+let d13=d3/33
+let d14=d4/400
+let d15=d5/200
+d1 line color green lstyle 9
+!d2 line lstyle 1 color green
+d13 line color black 
+d14 line color red  
+d15 line color blue
+
+
+end graph
+
+end translate
