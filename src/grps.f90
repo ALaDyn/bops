@@ -37,7 +37,7 @@
       if (mod(n,iskip).ne.0) np=np+1
 
        do i=1,n,is
-       iadd=is*rano(idum)+1
+       iadd=is*rano(idum)
         ipick = max(1,min(iadd+i,n))
         ip=(i+iskip-1)/iskip
         xp(ip)=x(ipick)

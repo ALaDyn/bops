@@ -24,21 +24,21 @@ subroutine eden
   !$omp do
   do l=1,ne
      xa=xn(l)*rdx
-     i1=xa+1
+     re=q(l)/dx
+     i1=xa
      i2=i1+1
-     f2=i1-xa
+     f2=xa-i1
      f1=1.-f2
+     rhoe(i1+1)=rhoe(i1+1)+re*f1
+     rhoe(i2+1)=rhoe(i2+1)+re*f2
+
  if (i1.lt.0 .or. i1.gt.nx) then
 	write (*,*) 'i1:',i1,'l=',l
 	write (*,*) 'i2:',i2,'l=',l
  endif
-     re=q(l)/dx
-
-     rhoe(i1)=rhoe(i1)+re*f1
-     rhoe(i2)=rhoe(i2)+re*f2
 ! OMP version
-!     rhopriv(i1)=rhopriv(i1)+re*f1
-!     rhopriv(i2)=rhopriv(i2)+re*f2
+!     rhopriv(i1+1)=rhopriv(i1+1)+re*f1
+!     rhopriv(i2+1)=rhopriv(i2+1)+re*f2
   end do
 
 

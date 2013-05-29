@@ -39,32 +39,32 @@ subroutine jeden
      re=q(ip)/dx
      jy = re*uy(ip)/gamma(ip)
      jz = re*uz(ip)/gamma(ip)
-     io1 = xao+1
-     io2 = io1+1
-     in1 = xan+1
+     io1 = xao
+     io2 = io1+1  ! io1 < xao < io2
+     in1 = xan
      in2 = in1+1
-     fm2=io1-xao
+     fm2=xao-io1
      fm1=1.-fm2
-     fp2=in1-xan
+     fp2=xan-in1
      fp1=1.-fp2
 
      !  TE currents
 
      !   j-
-     jyem_pr(io1) = jyem_pr(io1)+jy*fm1
-     jyem_pr(io2) = jyem_pr(io2)+jy*fm2
+     jyem_pr(io1+1) = jyem_pr(io1+1)+jy*fm1
+     jyem_pr(io2+1) = jyem_pr(io2+1)+jy*fm2
      !   j+
-     jye_pr(in1) = jye_pr(in1)+jy*fp1
-     jye_pr(in2) = jye_pr(in2)+jy*fp2
+     jye_pr(in1+1) = jye_pr(in1+1)+jy*fp1
+     jye_pr(in2+1) = jye_pr(in2+1)+jy*fp2
 
      !  TM currents
 
      !   j-
-     jzem_pr(io1) = jzem_pr(io1)+jz*fm1
-     jzem_pr(io2) = jzem_pr(io2)+jz*fm2
+     jzem_pr(io1+1) = jzem_pr(io1+1)+jz*fm1
+     jzem_pr(io2+1) = jzem_pr(io2+1)+jz*fm2
      !   j+
-     jze_pr(in1) = jze_pr(in1)+jz*fp1
-     jze_pr(in2) = jze_pr(in2)+jz*fp2
+     jze_pr(in1+1) = jze_pr(in1+1)+jz*fp1
+     jze_pr(in2+1) = jze_pr(in2+1)+jz*fp2
 
   end do
   !$omp end do

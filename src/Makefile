@@ -31,7 +31,7 @@
 #FC= ifort
 FC=gfortran
 TUNE = -O5  
-#DEBUG = -g  #-check bounds -traceback
+#DEBUG = -g -O0  #-check bounds -traceback
 #TUNE = -O3  
 
 # cygwin or MINGW

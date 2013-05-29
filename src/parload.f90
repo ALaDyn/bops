@@ -19,8 +19,6 @@ subroutine parload
   data ipow2/1,2,4,8,16,32,64,128,256,512,1024,2048,4096, &
        8192,16384,32768,65536,131072,262144,524288,1048576/
 
-! Work out charge weighting according to density profile choice
-  call assign_charge
 
   !  electron density profile
   call denprof(1,ne,qe)
@@ -67,6 +65,7 @@ subroutine parload
 
 !#### Anupam & Bin 2009/2010: add relativistic thermal distribution for proton layers 
 
+! Proton layer on front
   if (n_pp1.gt.0) then
      !  electrons
      call urelmax(ux(1:n_pp1),n_pp1,vte)
@@ -80,6 +79,8 @@ subroutine parload
      !  fill in remaining 7 octants
      call fill3v(ne+1,n_pp1)
   end if
+
+! Proton layer on back
   if (n_pp2.gt.0) then
     ! electrons
      call urelmax(ux(1+n_pp1:np),n_pp2,vte)
@@ -95,7 +96,7 @@ subroutine parload
   end if
 !#### Anupam & Bin 2009/2010
 
-! Electrons
+! Electrons in heavy ion substrate layer
   if ((ne-np) .gt. 0) then
    call urelmax(ux(np+1:ne),ne-np,vte)
    call urelmax(uy(np+1:ne),ne-np,vte)
@@ -103,7 +104,7 @@ subroutine parload
   !  fill in remaining 7 octants
    call fill3v(np+1,ne-np)
   end if 
-!  ions
+!  heavy ions
  if ((ni_tot-np) .gt. 0) then 
   call urelmax(ux(ne+np+1:ne+ni_tot),ni_tot-np,vti)
   call urelmax(uy(ne+np+1:ne+ni_tot),ni_tot-np,vti)
@@ -119,6 +120,7 @@ subroutine parload
   if (n_pp1.gt.0) call scramb(ne+1,n_pp1)
   if (n_pp2.gt.0) call scramb(ne+n_pp1+1,n_pp2) 
   if ((ni_tot-np).gt.0) call scramb(ne+np+1,ni_tot-np)
+
 !#### Anupam & Bin 2009/2010
 
 !   call urelmax(ux(1:ne),ne,vte)
@@ -150,7 +152,7 @@ subroutine parload
 !  ni is now # heavy ions, ni_tot is total # ions
 
 !  calculate relativistic gamma factor
-
+  write (*,*) npart, ne, ni, np
   do ip=1,npart
      gamma(ip) = sqrt(1.0+ ux(ip)**2 + uy(ip)**2 + uz(ip)**2)
   end do
@@ -182,7 +184,6 @@ subroutine parload
 
   ! get initial densities for first plot
   call eden
-
 
   if (ni.eq.0 .or. target_config==0) then
      call addneut

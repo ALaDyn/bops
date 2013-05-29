@@ -199,7 +199,7 @@
       xdodx=xdebye/dx
 
 
-      nf=min(nt,nftem)/ift
+      nf=max(min(nt,nftem)/ift,1)
 
       nxo2=nx/2
       nfo2=nf/2

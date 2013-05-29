@@ -90,8 +90,8 @@ real*8 :: xlol, rhomin
          case(4)     ! double layers with proton layer on the rear side   
            n_pp=nint(-rho_layer*x_layer/qe)  ! add particle numbers for
                                             ! both electrons and prtons in the proton layers
-           n_pp1 = 0.0d0                    ! the particle number (electrons and ions) for 1st proton layer
-           n_pp2=n_pp-n_pp1                 ! the particle number (electrons and ions) for 2nd proton layer
+           n_pp1 = 0                        ! the particle number (electrons and ions) for 1st proton layer
+           n_pp2=n_pp                       ! the particle number (electrons and ions) for 2nd proton layer
       
          case(5)     ! double layers with proton layer on the front side
            n_pp=nint(-rho_layer*x_layer/qe) ! add particle numbers for

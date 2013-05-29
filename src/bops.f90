@@ -25,11 +25,17 @@ program bops
   call stamp(15,1)
   call stamp(6,1)
   call init
-  !      input data
+
+  !  derive constants & simulation parameters from input data
   call derdat
+
+  !  compute particle weights and numbers according to chosen target config
+  call assign_charge
+
   !  allocate array space
   call setup_arrays
   call arinit
+
   !  write out header page
   !  call header
 

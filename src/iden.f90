@@ -25,19 +25,19 @@ subroutine iden(ip1)
   do l=1,ni_tot
      ip=ip1+l-1
      xa=xn(ip)*rdx
-     i1=xa+1
-     i2=i1+1
-     f2=i1-xa
+     i1=xa
+     i2=i1+1  
+     f2=xa-i1  ! i1<xa<i2; f2 prop to distance between particle and furthest gp
      f1=1.-f2
      ri=q(ip)/dx  ! particle charge density
 
      if (species(ip).eq.2) then
-       rhoi(i1)=rhoi(i1)+ri*f1
-       rhoi(i2)=rhoi(i2)+ri*f2
+       rhoi(i1+1)=rhoi(i1+1)+ri*f1   ! Index offset by 1, since rho(1) at x=0
+       rhoi(i2+1)=rhoi(i2+1)+ri*f2
      else
 ! proton layer
-       rhop(i1)=rhop(i1)+ri*f1
-       rhop(i2)=rhop(i2)+ri*f2
+       rhop(i1+1)=rhop(i1+1)+ri*f1
+       rhop(i2+1)=rhop(i2+1)+ri*f2
      endif
   end do
 

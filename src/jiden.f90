@@ -40,29 +40,29 @@ subroutine jiden(i1)
      ri=q(ip)/dx
      jy = ri*uy(ip)/gamma(ip)
      jz = ri*uz(ip)/gamma(ip)
-     io1 = xao+1
+     io1 = xao
      io2 = io1+1
-     in1 = xan+1
+     in1 = xan
      in2 = in1+1
-     fm2 = io1-xao
+     fm2 = xao-io1
      fm1 = 1.-fm2
-     fp2 = in1-xan
+     fp2 = xan-in1
      fp1 = 1.-fp2
      !  TE mode
      !   j-
-     jyim(io1) = jyim(io1) + jy*fm1
-     jyim(io2) = jyim(io2) + jy*fm2
+     jyim(io1+1) = jyim(io1+1) + jy*fm1
+     jyim(io2+1) = jyim(io2+1) + jy*fm2
      !   j+
-     jyi(in1) = jyi(in1) + jy*fp1
-     jyi(in2) = jyi(in2) + jy*fp2
+     jyi(in1+1) = jyi(in1+1) + jy*fp1
+     jyi(in2+1) = jyi(in2+1) + jy*fp2
 
      !  TM mode
      !   j-
-     jzim(io1) = jzim(io1) + jz*fm1
-     jzim(io2) = jzim(io2) + jz*fm2
+     jzim(io1+1) = jzim(io1+1) + jz*fm1
+     jzim(io2+1) = jzim(io2+1) + jz*fm2
      !   j+
-     jzi(in1) = jzi(in1) + jz*fp1
-     jzi(in2) = jzi(in2) + jz*fp2
+     jzi(in1+1) = jzi(in1+1) + jz*fp1
+     jzi(in2+1) = jzi(in2+1) + jz*fp2
   end do
 
   !  boundaries: fold ion currents
