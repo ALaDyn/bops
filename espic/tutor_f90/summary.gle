@@ -1,0 +1,200 @@
+! new page
+size 20 26 box
+set font rm
+set hei .6
+
+begin translate   1  18
+begin graph
+size   6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "   " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "     E_x    "
+data field0.dat
+data field1.dat
+data field2.dat
+d1 line 
+d2 line color blue
+d3 line color red
+end graph
+end translate
+
+
+
+begin translate   7  18
+begin graph
+size   6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "  t=80.0    " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "    \rho_e  "
+data edens0.dat
+data edens1.dat
+data edens2.dat
+d1 line 
+d2 line color blue
+d3 line color red
+end graph
+end translate
+
+
+
+begin translate  13 18
+begin graph
+size  6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "     " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "     \Phi  "
+data phi0.dat
+data phi1.dat
+d1 line 
+d2 line color blue
+end graph
+end translate
+
+
+
+begin translate   1  12
+begin graph
+size   6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "  t=80.0    " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "     v_x      "
+data phase0.dat
+d1 marker dot
+end graph
+end translate
+
+
+
+begin translate   7  12
+begin graph
+size   6 4
+nobox
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "      " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "     v_x      "
+data phase1.dat
+d1 marker dot 
+end graph
+end translate
+
+
+
+begin translate   13 12
+begin graph
+size  6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "  t=80.0    " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "     v_x    "
+data phase2.dat
+d1 marker dot
+end graph
+end translate
+
+
+
+begin translate   1  6
+
+begin graph
+size   6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title " t = 0      " hei 0.4 font rmi
+xtitle "    
+ytitle "       ni      "
+!data 1e19/nit00.xy
+!d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+begin translate   7 6
+begin graph
+size   6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "    " hei 0.4 font rmi
+xtitle "      v   "
+ytitle "     f(v)     "
+!data 1e19/fuep1.xy
+!d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+
+begin translate   13 6
+begin graph
+size  6 4
+nobox
+
+xaxis nticks 4 hei .4 
+yaxis nticks 4 hei .4 min .05 max .06
+xticks length .07
+yticks length .07
+title " Energies       " hei 0.4 font rmi
+xtitle "
+ytitle "     U     "
+data hist.dat
+d1 line color red key "U_kin"
+d2 line color blue key "U_pot"
+d3 line color black key "U_tot"
+end graph
+end translate
+
+
+
+
+
+
+
+
+
+
+
+
+
+

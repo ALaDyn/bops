@@ -1,0 +1,223 @@
+! new page
+size 20 26 box
+set font rm
+set hei .6
+begin translate 5 24
+begin text
+Wakefield acceleration
+a_0=1, t_p=1, n_e =20000
+end text
+end translate
+
+begin translate   7  18
+begin graph
+size   6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "   " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "     E_x    "
+data field0.data
+data field1.data
+data field2.data
+data field3.data
+data field4.data
+d1 line 
+d2 line color blue
+d3 line color red
+d4 line color green
+d5 line color cyan
+end graph
+end translate
+
+
+
+begin translate   1  18
+begin graph
+size   6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "     " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "    \rho_e  "
+data density0.data
+data density1.data
+data density2.data
+data density3.data
+data density4.data
+d1 line 
+d2 line color blue
+d3 line color red
+d4 line color green
+d5 line color cyan
+end graph
+end translate
+
+
+
+begin translate  13 18
+begin graph
+size  6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "  Laser   " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "     \Phi  "
+data laser0.data
+data laser1.data
+data laser2.data
+data laser3.data
+d1 line 
+d2 line color blue
+d3 line color green
+!d4 line color red
+end graph
+end translate
+
+
+
+begin translate   1  12
+begin graph
+size   6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "  t=0.0    " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "     v_x      "
+data phase1.data
+d1 marker dot
+end graph
+end translate
+
+
+
+begin translate   7  12
+begin graph
+size   6 4
+nobox
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "   t=10\pi   " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "     v_x      "
+data phase2.data
+d1 marker dot 
+end graph
+end translate
+
+
+
+begin translate   13 12
+begin graph
+size  6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "  t=20\pi    " hei 0.4 font rmi
+xtitle "     k_px      "
+ytitle "     v_x    "
+data phase4.data
+d1 marker dot
+end graph
+end translate
+
+
+
+begin translate   1  6
+
+begin graph
+size   6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title " t = 0      " hei 0.4 font rmi
+xtitle "     v_x"
+ytitle "     f(v)      "
+data vel_dist0.data
+data vel_dist1.data
+data vel_dist2.data
+d1 line lstyle      1
+d2 line color red
+d3 line color green
+end graph
+end translate
+
+
+
+begin translate   7 6
+begin graph
+size   6 4
+nobox
+
+xaxis nticks 4 hei .4
+yaxis nticks 4 hei .4
+xticks length .07
+yticks length .07
+title "    " hei 0.4 font rmi
+xtitle "      v   "
+ytitle "     f(v)     "
+!data 1e19/fuep1.xy
+!d1 line lwidth    1.0000E-02 lstyle      1
+end graph
+end translate
+
+
+
+
+begin translate   13 6
+begin graph
+size  6 4
+nobox
+
+xaxis nticks 4 hei .4 
+yaxis nticks 4 hei .4 
+!yaxis min .05 max .06
+xticks length .07
+yticks length .07
+title " Energies       " hei 0.4 font rmi
+xtitle "
+ytitle "     U     "
+data hist.data
+d1 line color red key "U_kin"
+d2 line color blue key "U_pot"
+d3 line color black key "U_tot"
+end graph
+end translate
+
+
+
+
+
+
+
+
+
+
+
+
+
+

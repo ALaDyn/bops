@@ -1,0 +1,41 @@
+! new page
+size 18 26
+
+begin translate   5.   25
+ set hei .8
+ set font rmb
+ begin text
+ end text
+end translate
+
+
+
+
+
+
+begin translate   1.   14
+begin graph
+size   18 12
+nobox
+xlabels hei   .4
+ylabels hei    .4
+yaxis  min 0 max 2
+!xaxis min 0 max 15
+xticks length .07
+yticks length .07
+!title "  " hei 0.5 font rmi
+xtitle "   vx   "
+ytitle "     f(vx)  "
+data brunel/fvxe1.xy
+!data langdon/fvxe2.xy
+!let d3 = d2/26
+
+!data run1/fvze1.xy
+!
+! area weighting
+d1 line color black
+!d2 line color blue
+!d3 line color red
+end graph
+end translate
+

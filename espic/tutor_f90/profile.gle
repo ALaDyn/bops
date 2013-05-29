@@ -1,0 +1,36 @@
+! new page
+size 18 26
+set font rm
+begin translate   4.0000E+00   1.5000E+01
+begin graph
+size   15 10
+data jena_03_i16/nit00.xy
+nobox
+!xaxis min    0 max    16
+yaxis min    0.0000E+00 max    40.0000E+00
+!xaxis hei    1.6000E-01
+!yaxis hei    1.6000E-01
+xlabels hei  .6
+ylabels hei  .6
+xaxis nticks 4
+x2axis on nticks 4
+x2labels
+xticks
+yticks 
+title " t = 0      " hei 0.6 font rmi
+xtitle "      x        "
+ytitle "       ni      "
+d1 line lwidth  .01 lstyle      1
+!d1 marker dot                                     
+end graph
+set lstyle 9
+amove xg(11.) yg(0)
+aline xg(11) yg(4)
+set lstyle 1 
+amove xg(11.5) yg(3)
+text x_{sol}
+end translate
+
+
+
+

@@ -1,0 +1,55 @@
+! new page
+size 18 26
+
+begin translate   3.   22.5
+ set hei .6
+ set font rmb
+ begin text
+ Elektronenverteilung bei I=3\times10^{17}Wcm^{-2}, \tau=60fs
+
+ end text
+end translate
+
+
+
+
+
+
+begin translate   1.   8
+begin graph
+size   17 12
+nobox
+xlabels hei   .5
+ylabels hei    .5
+yaxis log min 1e7 max 1e11
+xaxis min 0 max 1000
+xticks length .07
+yticks length .07
+!title "  Absorbed electrons " hei 0.5 font rmi
+xtitle "   U(keV)   "
+ytitle "     f_e(U)dU  "
+!  Hot spot spectrum from # Rousse sims
+data tmp/fhot5.xy
+let d2 = d1*3e7
+!let d2 = (.4124*31979/1.5^2)*x*exp(-x/1.5) from 0 to 20 step .1
+!data 1e16_fix10/gein1.xy d3
+!let d4 = d3/1.5^2
+!
+! area weighting
+d2 line 
+!d2 line color red
+!d3 line color blue
+end graph
+!begin key
+!nobox
+!hei .4
+!position tr
+!text "numerical" line color black
+!text "g(U)dU=\phi/T^2Uexp(-U/T)" line color red
+!end key
+
+end translate
+
+
+
+

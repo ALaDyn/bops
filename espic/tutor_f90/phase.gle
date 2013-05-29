@@ -1,0 +1,82 @@
+
+! new page
+size 18 26
+set font rm
+
+begin translate 2.5 25.
+set hei .8
+begin text
+Phase space
+end text
+end translate
+begin translate   3.0000E+00   16.5
+begin graph
+size   12 7
+nobox
+xaxis hei    .6
+yaxis hei    .6 nticks 6
+xlabels hei    .6
+ylabels hei    .6
+xaxis min    0.0000E+00 max    10
+yaxis min   -2 max 2. nticks 4
+xaxis nticks 5
+xticks length .07
+yticks length .07
+!title "  t=250.0   " hei 0.3 font rmi
+xtitle "      k_px        "
+ytitle "      v_x       "
+data phase0.dat
+d1 marker dot
+end graph
+end translate
+
+
+
+
+
+begin translate   3  9.5
+begin graph
+size   12 7
+nobox
+xaxis hei    .6
+yaxis hei    .6 nticks 6
+xlabels hei    .6
+ylabels hei    .6
+xaxis min    0.0000E+00 max 10
+yaxis min   -2 max 2. nticks 4
+xaxis nticks 5
+xticks length .07
+yticks length .07
+!title "  t=250.0   " hei 0.3 font rmi
+xtitle "      k_px        "
+ytitle "     v_x      "
+data phase1.dat
+d1 marker dot                                     
+end graph
+end translate
+
+
+
+
+begin translate   3  2.5
+begin graph
+size   12 7
+nobox
+xaxis hei    .6
+yaxis hei    .6 nticks 6
+xlabels hei    .6
+ylabels hei    .6
+xaxis min  0 max 10 
+yaxis min   -2 max 2. nticks 4
+xaxis nticks 4
+xticks length .07
+yticks length .07
+!title "  t=250.0   " hei 0.3 font rmi
+xtitle "      k_px        "
+ytitle "      v_x       "
+data phase2.dat
+d1 marker dot                                     
+end graph
+end translate
+
+

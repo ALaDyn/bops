@@ -1,0 +1,25 @@
+! new page
+size 20 26 box
+set font rm
+set hei .6 lwidth .04
+begin translate   3 10
+begin graph
+size  16 10
+nobox
+
+xaxis nticks 4 hei .5 
+yaxis nticks 4 hei .5 
+yaxis min .049 max .055
+xticks length .07
+yticks length .07
+title " Energies       " hei 0.4 font rmi
+xtitle "   \omega_pt"
+ytitle "     U     "
+data hist.dat
+d1 line color red key "U_{kin}" msize .2
+!d2 line color blue key "U_{pot}"
+d3 line color black key "U_{tot}, \Delta x = \lambda_D"
+data hist_nh.dat
+d6 line color green key "U_{tot}, \Delta x = 10\lambda_D"
+end graph
+end translate
