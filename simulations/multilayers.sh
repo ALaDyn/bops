@@ -1,20 +1,25 @@
 #!/bin/bash -x
-#MSUB -N pic1d
-#MSUB -l walltime=1:00:00
-#MSUB -l nodes=1:ppn=1
-
 ### Start  of jobscript
 
-#cd ..
-RUN=robinson1
-if [ -d $RUN] 
+RUN=multilayer
+
+#put here the same name as the .id file that you want to use 
+#from the tools folder
+SIM_TYPE=????
+
+
+BOPS=$HOME/bops/src/bops.exe
+ODPP=$HOME/bops/tools/gle/odpp.sh
+TOOLS_ID="../../tools/id"
+
+if [ -d $RUN ] 
 then
-  echo "Run directory $RUN already exists"
+  echo "Run directory" $RUN "already exists"
 else
-  echo "Creating run directory $RUN"
-  mkdir $RUN 
+  echo "Creating run directory " $RUN
+  mkdir $RUN
 fi
-cd $RUN 
+cd $RUN
 echo "Cleaning up.."
 rm -f *.xy *.2D plots.tar plots.tar.gz *.t
 
@@ -24,45 +29,45 @@ cat <<'EOF'>bops.indata
 
 
  &picohd
-!  trun=500
-  trun=50
+  trun=500
 !  nt=1
-  nx=10000
-  ne=96000
-  ni=16000
+  nx=150000
+  ne=9600
+  ni=1600
   iunits= 2    ! input times in fs; lengths in microns
   em_scheme=1
 
-  a0=2e21     ! laser intensity (W/cm²)
+  a0=3.45e19     ! laser intensity (W/cm²)
   xlambda=1.0  ! laser wavelength (microns)
-  tpulse=33. ! pulse length 
+  tpulse=126.6667 ! pulse length 
   theta0=0.    ! incidence angle
   cpolzn='C'   ! polarization
   ilas=4       ! sin² 
-  trise=1.
+  trise=3.3333
   tfall=3.3333
   tdel =3.3333
 
   miome=22032.  ! ion/electron mass ratio
   mpome=1836.  ! proton/electron mass ratio
   Z=6.
-  nonc=126.  ! Electron density to match heavy ion layer
-  Te=5.0
+  amass=1.
+  Te=0.0
   Ti=0.0
   Tproton=0.0
+  nonc=195.918
   fcrit=0.0
 
-!  target_config=3  ! foil+proton layers on both rear and front side
-  target_config=4  ! foil+proton layer at rear side
+  target_config=3  ! foil+proton layers on both rear and front side
+!  target_config=4  ! foil+proton layer at rear side
 !  target_config=5  ! foil+proton layer at front side
-  inprof=10         ! 9: three layer target profile 
+  inprof=9         ! 9: three layer target profile 
                     ! 10: multispecies
-  dfoil=20.      ! Foil width
-  xm1=10.0       ! Foil position
-  x_layer=0.0    ! width of proton layer
-  rho_layer=42.  ! Proton density np/nc
+  dfoil=0.008      ! Foil width
+  xm1=3.0       ! Foil position
+  x_layer=0.008    ! width of proton layer
+  rho_layer=8.164  ! np/nc
   xsol=3.008
-  xl=50.0 ! Grid length
+  xl=15.0 ! Grid length
   xlolam=0.
   rhotrak=10.
 
@@ -71,8 +76,8 @@ cat <<'EOF'>bops.indata
 
   isubi=1
   ioboost=0
-  iout=5
-  igr=10
+  iout=1
+  igr=1
   igmovie=1
   itc=1
   ncyc=1
@@ -155,7 +160,7 @@ EOF
 ######################################################
 
 echo 'Running bops ...'
-../src/bops
-
+$BOPS
+$ODPP ${TOOLS_ID} $RUN ${SIM_TYPE} ? ?
+#nb: vedere altri .sh per esempi riguardo gli ultimi due parametri
 echo 'Finished run!'
-###end

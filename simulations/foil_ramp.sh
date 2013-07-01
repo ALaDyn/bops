@@ -4,11 +4,17 @@
 #
 
 # Run directory
-RUN=foil1
+RUN=foil_ramp
+
+#put here the same name as the .id file that you want to use 
+#from the tools folder
+SIM_TYPE=foil
+
 
 # Top directory
-BOPS=`pwd`
-cd $BOPS
+BOPS=$HOME/bops/src/bops.exe
+ODPP=$HOME/bops/tools/gle/odpp.sh
+TOOLS_ID="../../tools/id"
 
 if [ -d $RUN ] 
 then
@@ -28,13 +34,12 @@ cat <<'EOF'>bops.indata
 
  &picohd
   trun=600
-  nx=1000
-  ne=20000
-  ni=20000
+  nx=2000
+  ne=50000
+  ni=50000
   iunits= 1
-  target_config=1
 
-  a0=2.e19
+  a0=2.e18
   xlambda=0.8 
   tpulse=90.
   theta0=0.
@@ -44,18 +49,18 @@ cat <<'EOF'>bops.indata
   fcrit=0.25
   Te=1.0
   Ti=0.1
-  xl=100.
-  inprof=7
-  dfoil=10.
-  xm1=50.
-  xsol=80
+  xl=150.
+  inprof=57
+  dfoil=30.
+  xm1=20.
+  xsol=90
   xlolam=1.
   rhotrak=2.
 
   lrstrt=.false.
   ldump=.false.
 
-  isubi=1
+  isubi=2
   ioboost=0
   iout=10
   igr=200
@@ -65,8 +70,7 @@ cat <<'EOF'>bops.indata
 
   Z=1.
   amass=1.
-  ilas=5
-  tpulse=100.
+  ilas=1
   trise=30.
   tfall=30.
   vxm=0.2
@@ -87,8 +91,8 @@ cat <<'EOF'>bops.indata
 
   umevmax=10.
   itsk=30
-  igxs=2
-  ipskip=1
+  igxs=4
+  ipskip=2
   nuav=10
   nftem= 300
   ift= 2
@@ -141,12 +145,6 @@ EOF
 #
 #
 echo 'Running bops ..'
-#llrun -p1 $BOPS/src/bops
-$BOPS/src/bops
-cd ..
-./odpp foil1
+$BOPS
+#$ODPP ${TOOLS_ID} $RUN ${SIM_TYPE} 9 y
 echo 'Finished run'
-#echo 'Packing plots..'
-#rm -f plots.tar plots.tar.gz
-#tar cvf plots.tar *.xy bops.*
-#gzip plots.tar

@@ -1,21 +1,25 @@
-#
-#  RPA of nm foil
-#
-# Run directory
-RUN=$HOME/bops/tutorial/rpa1
+#!/bin/bash -x
 
-# Top directory
-BOPS=$HOME/bops/src/bops
+RUN=robinson1
+
+#put here the same name as the .id file that you want to use 
+#from the tools folder
+SIM_TYPE=???
+
+
+BOPS=$HOME/bops/src/bops.exe
+ODPP=$HOME/bops/tools/gle/odpp.sh
+TOOLS_ID="../../tools/id"
+
 
 if [ -d $RUN] 
 then
-  echo "Run directory " $RUN " already exists!"
+  echo "Run directory $RUN already exists"
 else
-  echo "Creating run directory" $RUN
-  mkdir $RUN
+  echo "Creating run directory $RUN"
+  mkdir $RUN 
 fi
-cd $RUN
-#
+cd $RUN 
 echo "Cleaning up.."
 rm -f *.xy *.2D plots.tar plots.tar.gz *.t
 
@@ -25,48 +29,45 @@ cat <<'EOF'>bops.indata
 
 
  &picohd
-  trun=300
+!  trun=500
+  trun=50
 !  nt=1
-  nx=96000
+  nx=10000
   ne=96000
   ni=16000
-  iunits=2    ! input times in fs; lengths in microns
+  iunits= 2    ! input times in fs; lengths in microns
   em_scheme=1
 
-  a0=8e19      ! laser intensity (W/cm**-2)
-  xlambda=0.8  ! laser wavelength (microns)
-  tpulse=27.33 ! pulse length (fs)
+  a0=2e21     ! laser intensity (W/cm²)
+  xlambda=1.0  ! laser wavelength (microns)
+  tpulse=33. ! pulse length 
   theta0=0.    ! incidence angle
   cpolzn='C'   ! polarization
-  ilas=2       ! gaussian 
-  trise=3.3333
+  ilas=4       ! sin² 
+  trise=1.
   tfall=3.3333
-  tdel =150 ! delay time (fs)
+  tdel =3.3333
 
-  miome=22032.  ! ion/electron mass ratio for C12
-  mpome=1836.   ! proton/electron mass ratio
-  Z=6.  ! C^6+ ions
-  amass=1.
-  Te=0.0  ! Start cold
+  miome=22032.  ! ion/electron mass ratio
+  mpome=1836.  ! proton/electron mass ratio
+  Z=6.
+  nonc=126.  ! Electron density to match heavy ion layer
+  Te=5.0
   Ti=0.0
   Tproton=0.0
-  nonc=400.
   fcrit=0.0
 
-
-  target_config= 1  ! single ion species
 !  target_config=3  ! foil+proton layers on both rear and front side
+  target_config=4  ! foil+proton layer at rear side
 !  target_config=5  ! foil+proton layer at front side
-
-  inprof=7          ! 9: three layer target profile 
+  inprof=10         ! 9: three layer target profile 
                     ! 10: multispecies
-  dfoil=0.005       ! Foil width (microns)
-  xm1=6.0           ! Foil position (microns)
-  x_layer=0.0       ! width of proton layer
-!  rho_layer=4.082  ! np/nc
-  rho_layer=0.
-!  xsol=3.008
-  xl=30.0 ! Grid length (microns)
+  dfoil=20.      ! Foil width
+  xm1=10.0       ! Foil position
+  x_layer=0.0    ! width of proton layer
+  rho_layer=42.  ! Proton density np/nc
+  xsol=3.008
+  xl=50.0 ! Grid length
   xlolam=0.
   rhotrak=10.
 
@@ -75,17 +76,32 @@ cat <<'EOF'>bops.indata
 
   isubi=1
   ioboost=0
-  iout=10
+  iout=5
   igr=10
-  igmovie=10
+  igmovie=1
   itc=1
+  ncyc=1
+
+  vxm=1.0
+  vym=1.0
 
   ipbc=3
   ifbc=1
+  nsp=0
+  isp=5600
 
-  umevmax=4.  ! max electron energy in particle spectra (MeV)
-  uimax=40.
-  upmax=40.
+  ntrack=0
+  itropt=1
+  uhot=0.1
+  xpint=0.01
+  xpstart=10.0
+  itstart=0
+  itend=6000
+
+  umevmax=800.  ! max energy in particle spectra
+  uimax=800.
+  upmax=800.
+  itsk=30
   igxs=1
   ipskip=1
   nuav=10
@@ -94,7 +110,6 @@ cat <<'EOF'>bops.indata
   omegm= 20.
   ifbin=3 /
  &end
-
 Glossary
 ========
 
@@ -146,6 +161,7 @@ EOF
 
 echo 'Running bops ...'
 $BOPS
-
+#$ODPP ${TOOLS_ID} $RUN ${SIM_TYPE} ? ?
+#nb: vedere altri .sh per esempi riguardo gli ultimi due parametri
 echo 'Finished run!'
-###end
+

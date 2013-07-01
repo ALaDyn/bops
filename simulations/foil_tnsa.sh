@@ -8,10 +8,17 @@
 #
 
 # Run directory
-RUN=foil
+RUN=foil_tnsa
+
+#put here the same name as the .id file that you want to use 
+#from the tools folder
+SIM_TYPE=foil
+
 
 # Top directory
-BOPS=`pwd`/../src/bops
+BOPS=$HOME/bops/src/bops.exe
+ODPP=$HOME/bops/tools/gle/odpp.sh
+TOOLS_ID="../../tools/id"
 
 if [ -d $RUN ] 
 then
@@ -30,7 +37,7 @@ cat <<'EOF'>bops.indata
 
  &picohd
   trun=150 ! Run time in fs
-  nx=5000  ! # grid points
+  nx=2000  ! # grid points
   ne=50000 ! # electrons
   ni=50000 ! # ions
   iunits= 2
@@ -38,10 +45,9 @@ cat <<'EOF'>bops.indata
   a0 = 5.e19  ! intensity
   xlambda=0.8 ! wavelength
   tpulse=50.  ! pulse length in fs
-  trise=0.    ! rise time for flat-top profile
   theta0=0.   ! angle of incidence
-  cpolzn='L'  ! polarization
-  miome=1836. ! mass ratio
+  cpolzn='P'  ! polarization
+  miome=2000. ! mass ratio
   nonc= 36. ! frozen H
   Z=1.
   amass=1. ! atomic mass
@@ -81,6 +87,5 @@ EOF
 #
 echo 'Running bops ..'
 $BOPS
-
+#$ODPP ${TOOLS_ID} $RUN ${SIM_TYPE} 9 y
 echo 'Finished run'
-cd ..

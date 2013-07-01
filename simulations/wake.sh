@@ -1,17 +1,20 @@
 #! /bin/sh
 #
-#  Vacuum test of boost fields 
-#  Set cpolzn='S', 'P' or 'C' for s-/p-/c-polarized light respectively
-#  Change theta0=0 .. 89 to alter incidence angle
-#  Set iboost=0 for lab-frame, 1 for boost frame fields 
+#  Wakefield excitation demo 
+#
 
 # Run directory
-RUN=vacuum
+RUN=wake
 
-# Location of executable from tutorial/ directory
-BOPS=`pwd`/../src/bops
-# Location of executable from top directory
-#BOPS=`pwd`/src/bops
+#put here the same name as the .id file that you want to use 
+#from the tools folder
+SIM_TYPE=wake
+
+
+# Location of executable
+BOPS=$HOME/bops/src/bops.exe
+ODPP=$HOME/bops/tools/gle/odpp.sh
+TOOLS_ID="../../tools/id"
 
 if [ -d $RUN ] 
 then
@@ -28,34 +31,29 @@ cat <<'EOF'>bops.indata
 
  &picohd
 ! Run time
-  trun = 100.
+  trun = 500.
 ! Grid points  
-  nx = 1000
+  nx = 4000
 ! # electrons  
-  ne = 50
+  ne = 50000
 ! # ions  
   ni = 0
 !  iunits = 1 ! wp, kp
   iunits = 0 ! Default
 
 ! Laser amplitude (-ve) or intensity in W/cm**2 (+ve)
-  a0=-1.0
+  a0=-2.0
 ! Laser wavelength in microns  
   xlambda = 0.8
 ! Pulse length in 1/w0  
-  tpulse = 40.
+  tpulse = 10.
 ! Pulse shape (see below) 
   ilas = 5
 ! Pulse delay  
-  trise = 0.
-
+  trise = 20.
 ! Polarization
-  cpolzn = 'P'
-! Angle of incidence
-  theta0=45.
-! Output fields in lab frame (1 for boost frame)
-  ioboost=0
-    
+  cpolzn = 'S'
+
 ! Mass ratio ion/electron
   miome = 3000.
 ! Initial electron temperature  
@@ -63,24 +61,24 @@ cat <<'EOF'>bops.indata
 ! Initial ion temperature  
   Ti = 0.0
 ! Plasma density ne/nc  
-  nonc = 1.e-5
+  nonc = 0.01
 ! Density profile  
-  inprof = 2
+  inprof = 4
 ! Grid length in c/w0  
-  xl = 200.
+  xl = 500.
 ! Start of LH plasma
-  xm1 = 199
+  xm1 = 50.
 ! Ramp end  
-  xsol = 200
+  xsol = 60
 ! RH plasma ramp start  
   xsol2=440.
 ! RH plasma edge  
   xm2=450.
 
 ! Frequency of printed output
-  iout = 10
+  iout = 50
 ! Frequency of 1D plots  
-  igr = 100
+  igr = 50
   igmovie = 100
 ! Frequency of time sequence stores  
   itc=5
@@ -145,7 +143,6 @@ EOF
 #
 echo 'Running bops ..'
 $BOPS
-cd ..
-./odpp_vacuum vacuum
+#$ODPP ${TOOLS_ID} $RUN ${SIM_TYPE} ? ?
+#nb: vedere altri .sh per esempi riguardo gli ultimi due parametri
 echo 'Finished run'
-echo

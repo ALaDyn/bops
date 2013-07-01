@@ -1,78 +1,86 @@
-#! /bin/sh 
+#! /bin/sh
 #
-#  Script to produce 2D plot of nonlinear surface oscillations
-# 
+#  Foil demo 
+#
+
 # Run directory
-RUN=nl_surf
+RUN=foil
+
+#put here the same name as the .id file that you want to use 
+#from the tools folder
+SIM_TYPE=foil
+
 
 # Top directory
-BOPS=`pwd`
-cd $BOPS
+BOPS=$HOME/bops/src/bops.exe
+ODPP=$HOME/bops/tools/gle/odpp.sh
+TOOLS_ID="../../tools/id"
 
-# Check & cleanup 
 if [ -d $RUN ] 
 then
   echo "Run directory" $RUN "already exists"
-  rm $RUN/movie/*
 else
   echo "Creating run directory" $RUN
   mkdir $RUN
-  mkdir $RUN/movie
 fi
 cd $RUN
+echo "Cleaning up.."
+rm -f *.xy *.2D plots.tar plots.tar.gz *.t
 
 # Inputs get copied into bops.indata
+
 cat <<'EOF'>bops.indata
+
+
  &picohd
-  nx=2000
-  ne=40000
-  ni=0
-  trun = 80.
+  trun=600
+  nx=1000
+  ne=20000
+  ni=20000
+  iunits= 1
+  target_config=1
 
   a0=2.e19
-  tpulse=100.
-  theta0=30.
+  xlambda=0.8 
+  tpulse=90.
+  theta0=0.
   cpolzn='P'
   miome=1836.
-  nonc=15
+  nonc=10.
+  fcrit=0.25
   Te=1.0
   Ti=0.1
-
-  xl=40.
-  inprof=3
-  xsol=11.
-  xm1=30.
-  xlolam=0.02
-  xsol2=17.
-  xm2=8.
-  xcur1 = 25.
-  xcur2 = 35.
+  xl=100.
+  inprof=7
+  dfoil=10.
+  xm1=50.
+  xsol=80
+  xlolam=1.
+  rhotrak=2.
 
   lrstrt=.false.
   ldump=.false.
 
-  isubi=5
+  isubi=1
   ioboost=0
   iout=10
-  igr=80
-  igmovie=2
-  igx2d = 1
-  itc=10
-  ncyc=4
+  igr=200
+  igmovie=300
+  itc=40
+  ncyc=2
 
   Z=1.
   amass=1.
-  ilas=1
-  w0=1.0
-  wp=1.4142
-  trise=6.
+  ilas=5
+  tpulse=100.
+  trise=30.
   tfall=30.
   vxm=0.2
   vym=0.5
 
   ipbc=4
   ifbc=2
-  nsp=-1
+  nsp=0
   isp=5600
 
   ntrack=0
@@ -83,15 +91,16 @@ cat <<'EOF'>bops.indata
   itstart=0
   itend=6000
 
+  umevmax=10.
   itsk=30
   igxs=2
-  ipskip=9
-  nuav=50
-  nftem = 16384
-  ift = 10
-  omegm = 20.
-  ifbin=5/
-
+  ipskip=1
+  nuav=10
+  nftem= 300
+  ift= 2
+  omegm= 20.
+  ifbin=3 /
+ &end
 Glossary
 ========
 
@@ -136,10 +145,9 @@ Diagnostics
 
 EOF
 #
-echo 'Running BOPS ..'
-$BOPS/src/bops
-
+#
+echo 'Running bops ..'
+$BOPS
+$ODPP ${TOOLS_ID} $RUN ${SIM_TYPE} 9 y
 echo 'Finished run'
-echo
-
 

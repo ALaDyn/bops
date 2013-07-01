@@ -11,8 +11,15 @@
 # Run directory
 RUN=foil_fs
 
+#put here the same name as the .id file that you want to use 
+#from the tools folder
+SIM_TYPE=foil
+
 # Top directory
-BOPS=`pwd`/src/bops
+BOPS=$HOME/bops/src/bops.exe
+ODPP=$HOME/bops/tools/gle/odpp.sh
+TOOLS_ID="../../tools/id"
+
 
 if [ -d $RUN ] 
 then
@@ -88,9 +95,6 @@ EOF
 #
 #
 echo 'Running bops ..'
-# llrun -p1 $BOPS
 $BOPS
-
+$ODPP ${TOOLS_ID} $RUN ${SIM_TYPE} 9 y
 echo 'Finished run'
-cd ..
-./odpp_summary foil_fs
