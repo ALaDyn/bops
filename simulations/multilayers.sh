@@ -1,11 +1,11 @@
-#!/bin/bash -x
+#!/bin/sh 
 ### Start  of jobscript
 
 RUN=multilayer
 
 #put here the same name as the .id file that you want to use 
 #from the tools folder
-SIM_TYPE=????
+#SIM_TYPE=????
 
 
 BOPS=$HOME/bops/src/bops.exe
@@ -161,6 +161,6 @@ EOF
 
 echo 'Running bops ...'
 $BOPS
-$ODPP ${TOOLS_ID} $RUN ${SIM_TYPE} ? ?
+#$ODPP ${TOOLS_ID} $RUN ${SIM_TYPE} ? ?
 #nb: vedere altri .sh per esempi riguardo gli ultimi due parametri
 echo 'Finished run!'

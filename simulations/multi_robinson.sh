@@ -1,6 +1,6 @@
-#!/bin/bash -x
+#!/bin/sh 
 
-RUN=robinson1
+RUN=multirobinson
 
 #put here the same name as the .id file that you want to use 
 #from the tools folder
@@ -12,7 +12,7 @@ ODPP=$HOME/bops/tools/gle/odpp.sh
 TOOLS_ID="../../tools/id"
 
 
-if [ -d $RUN] 
+if [ -d $RUN ] 
 then
   echo "Run directory $RUN already exists"
 else

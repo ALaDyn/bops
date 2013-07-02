@@ -14,7 +14,7 @@ BOPS=$HOME/bops/src/bops.exe
 ODPP=$HOME/bops/tools/gle/odpp.sh
 TOOLS_ID="../../tools/id"
 
-if [ -d $RUN] 
+if [ -d $RUN ] 
 then
   echo "Run directory " $RUN " already exists!"
 else
