@@ -219,7 +219,7 @@ printf "  igr=${SNAPSHOT_FREQUENCY}\n"                        >> ${INPUT_FILE}
 printf "  igmovie=${MOVIE_SNAPSHOTS}\n"                       >> ${INPUT_FILE}
 printf "  itc=${NUMBER_OF_HISTORY_PLOTS}\n"                   >> ${INPUT_FILE}
 printf "  ncyc=${NUMBER_OF_CYCLES_FOR_TIMEAVERAGED_PLOTS}\n"  >> ${INPUT_FILE}
-printf "  ilas=${LASER_TYPE}5\n"                              >> ${INPUT_FILE}
+printf "  ilas=${LASER_TYPE}\n"                               >> ${INPUT_FILE}
 
 printf "  ipbc=${PARTICLE_BOUNDARYCONDITIONS}\n"  >> ${INPUT_FILE}
 printf "  ifbc=${FIELD_BOUNDARYCONDITIONS}\n"     >> ${INPUT_FILE}
