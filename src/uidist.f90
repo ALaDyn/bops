@@ -35,7 +35,8 @@ subroutine uidist
            work2(i) = fion(i)
         end do
         call grxy(xv,work2,nvx,6400+idc,1,2 &
-             ,'      U(MeV)   ','     fi(U)     ','fuip'//ctime(1:12) )
+             ,'      U(MeV)   ','     fi(U)     ','fuip'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
 ! forward proton spectrum 
 	if (np.ne.0) then
           do i=1,nvx
@@ -43,7 +44,8 @@ subroutine uidist
              work2(i) = fproton(i)
           end do
           call grxy(xv,work2,nvx,6600+idc,1,2 &
-             ,'      U(MeV)   ','     fp(U)     ','fupp'//ctime(1:12) )
+             ,'      U(MeV)   ','     fp(U)     ','fupp'//ctime(1:12) & 
+	     ,-1.0,1.0,.2,1.,1e3,10.)
 	endif
      endif
 

@@ -67,13 +67,14 @@
       dt=dx
       xload=xload*xl
       rho0lab=nonc
-!  Sim frame time slowed by gam0**2
 
-      if (ioboost==0) then
+!  Sim frame normalised time slowed by gam0**2
+
+!      if (ioboost==0) then
 	ttrans=gam0**2
-      else
-	ttrans=1.
-      endif
+!      else
+!	ttrans=1.
+!      endif
 
       trun = trun*tconv/ttrans
       tpulse = tpulse*tconv/ttrans
@@ -221,7 +222,7 @@
 !     limit output switches
 !      iout=max(iout,nt/50)
 !      igr=max(igr,nt/5)
-      itsk=max(itsk,nt/1000)
+ !     itsk=max(itsk,nt/1000)
 
 !     time-averages
       ncyc=min(ncyc,igr/itav)

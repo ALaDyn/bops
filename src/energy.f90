@@ -13,7 +13,8 @@ subroutine energy
   real*8 ute,uti,vvx,vvy,temp1,g,vsex,vsey,vsix,vsiy,utes,utis
   real*8 dxlab, ese, xmelab, xmilab, emte, emtm
   real*8 bzl, bxl, byl, exl, eyl, ezl, r1
-  integer i, ip
+  real*8 :: gl, u2, xmplab, utp, uyl
+  integer i, ip, l
   logical :: debug_out=.false.
   complex yes
 
@@ -23,28 +24,57 @@ subroutine energy
   dxlab=dx*gam0
   ese=0.
   do i=1,nx+1
-     ese = ese + dxlab*(ex(i)+vy0*bz(i))**2
+     ese = ese + 0.5*dxlab*(ex(i)+vy0*bz(i))**2
   end do
 
   ues(ntc)=ese
 
   !  electron and ion thermal energies
 
-  xmelab=me/gam0**2
-  xmilab=mi/gam0**2
+  if (ioboost==0) then
+   xmelab=me/gam0**2
+   xmilab=mi/gam0**2
+  else
+   xmelab=me
+   xmilab=mi
+  endif
+
   ute=0.d0
   do ip=1,ne
-     ute=ute+xmelab*(gam0*(gamma(ip)-vy0*uy(ip)) - 1.0)
+	if (ioboost==0) then
+         call sim2lab(vy0,gam0,uy(ip),gamma(ip),uyl,gl)
+	else
+	 uyl=uy(ip)
+        endif 
+     u2=ux(ip)**2+uz(ip)**2+uyl**2
+     ute=ute+xmelab*u2/(gl+1.d0)
   end do
 
   uthe(ntc)=ute
   uti=0.d0
   utis=0.d0
+  utp=0.d0
 
-  if (ni.gt.0) then
-     do ip=ne+1,ne+ni
-        uti=uti+xmilab*(gam0*(gamma(ip)-vy0*uy(ip)) - 1.0)
+     !  ion thermal energies - lab frame
+     uti=0.d0
+     utp=0.d0
+
+  if (ni_tot.gt.0) then
+     do l=1,ni_tot
+        ip=ne+l
+	if (ioboost==0) then
+         call sim2lab(vy0,gam0,uy(ip),gamma(ip),uyl,gl)
+	else
+	 uyl=uy(ip)
+        endif        
+	u2=ux(ip)**2+uz(ip)**2+uyl**2
+ 	if (species(ip).eq.2) then
+          uti=uti+xmilab*u2/(gl+1.d0)  ! heavy ions
+  	else if (species(ip).eq.3) then
+          utp=utp+xmplab*u2/(gl+1.d0)  ! protons
+	endif
      end do
+
   endif
 
   uthi(ntc)=uti
@@ -60,9 +90,13 @@ subroutine energy
      eyl = ey(i)/gam0
      exl = ex(i)+vy0*bz(i)
      ezl = ez(i)
+    if (ioboost.eq.0) then
      emte = emte + 0.5*( eyl**2 + exl**2 + bzl**2)*dxlab
      emtm = emtm + 0.5*( ezl**2 + bxl**2 + byl**2)*dxlab
-
+    else
+     emte = emte + 0.5*( ex(i)**2 + ey(i)**2 + bz(i)**2)*dx
+     emtm = emtm + 0.5*( bx(i)**2 + by(i)**2 + ez(i)**2)*dx
+    endif
   end do
   uem(ntc)=emte + emtm
   !

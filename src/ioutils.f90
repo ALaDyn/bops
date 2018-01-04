@@ -62,7 +62,8 @@
 
       subroutine r0form6(a,r0,cfm)
       real*8 r0
-      character a*6,cfm*10,cform*20
+      character a*6,cform*20
+      character (len=*) cfm
       if (cfm(1:1).eq.'f') then
       cform='(1x,a6,'//cfm(1:5)//')'
       lfm=13

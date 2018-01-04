@@ -33,11 +33,15 @@ subroutine grav
   end do
 
   call grxy(xx,work1,nx+1,20000+idc,igxs,1 &
-       ,chx,'     Erms      ','exrm'//ctime(1:12) )
+       ,chx,'     Erms      ','exrm'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
   !  Lab frame dc Ex
   call grxy(xx,dcex,nx+1,20500+idc,igxs,1 &
-       ,chx,'     <Ex>      ','exdc'//ctime(1:12) )
+       ,chx,'     <Ex>      ','exdc'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
 
   !  Lab frame oscillatory potential
@@ -46,9 +50,13 @@ subroutine grav
   end do
 
   call grxy(xx,work1,nx+1,23000+idc,igxs,1 &
-       ,chx,'   <Phi>rms    ','phrm'//ctime(1:12) )
+       ,chx,'   <Phi>rms    ','phrm'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
   call grxy(xx,dcphi,nx+1,23500+idc,igxs,1 &
-       ,chx,'     <Phi>     ','phdc'//ctime(1:12) )
+       ,chx,'     <Phi>     ','phdc'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
 
   !  TE fields
@@ -61,7 +69,9 @@ subroutine grav
   end do
 
   call grxy(xx,work1,nx+1,21500+idc,igxs,1 &
-       ,chx,'     <Ey>rms   ','eyrm'//ctime(1:12) )
+       ,chx,'     <Ey>rms   ','eyrm'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
   !  Lab frame oscillatory Bz
   do i=1,nx+1
@@ -69,9 +79,13 @@ subroutine grav
   end do
 
   call grxy(xx,work1,nx+1,22000+idc,igxs,1 &
-       ,chx,'     <Bz>rms   ','bzrm'//ctime(1:12) )
+       ,chx,'     <Bz>rms   ','bzrm'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
   call grxy(xx,dcbz,nx+1,22500+idc,igxs,1 &
-       ,chx,'     <Bz>      ','bzdc'//ctime(1:12) )
+       ,chx,'     <Bz>      ','bzdc'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
   !  AC current
   do i=1,nx+1
@@ -79,39 +93,55 @@ subroutine grav
   end do
 
   call grxy(xx,work1,nx+1,29000+idc,igxs,1 &
-       ,chx,'     <Jy>rms   ','jyrm'//ctime(1:12) )
+       ,chx,'     <Jy>rms   ','jyrm'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
   !  DC current
   call grxy(xx,dcjy,nx+1,28500+idc,igxs,1 &
-       ,chx,'     <Jy>      ','jydc'//ctime(1:12) )
+       ,chx,'     <Jy>      ','jydc'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
   !  DC current jx
   call grxy(xx,dcjx,nx+1,33500+idc,igxs,1 &
-       ,chx,'     <Jy>      ','jydc'//ctime(1:12) )
+       ,chx,'     <Jy>      ','jydc'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
   !  DC charge density
   call grxy(xx,dcrhe,nx+1,29500+idc,igxs,1 &
-       ,chx,'     <rhoe>    ','redc'//ctime(1:12) )
+       ,chx,'     <rhoe>    ','redc'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
 
   !  pond force  vy x Bz; vy from py=ay+p0
   call grxy(xx,vxb,nx+1,26000+idc,igxs,1 &
-       ,chx,'   <vy x Bz>   ','vxbp'//ctime(1:12) )
+       ,chx,'   <vy x Bz>   ','vxbp'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
   !  pond force  vz x By; vz from pz=az
   call grxy(xx,vxb2,nx+1,27000+idc,igxs,1 &
-       ,chx,'   <vz x By>   ','vxbs'//ctime(1:12) )
+       ,chx,'   <vz x By>   ','vxbs'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
   !  pond force  <vy> x <Bz>
   do i=1,nx+1
      work1(i) = dcvy(i)*dcbz(i)
   end do
   call grxy(xx,work1,nx+1,26500+idc,igxs,1 &
-       ,chx,'   <vy>x<Bz>   ','vxbd'//ctime(1:12) )
+       ,chx,'   <vy>x<Bz>   ','vxbd'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
   !  pond force  Epond from pond. laser model
 
   call grxy(xx,avfp,nx+1,28000+idc,igxs,1 &
-       ,chx,'     <fp>      ','fpav'//ctime(1:12) )
+       ,chx,'     <fp>      ','fpav'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
   !  E.J
   icycdel=(2*xm1/tav+0.5)
@@ -123,7 +153,9 @@ subroutine grav
   end do
 
   call grxy(xx,work1,nx+1,25000+idc,igxs,1 &
-       ,chx,'     <E.j>rms  ','edoj'//ctime(1:12))
+       ,chx,'     <E.j>rms  ','edoj'//ctime(1:12)&
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
   !     endif
 
   !      endif		!#### Anupam & Bin 2009/2010
@@ -140,7 +172,9 @@ subroutine grav
      end do
 
      call grxy(xx,work1,nx+1,21000+idc,igxs,1 &
-          ,chx,'     <Ez>rms   ','ezrm'//ctime(1:12) )
+          ,chx,'     <Ez>rms   ','ezrm'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
      !  Lab frame oscillatory By
      do i=1,nx+1
@@ -148,9 +182,13 @@ subroutine grav
      end do
 
      call grxy(xx,work1,nx+1,30000+idc,igxs,1 &
-          ,chx,'     <By>rms   ','byrm'//ctime(1:12) )
+          ,chx,'     <By>rms   ','byrm'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
      call grxy(xx,dcby,nx+1,30500+idc,igxs,1 &
-          ,chx,'     <By>      ','bydc'//ctime(1:12) )
+          ,chx,'     <By>      ','bydc'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
      !  Lab frame oscillatory Bx
      do i=1,nx+1
@@ -158,9 +196,13 @@ subroutine grav
      end do
 
      call grxy(xx,work1,nx+1,31000+idc,igxs,1 &
-          ,chx,'     <Bx>rms   ','bxrm'//ctime(1:12) )
+          ,chx,'     <Bx>rms   ','bxrm'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
      call grxy(xx,dcbx,nx+1,31500+idc,igxs,1 &
-          ,chx,'     <Bx>      ','bxdc'//ctime(1:12) )
+          ,chx,'     <Bx>      ','bxdc'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
      !  AC current jz
      do i=1,nx+1
@@ -168,11 +210,15 @@ subroutine grav
      end do
 
      call grxy(xx,work1,nx+1,32000+idc,igxs,1 &
-          ,chx,'     <Jz>rms   ','jzrm'//ctime(1:12) )
+          ,chx,'     <Jz>rms   ','jzrm'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
      !  DC current
      call grxy(xx,dcjy,nx+1,32500+idc,igxs,1 &
-          ,chx,'     <Jy>      ','jzdc'//ctime(1:12) )
+          ,chx,'     <Jy>      ','jzdc'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
 
 !  endif		!#### Anupam & Bin 2009/2010
@@ -192,10 +238,16 @@ subroutine grav
   call filter1(grad2w,nx+1)
 
   call grxy(xx,emdensity,nx+1,36000+idc,igxs,1 &
-          ,chx,'       W       ','emde'//ctime(1:12) )
+          ,chx,'       W       ','emde'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
   call grxy(xx,gradW,nx+1,36500+idc,igxs,1 &
-          ,chx,'   gradW       ','emgr'//ctime(1:12) )
+          ,chx,'   gradW       ','emgr'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
   call grxy(xx,grad2W,nx+1,36600+idc,igxs,1 &
-          ,chx,'   grad2W       ','emg2'//ctime(1:12) )
+          ,chx,'   grad2W       ','emg2'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
+
 
 end subroutine grav

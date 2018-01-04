@@ -82,7 +82,8 @@ subroutine uescdi
 
   call r0form('Thot  ',uht*511*miome,'f12.2')
   call grxy(xv,work1,nvx,6900+idc,1,2 &
-       ,'   Uesc(MeV)   ','     fi(Uesc)  ','fuis'//ctime(1:12) )
+       ,'   Uesc(MeV)   ','     fi(Uesc)  ','fuis'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
 end subroutine uescdi
 
 

@@ -17,9 +17,15 @@ subroutine trkini
   call r0form(' xpint',xpint,'f12.2')
   call r0form('    x1',x1,'f12.2')
 
-  !     track particles with x>=xpstart
+
 
   if (itropt.eq.1) then
+     do i=1,ntrack
+	itrack(i)=i
+     end do
+
+  else if (itropt.eq.2) then
+!     track particles with x>=xpstart
      do i=1,ntrack
         l=0
 10      l=l+1
@@ -46,7 +52,7 @@ subroutine trkini
 
      do i=1,ntrack
         read(11,'(i8,1pe15.4)') itrack(i),xdum
-        xytrk(i,0) = 0.
+        ytrk(i,0) = 0.
      end do
 
   endif

@@ -121,34 +121,6 @@ subroutine parload
   if (n_pp2.gt.0) call scramb(ne+n_pp1+1,n_pp2) 
   if ((ni_tot-np).gt.0) call scramb(ne+np+1,ni_tot-np)
 
-!#### Anupam & Bin 2009/2010
-
-!   call urelmax(ux(1:ne),ne,vte)
-!   call urelmax(uy(1:ne),ne,vte)
-!   call urelmax(uz(1:ne),ne,vte)
-! 
-!   !  fill in remaining 7 octants
-!   call fill3v(1,ne)
-! 
-!   !  ions
-!   call urelmax(ux(ne+1:ne+ni_tot),ni_tot,vti)
-!   call urelmax(uy(ne+1:ne+ni_tot),ni_tot,vti)
-!   call urelmax(uz(ne+1:ne+ni_tot),ni_tot,vti)
-! 
-!   !  fill in remaining 7 octants
-!   call fill3v(ion1,ni_tot)
-! 
-!   !  scramble positions and velocities
-! 
-!   call scramb(1,ne)
-! 
-!   if (ni_tot.gt.0) call scramb(ion1,ni_tot)
-
-!#### Anupam & Bin 2009/2010:cancel this method for many layered targets
-
-! Create additional layer from current density profile
-!  if (target_config>=2) call add_layer
-
 !  ni is now # heavy ions, ni_tot is total # ions
 
 !  calculate relativistic gamma factor

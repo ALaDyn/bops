@@ -26,16 +26,20 @@
 
 !  TE mode
         if (ppol.ne.0) then
-          Uemin = Uemin + dt*ift*fflab**2
-          Uemout = Uemout + dt*ift*fblab**2
-          Uemtr = Uemtr + dt*ift*ff(nx)**2
+!          Uemin = Uemin + dt*ift*fflab**2
+!          Uemout = Uemout + dt*ift*fblab**2
+!          Uemtr = Uemtr + dt*ift*ff(nx)**2
+          Upoy_in = Upoy_in + dt*ift*Ey(1)*Bz(1)
+          Upoy_out = Upoy_out + dt*ift*Ey(nx)*Bz(nx)
         endif
 
 !  TM mode
         if (spol.ne.0) then
-          Uemin = Uemin + dt*ift*gflab**2
-          Uemout = Uemout + dt*ift*gblab**2
-          Uemtr = Uemtr + dt*ift*gf(nx)**2
+!          Uemin = Uemin + dt*ift*gflab**2
+!          Uemout = Uemout + dt*ift*gblab**2
+!          Uemtr = Uemtr + dt*ift*gf(nx)**2
+          Upoy_in = Upoy_in - dt*ift*Ez(1)*By(1)
+          Upoy_out = Upoy_out - dt*ift*Ez(nx)*By(nx)
         endif
 
 !  probe antenna for forward wave
@@ -54,7 +58,7 @@
           gb0(nemw) = gb(1)
 
 
-          ipw=max(1.d0,xcrit/dx)
+          ipw=min(xl/dx-dx,xcrit/dx)
           fex(nemw)=ex(ipw)
 
 !  lab frame electron current at solid

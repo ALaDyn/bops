@@ -174,17 +174,23 @@ subroutine uescd
   !     TODO: Change MeV to keV if umevmax<1
 
   call grxy(xv,work1,nvx,6700+idc,1,2 &
-       ,cu,'     fe(Uesc)  ','fues'//ctime(1:12) )
+       ,cu,'     fe(Uesc)  ','fues'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
   call grxy(xv,work4,nvx,16800+idc,1,2 &
-       ,cu,'     fe(Uinj)  ','fuin'//ctime(1:12) )
+       ,cu,'     fe(Uinj)  ','fuin'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
   call grxy(xv,work5,nvx,16900+idc,1,2 &
-       ,cu,'     ge(Uin)   ','gein'//ctime(1:12) )
+       ,cu,'     ge(Uin)   ','gein'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
   call grxy(xv,work0,nvx,6800+idc,1,2 &
-       ,cu,'     fh(U)     ','fhot'//ctime(1:12) )
+       ,cu,'     fh(U)     ','fhot'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
   call grxy(xv,work2,nvx,7100+idc,1,1 &
-       ,cu,'    U*fe(U)    ','ufue'//ctime(1:12) )
+       ,cu,'    U*fe(U)    ','ufue'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
   call grxy(xv,work3,nvx,7200+idc,1,1 &
-       ,cu,'   Q/Qtot      ','qoqt'//ctime(1:12) )
+       ,cu,'   Q/Qtot      ','qoqt'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
   !     reset absorbed particle counter
   !     nesc = 1
 end subroutine uescd

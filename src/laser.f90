@@ -12,6 +12,9 @@
       real*8 t, pha, pha2, a0max2
       real*8 tp, u, tpend, tptot, tptot2, tp1tail, tp1end
       real*8 tp2tail, tp2end, t2, tdum, tp2beg
+      real*8 :: hdot, hdash  ! pulse envelope time and space derivatives
+      real*8 :: eys, ezs, bys, bzs  ! Field antennae
+
       t=dt*itime
       pha=w0*t*ttrans  ! keep same # launch cycles as for normal incidence
       pha2 = w02*t*ttrans
@@ -24,6 +27,8 @@
       endif
 
       a0max2=0. ! 2nd pulse off by default
+     hdot=0.
+     hdash=0.  ! Long pulse by default
 
      pulse_shape: select case(ilas)
       case(0)
@@ -37,7 +42,7 @@
          else
             a0max=a0
          endif
-
+	 
 
       case(2)
 !  Gaussian
@@ -69,8 +74,12 @@
 
          if (t.le.tptot) then
             a0max=a0*sin(pi*t/tptot)
+	    hdot= a0*pi/tptot*cos(pi*t/tptot)
+	    hdash = -hdot
          else
             a0max=0.
+	    hdot = 0.
+ 	    hdash = 0.
          endif
 !     2nd pulse
          if (t.le.tptot2 .and. tptot2.gt.0) then
@@ -121,8 +130,12 @@
 !     phase and polarization of LH attenna
 
       if (ilas.le.6) then
-         ff(1) = ppol*( a0max*sin(pha) + a0max2*sin(pha2) )
-         gf(1) = -spol*( a0max*cos(pha) + a0max2*cos(pha2) )
+	 eys = ppol*( a0max*sin(pha) - hdot*cos(pha) )
+	 bzs = ppol*( a0max*sin(pha) - hdot*cos(pha) )
+	 ezs = spol*(-a0max*cos(pha) - hdot*sin(pha) )
+	 bys = spol*( a0max*cos(pha) + hdot*sin(pha) )
+         ff(1) = 0.5*(eys + bzs)  ! F+ at LHB
+         gf(1) = 0.5*(ezs - bys)  ! G- at LHB
 
 !        write (*,'(f12.5,4(1pe12.5))') pha,ppol,spol,ff(1),gf(1)
 
@@ -134,7 +147,7 @@
          read (86,*) tdum,gf(1)
       endif
 
-
+      Uemin=Uemin+(ff(1)**2+gf(1)**2)*dt  ! Incoming Poynting flux
 
       end
 

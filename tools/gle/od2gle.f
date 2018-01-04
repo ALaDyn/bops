@@ -9,7 +9,6 @@ c  Fetches id files from base directory cbase
 
       real x(500000),y(500000)
 
-      CHARACTER(len=255) :: cwd
       character*15 chx,chy,ctitle*30,cbase*80,cdir*30,cyn*1,cidfull*80
      :,climx*1,chead*1,climy*1,cval*19,cdate*24,ccode*80
       character*40 cp,csym(0:9)
@@ -32,10 +31,8 @@ c  Fetches id files from base directory cbase
       write(6,'(a)') cid
       write(6,*) '# plots per page:'
       read(5,*) nbox
-      write(6,*) nbox
       write(6,*) 'header page (y/n)'
       read(5,'(a)') chead
-      write(6,'(a)') chead
       itypo=1
 
       ibox=1
@@ -102,8 +99,6 @@ c        write (iwrhead,'(a)') 'text '//cdate
 c  open the read file
       open(iread,file='bops.oddata')
 
-      CALL getcwd(cwd)
-      WRITE(*,*) TRIM(cwd)
 
 c  open id list file
       open(irlist,file=cidfull(1:lcidfull))

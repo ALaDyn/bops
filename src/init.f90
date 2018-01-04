@@ -137,6 +137,8 @@ subroutine init
   Uemin=0.
   Uemout=0.
   Uemtr=0.
+  Upoy_in=0.
+  Upoy_out=0.
   open(10,file='bops.indata')
   read (10,NML=picohd)
 end subroutine init

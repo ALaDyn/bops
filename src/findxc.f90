@@ -26,7 +26,7 @@
     endif
 
 !  sweep up
-      i = icm
+      i = min(icm,nx-1)
       do while (i.lt.nx .and. .not.found)
          if (den(i).le.rhotrak .and. den(i+1).gt.rhotrak) then
             found=.true.
@@ -37,7 +37,7 @@
       end do
 
 !  sweep down
-      i = icm
+      i = min(icm,nx-1)
       do while (i.gt.0 .and. .not.found)
          if (den(i).le.rhotrak .and. den(i+1).gt.rhotrak) then
             found=.true.

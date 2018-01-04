@@ -104,10 +104,10 @@ subroutine pouti
      write (io,'(a30,i13)') 'Pusher scheme: ',push_scheme
      write (io,'(a30,i13)') 'history frequency itc ',itc
 !     write (io,'(a30,i13)') '# steps in time-ave plots',ntc
-    write (io,'(a30,2f13.4)') 'Run time (norm/fs)',nt*dt*ttrans,nt*dt/tcfs*ttrans
+    write (io,'(a30,2f13.4)') 'Lab run time (norm/fs)',nt*dt*ttrans,nt*dt/tcfs*ttrans
      write (io,'(a30,2f13.4)') 'Mesh size (norm/microns)', &
           dx,dx/xconv
-     write (io,'(a30,2f13.4)') 'Lab time step (norm,fs)',dt*ttrans,dt/tcfs*ttrans
+     write (io,'(a30,2f13.4)') 'Time step (sim norm, lab fs)',dt,dt/tcfs*ttrans
      write (io,'(/a/)') '-----------------------------------'
   end do
 

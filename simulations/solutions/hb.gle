@@ -1,0 +1,201 @@
+! new page
+size 26 18 
+set font rm
+w=0.02
+begin translate   3.0000E+00   1.5000E+01
+begin text
+Project II: Hole boring  
+end text
+end translate 
+
+
+
+begin translate   8.0000E+00   1.2000E+01
+begin graph
+size   7.0000E+00   5.0000E+00
+data ninc00.xy
+data ninc01.xy
+data ninc02.xy
+data ninc03.xy
+nobox
+xaxis min    0.0000E+00 max    1.0000E+01
+yaxis min    0.0000E+00 max   150
+xaxis hei    2.5000E-01
+yaxis hei    2.5000E-01
+xlabels hei    3.0000E-01
+ylabels hei    3.0000E-01
+xaxis nticks 5
+xticks length .07
+yticks length .07
+ title     "ninc03.xy , t_{fs}=0.0  "   hei 0.25 font psh
+xtitle "   x/microns   "
+ytitle "       n_i/n_c "
+d1 line lwidth    w lstyle      9
+!d2 line lwidth    w color blue
+!d3 line lwidth    w color green
+d4 line lwidth    w lstyle 1
+end graph
+end translate
+
+
+
+begin translate   1.5000E+01   1.2000E+01
+begin graph
+size   7.0000E+00   5.0000E+00
+data nenc00.xy
+data nenc03.xy
+nobox
+xaxis min    0.0000E+00 max    1.0000E+01
+yaxis min    0.0000E+00 max    150
+xaxis hei    2.5000E-01
+yaxis hei    2.5000E-01
+xlabels hei    3.0000E-01
+ylabels hei    3.0000E-01
+xaxis nticks 5
+xticks length .07
+yticks length .07
+ title     "nenc03.xy , t_{fs}=0.0  "   hei 0.25 font psh
+xtitle "   x/microns   "
+ytitle "       n_e/n_c "
+d1 line lwidth    w lstyle      9
+d2 line lwidth    w lstyle 1
+end graph
+
+end translate
+
+
+
+begin translate   1.0000E+00   6.5000E+00
+begin graph
+size   7.0000E+00   5.0000E+00
+data pxxe03.xy
+nobox
+xaxis min    0.0000E+00 max    1.0000E+01
+yaxis min   -5 max  5
+xaxis hei    2.5000E-01
+yaxis hei    2.5000E-01
+xlabels hei    3.0000E-01
+ylabels hei    3.0000E-01
+xaxis nticks 5
+xticks length .07
+yticks length .07
+ title     "pxxe03.xy , t_{fs}=100.0"   hei 0.25 font psh
+xtitle "   x/microns   "
+ytitle "      px       "
+d1 marker dot msize 0.05
+end graph
+end translate
+
+
+
+begin translate   8.0000E+00   6.5000E+00
+begin graph
+size   7.0000E+00   5.0000E+00
+data exdc03.xy
+nobox
+xaxis hei    2.5000E-01
+yaxis hei    2.5000E-01
+xlabels hei    3.0000E-01
+ylabels hei    3.0000E-01
+xaxis nticks 5
+xticks length .07
+yticks length .07
+ title     "exdc03.xy , t_{fs}=100.0 "   hei 0.25 font psh
+xtitle "     x/mu      "
+ytitle "     <Ex>      "
+d1 line lwidth    w lstyle      1
+end graph
+end translate
+
+
+
+begin translate   1.5000E+01   6.5000E+00
+begin graph
+size   7.0000E+00   5.0000E+00
+data uinc00.xy 
+data ubac00.xy 
+nobox
+xaxis hei    2.5000E-01
+yaxis hei    2.5000E-01
+xlabels hei    3.0000E-01
+ylabels hei    3.0000E-01
+xaxis nticks 6 max 150
+xticks length .07
+yticks length .07
+ title     "uinc00.xy ,             "   hei 0.25 font psh
+xtitle "     t/fs      "
+ytitle "     <P_L>     "
+d1 line lwidth    w lstyle 1 key "incoming"
+d2 line lwidth w lstyle 2 key "reflected"
+end graph
+end translate
+
+
+
+begin translate   8.0000E+00   1.0000E+00
+begin graph
+size   7.0000E+00   5.0000E+00
+data fuep03.xy
+nobox
+xaxis hei    2.5000E-01
+yaxis hei    2.5000E-01
+xlabels hei    3.0000E-01
+ylabels hei    3.0000E-01
+yaxis log min 1
+xaxis nticks 4 max 2
+xticks length .07
+yticks length .07
+ title     "fuep03.xy , t_{fs}=150.0"   hei 0.25 font psh
+xtitle "      U(MeV)   "
+ytitle "     fe(U)     "
+d1 line lwidth    w lstyle      1
+end graph
+end translate
+
+
+
+begin translate   1.0000E+00   1.0000E+00
+begin graph
+size   7.0000E+00   5.0000E+00
+data pxxi03.xy
+nobox
+xaxis min    0.0000E+00 max    1.0000E+01
+yaxis min   -0.01 max 0.05 nticks 6
+xaxis hei    2.5000E-01
+yaxis hei    2.5000E-01
+xlabels hei    3.0000E-01
+ylabels hei    3.0000E-01
+xaxis nticks 5
+xticks length .07
+yticks length .07
+ title     "pxxi03.xy , t_{fs}=150.0"   hei 0.25 font psh
+xtitle "   x/microns   "
+ytitle "      px       "
+d1 marker dot msize 0.05
+end graph
+end translate
+
+
+
+begin translate   1.5000E+01   1.0000E+00
+begin graph
+size   7.0000E+00   5.0000E+00
+data fuip03.xy
+nobox
+xaxis hei    2.5000E-01
+yaxis hei    2.5000E-01
+xlabels hei    3.0000E-01
+ylabels hei    3.0000E-01
+yaxis log min 1
+xaxis nticks 4 min 0 max 2
+xticks length .07
+yticks length .07
+ title     "fuip03.xy , t_{fs}=150.0"   hei 0.25 font psh
+xtitle "      U(MeV)   "
+ytitle "     fi(U)     "
+d1 line lwidth    w lstyle      1
+end graph
+end translate
+
+
+

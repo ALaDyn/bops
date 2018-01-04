@@ -16,8 +16,8 @@
       real*4 :: x(nd),y(nd)
       real*8 :: store(15), xmin,xmax,ymin,ymax,x1,x2,y1,y2,xl,yl,dax,day
       integer lc, i, n, ip, idp, ispage, idash, ityp, ibox
-      character chars(1)*8,chx*15,chy*15,ctitle*16,cfile*12,cid*2
-
+      character chars(1)*8,chx*15,chy*15,cfile*12,cid*2
+      character(len=*), intent(in) :: ctitle
 !  open data file
 !  2-digit timestamp
      cid(2:2) = achar(mod(id,10) + 48)  

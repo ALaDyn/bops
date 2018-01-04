@@ -9,262 +9,120 @@ subroutine plotrk
   implicit none
 
   real*8 tstart, tend, xmax, xmin, uboost, uymin, uymax
-  integer i,j, lsym
-  character chead*80,cp*80,csym*40,cxmin*80,cxmax*80,cymin*80 &
-       ,cymax*80,cmima*60,cfile*80,csnap*80
+  integer i,j, lsym, itr, lct
+  character cfmt*80,cp*80,csym*40,cxmin*80,cxmax*80,cymin*80 &
+       ,cymax*80,cmima*60,cfile*80,csnap*40
   real*8 :: work1(ittrk), work2(ittrk)
 
   if (ntrack.eq.0.or.itropt.eq.3) return
 
-  !  cplot file header
-  cfile='track.cp'
-  open(60,file=cfile)
-
-  !  initialise graphics filter
-
-  write (60,'(a/a/a)') 'zi psfilter track.ps ','cd','cd pic'
+ write (*,*) 'Writing out particle tracks'
+ open(60,file='track_xvst.xy')
+ open(61,file='track_uxvst.xy')
+ open(62,file='track_uyvst.xy')
+ open(63,file='track_uzvst.xy')
 
   !  real space: x vs t
   !  ------------------
 
-  write (60,'(5(/a))') 'zw','re','tu','ft 3','wi 5. 5. 11. 7.'
   tstart = dt*itstart
   tend = itend*dt
-  xmax = gam0*(xsol+2.)
-  xmin = gam0*(xsol-2.)
-  write (60,'(a,4f13.4)') 'ra ',tstart,min(tend,nt*dt),xmin,xmax
+  if (ioboost.eq.1) then
+    xmax=xsol+2
+    xmin=xsol-2
+  else
+    xmax = gam0*(xsol+2.)
+    xmin = gam0*(xsol-2.)
+  endif
 
-  !  Title
+  call chr(1.*ntrack,0,csnap,lct)
+  cfmt = '(f12.3,'//csnap(1:lct)//'(f12.3))'
+  write(*,'(a20)') cfmt
 
-  write (60,'(a,9(/a))') &
-       'tx' &
-       , 'real space orbits' &
-       , ' t' &
-       , ' ' &
-       , ' x' &
-       , ' ' &
-       , 'sy L' & !  lines
-       , 'ty +6 +6 .' &
-       , 'zalt',' '
+  ! Tracking data written as 
+  !  t1, x(1,1), x(2,1), x(3,1), ... x(ntrack,1)
+  !  t2, x(2,1), x(2,2) ....         x(ntrack,2)
+  !  ..
+  !  t_ittrk,  x(ittrk,1) ....       x(ntrack,ittrk)
 
-
-  do i=1,ittrk
-     twork(i)=i*dt*itsk
-  end do
-
-  do i=1,ntrack
-     do j=1,ittrk
-        work1(j)=gam0*xtrk(i,j)
-     end do
-     call gtrak(twork,work1,ittrk,i,1,0 &
-          ,'       t       ','       x       ','xvst            ')
-
-     !  write filename to cplot header
-     call chr(i*1.,0,csym,lsym)
-     csnap = 'xvst/'//csym(1:lsym)
-     write (60,'(a)') 'gd 2 '//csnap(1:5+lsym)
-     !  display
-     write (60,'(a/a)') 'zp',' '
-
-  end do
-  !  new page
-  write (60,'(a/a)') 'zx','re'
-
-
-  !  real space: y vs x
+  !  real space: x(t)
   !  ------------------
-
-  write (60,'(5(/a))') 'zw','re','tu','ft 3','wi 5. 5. 11. 7.'
-  tstart = dt*itstart
-  tend = itend*dt
-  xmax = gam0*(xsol+2.)
-  xmin = gam0*(xsol-5.)
-  write (60,'(a,2f13.4)') 'rax ',xmin,xmax
-
-  !  Title
-
-  write (60,'(a,8(/a))') &
-       'tx' &
-       , 'real space orbits' &
-       , ' x' &
-       , ' ' &
-       , ' y' &
-       , ' ' &
-       , 'sy L' & !  lines
-       , 'ty +6 +6 .'
-  !     :, 'z1ta',' '
-
-
-  do i=1,ntrack
-     do j=1,ittrk
-        work1(j)=gam0*xtrk(i,j)
-        work2(j)=gam0**2*(xytrk(i,j) - vy0*twork(j))
-     end do
-     call gtrak(work1,work2,ittrk,i,1,0 &
-          ,'       x       ','       y       ','yvsx            ')
-
-     !  write filename to cplot header
-     call chr(i*1.,0,csym,lsym)
-     csnap = 'yvsx/'//csym(1:lsym)
-     write (60,'(a)') 'gd 2 '//csnap(1:5+lsym)
-     !  display
-     if (i.eq.1) then
-        write (60,'(a/a)') 'zaltp',' '
-     else
-        write (60,'(a/a)') 'zp',' '
-     endif
-
+  do i=1,ittrk
+     twork(i)=i*dt*itsk*ttrans
+     write (60,cfmt) twork(i),(xtrk(itr,i),itr=1,ntrack)
+     write (61,cfmt) twork(i),(uxtrk(itr,i),itr=1,ntrack)
+     write (62,cfmt) twork(i),(uytrk(itr,i),itr=1,ntrack)
+     write (63,cfmt) twork(i),(uztrk(itr,i),itr=1,ntrack)
   end do
-  !  new page
-  write (60,'(a/a)') 'zx','re'
+
+  close(60)
+  close(61)
+  close(62)
+  close(63)
+ return
+
 
   !  phase space: ux vs x
   !  --------------------
 
-  write (60,'(5(/a))') 'zw','re','tu','ft 3','wi 5. 5. 11. 7.'
+  do i=1,ntrack
+     do j=1,ittrk
+        work2(j)=uxtrk(i,j)
+        work1(j)=xtrk(i,j)
+     end do
+     call gtrak(work1,work2,ittrk,i,1,0 &
+          ,'       x       ','      ux       ','uvsx            ')
+  end do
 
-  write (60,'(a,4f13.4)') 'ra ',xmin,xmax,-3*a0,3*a0
+ 
+  !  real space: y vs x
+  !  ------------------
 
-  !  Title
 
-  write (60,'(a,9(/a))') &
-       'tx' &
-       , 'phase space (px)' &
-       , ' x' &
-       , ' ' &
-       , ' px' &
-       , ' ' &
-       , 'sy L' & !  lines
-       , 'ty +6 +6 .' &
-       , 'zalt',' '
+  tstart = dt*itstart
+  tend = itend*dt
+  xmax = gam0*(xsol+2.)
+  xmin = gam0*(xsol-5.)
 
 
   do i=1,ntrack
      do j=1,ittrk
-        work2(j)=uxtrk(i,j)
-        work1(j)=gam0*xtrk(i,j)
+	  work1(j)=xtrk(i,j)
+          work2(j)=ytrk(i,j)
      end do
      call gtrak(work1,work2,ittrk,i,1,0 &
-          ,'       x       ','      ux       ','uvsx            ')
-
-     !  write filename to cplot header
-     call chr(i*1.,0,csym,lsym)
-     csnap = 'uvsx/'//csym(1:lsym)
-     write (60,'(a)') 'gd 2 '//csnap(1:5+lsym)
-     !  display
-     write (60,'(a/a)') 'zp',' '
+          ,'       x       ','       y       ','yvsx            ')
 
   end do
-  !  new page
-  write (60,'(a/a)') 'zx','re'
 
-
-  !   uy vs x
+ !   uy vs x
   !  --------------
-
-  write (60,'(5(/a))') 'zw','re','tu','ft 3','wi 5. 5. 11. 7.'
 
   uboost=vy0*gam0
   uymin = uboost-2*a0
   uymax = uboost+2*a0
-  write (60,'(a,4f13.4)') 'ra ',xmin,xmax,uymin,uymax
 
-  !  Title
-
-  write (60,'(a,9(/a))') &
-       'tx' &
-       , 'phase space (py)' &
-       , ' x' &
-       , ' ' &
-       , ' py' &
-       , ' ' &
-       , 'sy L' & !  lines
-       , 'ty +6 +6 .' &
-       , 'zalt',' '
 
   do i=1,ntrack
      do j=1,ittrk
         work2(j)=uytrk(i,j)
-        work1(j)=gam0*xtrk(i,j)
+        work1(j)=xtrk(i,j)
      end do
      call gtrak(work1,work2,ittrk,i,1,0 &
           ,'       x       ','      uy       ','uyvx            ')
 
-     !  write filename to cplot header
-     call chr(i*1.,0,csym,lsym)
-     csnap = 'uyvx/'//csym(1:lsym)
-     write (60,'(a)') 'gd 2 '//csnap(1:5+lsym)
-     !  display
-     write (60,'(a/a)') 'zp',' '
-  end do
+   end do
 
-  !  new page
-  write (60,'(a/a)') 'zx','re'
-
-
-  !  Acceleration vs x
-  !  --------------
-
-  write (60,'(5(/a))') 'zw','re','tu','ft 3','wi 5. 5. 11. 7.'
-
-  !      write (60,'(a,2f13.4)') 'rax ',tstart,min(tend,nt*dt)
-  write (60,'(a,4f13.4)') 'ra ',xmin,xmax,-a0,2*a0
-
-  !  Title
-
-  write (60,'(a,8(/a))') &
-       'tx' &
-       , 'acceleration' &
-       , ' x' &
-       , ' ' &
-       , ' ax' &
-       , ' ' &
-       , 'sy L' & !  lines
-       , 'ty +6 +6 .'
-  !     :, 'zalt',' '
 
   do i=1,ntrack
      do j=1,ittrk
-        work1(j)=gam0*xtrk(i,j)
+        work1(j)=xtrk(i,j)
         work2(j)=axtrk(i,j)
      end do
      call gtrak(work1,work2,ittrk,i,1,0 &
           ,'       x       ','      ax       ','axvx            ')
 
-     !  write filename to cplot header
-     call chr(i*1.,0,csym,lsym)
-     csnap = 'axvx/'//csym(1:lsym)
-     write (60,'(a)') 'gd 2 '//csnap(1:5+lsym)
-     !  display
-     if (i.eq.1) then
-        write (60,'(a/a)') 'zaltp',' '
-     else
-        write (60,'(a/a)') 'zp',' '
-     endif
   end do
-  !  new page
-  write (60,'(a/a)') 'zx','re'
-
-
-  !  Acceleration vs t
-  !  --------------
-
-  write (60,'(5(/a))') 'zw','re','tu','ft 3','wi 5. 5. 11. 7.'
-
-  write (60,'(a,4f13.4)') 'ra ',tstart,min(tend,nt*dt),-a0,2*a0
-
-  !  Title
-
-  write (60,'(a,8(/a))') &
-       'tx' &
-       , 'acceleration' &
-       , ' t' &
-       , ' ' &
-       , ' ax' &
-       , ' ' &
-       , 'sy L' & !  lines
-       , 'ty +6 +6 .'
-  !     :, 'zalt',' '
 
   do i=1,ntrack
      do j=1,ittrk
@@ -273,21 +131,6 @@ subroutine plotrk
      call gtrak(twork,work2,ittrk,i,1,0 &
           ,'       t       ','      ax       ','axvt            ')
 
-     !  write filename to cplot header
-     call chr(i*1.,0,csym,lsym)
-     csnap = 'axvt/'//csym(1:lsym)
-     write (60,'(a)') 'gd 2 '//csnap(1:5+lsym)
-     !  display
-     if (i.eq.1) then
-        write (60,'(a/a)') 'zaltp',' '
-     else
-        write (60,'(a/a)') 'zp',' '
-     endif
   end do
-
-  !  close filter
-  write (60,'(a/a)') 'ex','y'
-
-  close(60)
 
 end subroutine plotrk

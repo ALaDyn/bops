@@ -74,7 +74,7 @@ subroutine avlas
      dxlab=dx*gam0
      ese=0.
      do i=1,nx+1
-        ese = ese + dxlab*(ex(i)+vy0*bz(i))**2
+        ese = ese + 0.5*dxlab*(ex(i)+vy0*bz(i))**2
      end do
      uesa(ntav)=uesa(ntav)+ese*dt/tav
 
@@ -102,7 +102,7 @@ subroutine avlas
  	if (species(ip).eq.2) then
           uti=uti+xmilab*u2/(gl+1.)  ! heavy ions
   	else if (species(ip).eq.3) then
-          utp=utp+xmplab*u2/(gl+1.)  ! heavy ions
+          utp=utp+xmplab*u2/(gl+1.)  ! protons
 	endif
      end do
 
@@ -119,7 +119,7 @@ subroutine avlas
      !  escaped particles
      ulha(ntav)=ulha(ntav)+elhb*dt/tav
 
-     !  wave energy - lab frame
+     !  total field energy (ES+EM) - lab frame
      emte=0.
      emtm=0.
      rhom=0.

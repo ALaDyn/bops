@@ -80,11 +80,14 @@ subroutine vdist
         end do
 
         call grxy(xv,work1,nvx,6000+idc,1,1 &
-             ,'      vx       ','     f(vx)     ','fvxe'//ctime(1:12) )
+             ,'      vx       ','     f(vx)     ','fvxe'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
         call grxy(xv,work2,nvy,6200+idc,1,1 &
-             ,'      vy       ','     f(vy)     ','fvye'//ctime(1:12) )
+             ,'      vy       ','     f(vy)     ','fvye'//ctime(1:12)  & 
+	     ,-1.0,1.0,.2,1.,1e3,10.)
         call grxy(xv,work3,nvy,6300+idc,1,1 &
-             ,'      vz       ','     f(vz)     ','fvze'//ctime(1:12) )
+             ,'      vz       ','     f(vz)     ','fvze'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
      endif
 
      !  zero distn functions

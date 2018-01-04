@@ -26,7 +26,7 @@ module bopsvars
   real*8, allocatable :: avni(:), dcbz(:), avext(:), avjm(:), vxb(:), avphi(:), dcex(:), exlab(:), bylab(:)
   real*8, allocatable :: dcvy(:), dcjy(:), dcrhe(:), vxb2(:), avjy(:), avjz(:), dcey(:), dcbx(:), bzlab(:), rhoe_last(:)
   real*8, allocatable :: dcez(:), dcby(:), dcjz(:), dcjx(:), dcphi(:)
-  real*8, allocatable :: xtrk(:,:), twork(:), itrack(:), uxtrk(:,:), uytrk(:,:), axtrk(:,:), xytrk(:,:) ! tracking arrays
+  real*8, allocatable :: xtrk(:,:), twork(:), itrack(:), uxtrk(:,:), uytrk(:,:), uztrk(:,:), axtrk(:,:), ytrk(:,:) ! tracking arrays
 
   real*8, allocatable :: uinj(:), uest(:), phat(:), utrans(:)
 
@@ -114,7 +114,7 @@ module bopsvars
       ,   abo,   asm,  ampl, xsol2,   tav,  vyav,  gnon,  xgin &
       ,  erhb,  elhb,    wl,    wr,  rsv2,  thp, uthe0, uthi0, uthp0 &
       ,xdebye, xdodx, xlolam,  nonc, uemin, uemout, uemtr, omegm &
-      , wrf, denmin
+      , wrf, denmin, Upoy_in, Upoy_out
 
   integer :: ifbin
 
@@ -123,7 +123,7 @@ module bopsvars
   integer ::  ipbc,  ifbc, imaxw, ifilt &
       , iembc, ioboost, iunits, iran0, ifreeze
   integer :: debug=2 ! Debug level switch
-  logical :: lcycave=.true. ! Write out time-averaged energies
+  logical :: lcycave=.false. ! Write out time-averaged energies
 !   i/o
   integer ::  iout,  igr, idia,  ipskip,   itc,  itav,   nuav &
       ,  igx2d,  isgy,   igxs,  nsp, igmovie, icstart,  icft,ncycle &

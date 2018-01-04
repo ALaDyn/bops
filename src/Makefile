@@ -30,8 +30,8 @@
 #--------
 #FC= ifort
 FC=gfortran
-TUNE = -O5  
-#DEBUG = -g -O0  #-check bounds -traceback
+TUNE = -O3 -g -fbounds-check 
+#DEBUG = -g -O0 -fbounds-check -fbacktrace
 #TUNE = -O3  
 
 # cygwin or MINGW
@@ -96,20 +96,20 @@ mods: $(MODS)
 
 bops:   $(OBJS) $(MODS)
 	@echo "Loading object files using flags: $(FFLAGS)"
-	$(FC) $(FFLAGS) -o bops.exe $(OBJS)
+	$(FC) $(FFLAGS) -o bops $(OBJS)
 
 debug:	$(OBJS)
 	@echo "Loading object files\n\tusing flags\n$(FFLAGS)\n---------"
-	@$(FC) $(FFLAGS) -o bops_debug.exe $(OBJS)
+	@$(FC) $(FFLAGS) -o bops_debug $(OBJS)
 
 ft:	ftana.o fftrc.o ioutils.o
-	$(FC) $(FFLAGS) -o ftan.exe ftana.o fftrc.o ioutils.o
+	$(FC) $(FFLAGS) -o ftan ftana.o fftrc.o ioutils.o
 
 clean:
-	rm -f *.o *.mod
+	rm -f *.o bops *.mod
 
 cleanall:   
-	rm -f *.o *.mod *.exe 
+	rm -f bops bops_debug ftan 
 
 ## to specify the dependencies, the corresponding object file is used 
 ## instead of the module file

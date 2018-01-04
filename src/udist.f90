@@ -82,7 +82,8 @@ subroutine udist
         end do
 
         call grxy(xv,fu,nvx,6500+idc,1,2 &
-             ,cu,'     fe(U)     ','fuep'//ctime(1:12) )
+             ,cu,'     fe(U)     ','fuep'//ctime(1:12) &
+	     ,-1.0,1.0,.2,1.,1e3,10.)
      endif
      do i=1,nvx
         fu(i)=0.

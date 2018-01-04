@@ -18,7 +18,7 @@ program bops
   implicit none
   real tleft, tst, tcyc, tnodia, tdiag, tim1, tr, td1, td2, tim2
   real tpush, tdens, tfield, tcur, ts1, ts2
-  integer i1, iflag, pdi
+  integer i1, iflag, pdi,ip
 
   !      open O/P files
   call fileop
@@ -229,6 +229,12 @@ program bops
      call blank6
   endif
 
+! Add drift to plasma
+  if (target_config==4 .and. itime.eq.itc+1) then
+    do ip=1,npart
+      ux(ip)=ux(ip) + abs(a0)
+    end do
+  endif
   end do
 
 
@@ -246,12 +252,12 @@ program bops
   call r0form('field ',tfield*1.d0,'f15.3')
   call r0form('cycle ',tcyc*1.d0,'f15.3')
   call r0form('nodiag',tnodia*1.d0,'f15.3')
-  call r0form6('Trun/s',ttot,'f15.2')
-  call r0form6(' push ',tpush*1.d0,'f15.3')
-  call r0form6(' dens ',tdens*1.d0,'f15.3')
-  call r0form6(' curr ',tcur*1.d0,'f15.3')
-  call r0form6(' field',tfield*1.d0,'f15.3')
-  call r0form6(' diag',tdiag*1.d0,'f15.3')
+  call r0form6(' Trun/s',ttot,'f15.2')
+  call r0form6('  push ',tpush*1.d0,'f15.3')
+  call r0form6('  dens ',tdens*1.d0,'f15.3')
+  call r0form6('  curr ',tcur*1.d0,'f15.3')
+  call r0form6('  field',tfield*1.d0,'f15.3')
+  call r0form6('  diag',tdiag*1.d0,'f15.3')
   call r0form6('Tr-Td ',tnodia*1.d0,'f15.3')
   call r0form6('Tcycle',tnodia/nt*1.d0,'f16.4')
   write (15,'(a,f12.3,a)') &
@@ -265,7 +271,7 @@ program bops
      call i0prnt('# dt  ',itime)
      call gsnap
   endif
-  if (itropt.eq.2) then
+  if (itropt.eq.2 .or. itropt.eq.1) then
      call plotrk
   else if (itropt.eq.3) then
      call scatrk

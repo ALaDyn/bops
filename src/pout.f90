@@ -6,7 +6,7 @@ subroutine pout
   implicit none
 
 
-  if (mod(itime,iout).ne.0.or.itime.eq.0) return
+if ((mod(itime,iout).eq.0.and.itime.gt.0) .or. itime.eq.nt) then 
   !      call blank
 
   if (iunits.eq.2) then
@@ -28,5 +28,8 @@ subroutine pout
           ,itime*dt/tcfs*ttrans,' (',100*itime*dt/trun,'% runtime)'
   endif
 101 format(a,i7,3x,a,f8.1,3x,a,f8.1,3x,a,f5.1,a)
+ else
+  return
+ endif
 
 end subroutine pout

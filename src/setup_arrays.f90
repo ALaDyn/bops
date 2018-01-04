@@ -14,7 +14,7 @@ subroutine setup_arrays
   nptrk = 50
   ncxm = nx+10
   ncym = max(itav+1,2)
-  ntrkm = max(ntrack+1,10)
+  ntrkm = nt/itsk+10
   ncycm = 2*nt/(min(itc,itav))+1
   nspm = 4*itav+1  ! movie snapshots
 
@@ -93,8 +93,8 @@ subroutine setup_arrays
 
       allocate ( iesci(0:10*npm), iesc(0:10*npm) )
 
-      allocate ( xtrk(40,ntrkm),twork(0:500),uxtrk(40,ntrkm) &
-      , uytrk(40,ntrkm),axtrk(40,ntrkm),xytrk(40,0:ntrkm) &
+      allocate ( xtrk(40,ntrkm),twork(0:ntrkm),uxtrk(40,ntrkm) &
+      , uytrk(40,ntrkm),uztrk(40,ntrkm),axtrk(40,ntrkm),ytrk(40,0:ntrkm) &
       ,itrack(nptrk) )
 !      allocate ( isp(5000) )
       eta(1)=0.

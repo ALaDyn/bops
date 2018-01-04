@@ -50,6 +50,14 @@
               ,chx,'      Uth      ','uthm            ' &
               ,tmin,tmax,tstep,abmin,abmax,abstep)
 
+         call grxy(xt,uthe,ntc,15300,1,1 &
+              ,chx,'      Uthe     ','uthe            ' &
+              ,tmin,tmax,tstep,abmin,abmax,abstep)
+
+         call grxy(xt,uthi,ntc,15400,1,1 &
+              ,chx,'      Uthi     ','uthi            ' &
+              ,tmin,tmax,tstep,abmin,abmax,abstep)
+
          call grxy(xt,usys,ntc,15600,1,1 &
               ,chx,'      Usys     ','usys            ' &
               ,tmin,tmax,tstep,abmin,abmax,abstep)

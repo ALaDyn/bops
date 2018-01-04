@@ -116,7 +116,7 @@
  !     call currft
 
 !  particle tracking (labels read from file)
-      if (itropt.eq.2) then
+      if (itropt.le.2) then
         call stotrk
 
 !  track particles just exiting plasma
